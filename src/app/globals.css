@@ -1,0 +1,335 @@
+/* src/app/globals.css */
+body {
+  background-color: #333;
+  color: #f0f0f0;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 2rem;
+}
+
+main {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.unit-title {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #e0e0e0;
+  margin-bottom: 1rem;
+}
+
+.level-selector {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.level-selector button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border: 1px solid #777;
+  background-color: #444;
+  color: #f0f0f0;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.level-selector button:hover {
+  background-color: #555;
+}
+
+.level-selector button.active {
+  background-color: #6a8e6a;
+  border-color: #8fbc8f;
+  font-weight: bold;
+}
+
+.card {
+  background-color: #4a4a4a;
+  border: 1px solid #666;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.unit-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #666;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.unit-header h2 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.doctrine-badge {
+  padding: 0.3rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: white;
+}
+.doctrine-allies { background-color: #4a6c4a; }
+.doctrine-axis { background-color: #7a4b4b; }
+.doctrine-communist { background-color: #8b3a3a; }
+.doctrine-pan-asian { background-color: #b8860b; }
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.stats-grid div {
+  background-color: #3e3e3e;
+  padding: 0.75rem;
+  border-radius: 4px;
+}
+
+.tables-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.stats-section h3 {
+  margin-top: 0;
+  color: #ccc;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+th, td {
+  padding: 0.5rem;
+  text-align: left;
+  border-bottom: 1px solid #5a5a5a;
+}
+
+thead th {
+  background-color: #3e3e3e;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #444444;
+}
+
+@media (max-width: 768px) {
+  .tables-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.selector-group {
+  background-color: #3e3e3e;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.selector-group h4 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #ccc;
+  font-weight: normal;
+}
+
+.button-row {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.button-row button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border: 1px solid #777;
+  background-color: #4f4f4f;
+  color: #f0f0f0;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.button-row button:hover {
+  background-color: #5f5f5f;
+}
+
+.button-row button.active {
+  background-color: #6a8e6a;
+  border-color: #8fbc8f;
+  font-weight: bold;
+}
+
+.no-units-message {
+    text-align: center;
+    color: #999;
+    font-style: italic;
+}
+
+.production-info {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  background-color: #3e3e3e;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+}
+
+.production-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.resource-costs, .production-time {
+  flex: 1;
+}
+
+.resource-costs h4, .production-time h4 {
+  margin: 0 0 0.75rem 0;
+  color: #bbb;
+  border-bottom: 1px solid #555;
+  padding-bottom: 0.5rem;
+  font-weight: normal;
+}
+
+.resource-costs ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.resource-costs li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.25rem;
+}
+
+.production-time p {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #f0f0f0;
+}
+
+@media (max-width: 600px) {
+  .production-details {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.special-properties {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  background-color: #3e3e3e;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+}
+
+.special-properties ul {
+  /* This is the core of the new layout */
+  display: flex;
+  flex-wrap: wrap; /* Allows items to wrap to the next line */
+  gap: 0.5rem;     /* Creates space between the tags */
+  
+  /* Reset default list styling */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.special-properties li {
+  /* This styles each item as a "tag" or "pill" */
+  background-color: #555;
+  color: #e0e0e0;
+  padding: 0.3rem 0.75rem;
+  border-radius: 16px; /* Creates the rounded pill shape */
+  font-size: 0.85rem;
+  font-weight: 500;
+  white-space: nowrap; /* Ensures text inside a tag doesn't wrap */
+}
+
+.main-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.sidebar {
+  flex: 0 0 250px;
+  background-color: #3e3e3e;
+  padding: 1rem;
+  border-radius: 8px;
+  align-self: flex-start; /* Aligns sidebar to the top */
+}
+
+.sidebar h2 {
+  margin-top: 0;
+  text-align: center;
+}
+
+.sidebar-category {
+  margin-bottom: 1.5rem;
+}
+
+.sidebar h3 {
+  font-size: 1.1rem;
+  color: #a0a0a0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 1rem;
+  border-bottom: 1px solid #555;
+  padding-bottom: 0.5rem;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0 0;
+}
+
+.sidebar button {
+  width: 100%;
+  text-align: left;
+  padding: 0.5rem;
+  background-color: transparent;
+  border: none;
+  color: #ccc;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 4px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.sidebar button:hover {
+  background-color: #4f4f4f;
+  color: white;
+}
+
+.sidebar button.active {
+  background-color: #6a8e6a;
+  color: white;
+  font-weight: bold;
+}
+
+.content {
+  flex: 1;
+  min-width: 300px; /* Ensures content doesn't get too squished */
+}

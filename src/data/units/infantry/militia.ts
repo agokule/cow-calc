@@ -1,0 +1,58 @@
+import { IUnitType } from '@/types';
+
+export const militiaData: IUnitType = {
+  genericName: 'Militia',
+  doctrineVariants: {
+    Allies: [
+      {
+        unitName: 'Militia Type 1932',
+        level: 1,
+        doctrine: 'Allies',
+        type: 'Unarmored',
+        averageDamage: 1.3,
+        hitpoints: 15,
+        production: { costs: { food: 500, manpower: 800, metal: 200, cash: 600, oil: 0 }, minTimeInSeconds: 1800 },
+        specialProperties: [ 'Fast Production', 'Partial Stealth', 'Defensive', 'Anti-Unarmored' ],
+        combatStatistics: { vsUnarmored: { attack: 1.7, defense: 2.5 }, vsLightArmor: { attack: 1, defense: 1.5 }, vsHeavyArmor: { attack: 0.5, defense: 0.7 }, vsAirplane: { attack: 1, defense: 1.5 }, vsShip: { attack: 0.5, defense: 0.7 }, vsSubmarine: { attack: 0.5, defense: 0.7 }, vsBuildings: { attack: 0.4, defense: 0.6 }, vsProvinceMorale: { attack: 0.1, defense: null }, vsRocket: { attack: 0, defense: 0 }, },
+        terrainEffects: { plains: { health: 15, attackModifier: null, speedModifier: null, strengthModifier: 0.25 }, hills: { health: 15, attackModifier: null, speedModifier: null, strengthModifier: 0.25 }, mountains: { health: 15, attackModifier: null, speedModifier: -0.5, strengthModifier: 0.25 }, forest: { health: 15, attackModifier: null, speedModifier: null, strengthModifier: 0.5 }, urban: { health: 15, attackModifier: null, speedModifier: null, strengthModifier: null }, sea: { health: 10, attackModifier: null, speedModifier: null, strengthModifier: null }, enemyTerritory: { health: null, attackModifier: null, speedModifier: -0.5, strengthModifier: null } },
+      },
+      {
+        unitName: 'Militia Type 1934',
+        level: 2,
+        doctrine: 'Allies',
+        type: 'Unarmored',
+        averageDamage: 2.5,
+        hitpoints: 20,
+        production: { costs: { food: 550, manpower: 850, metal: 250, cash: 650, oil: 0 }, minTimeInSeconds: 2700 },
+        specialProperties: [ 'Fast Production', 'Partial Stealth', 'Defensive', 'Anti-Unarmored' ],
+        combatStatistics: { vsUnarmored: { attack: 3.2, defense: 4.8 }, vsLightArmor: { attack: 1.7, defense: 2.5 }, vsHeavyArmor: { attack: 1, defense: 1.5 }, vsAirplane: { attack: 1.7, defense: 2.5 }, vsShip: { attack: 1.3, defense: 1.9 }, vsSubmarine: { attack: 1.3, defense: 1.9 }, vsBuildings: { attack: 0.6, defense: 0.9 }, vsProvinceMorale: { attack: 0.1, defense: null }, vsRocket: { attack: 0, defense: 0 }, },
+        terrainEffects: { plains: { health: 20, attackModifier: null, speedModifier: null, strengthModifier: 0.25 }, hills: { health: 20, attackModifier: null, speedModifier: null, strengthModifier: 0.25 }, mountains: { health: 20, attackModifier: null, speedModifier: -0.5, strengthModifier: 0.25 }, forest: { health: 20, attackModifier: null, speedModifier: null, strengthModifier: 0.5 }, urban: { health: 20, attackModifier: null, speedModifier: null, strengthModifier: null }, sea: { health: 10, attackModifier: null, speedModifier: null, strengthModifier: null }, enemyTerritory: { health: null, attackModifier: null, speedModifier: -0.5, strengthModifier: null } },
+      },
+      {
+        unitName: 'Militia Type 1942',
+        level: 3,
+        doctrine: 'Allies',
+        type: 'Unarmored',
+        averageDamage: 4.5,
+        hitpoints: 30,
+        production: { costs: { food: 650, manpower: 850, metal: 300, cash: 750, oil: 0 }, minTimeInSeconds: 3600 },
+        specialProperties: [ 'Fast Production', 'Partial Stealth', 'Defensive', 'Anti-Unarmored' ],
+        combatStatistics: { vsUnarmored: { attack: 5.8, defense: 8.7 }, vsLightArmor: { attack: 3, defense: 4.5 }, vsHeavyArmor: { attack: 2, defense: 3 }, vsAirplane: { attack: 3, defense: 4.5 }, vsShip: { attack: 2, defense: 3 }, vsSubmarine: { attack: 2, defense: 3 }, vsBuildings: { attack: 0.8, defense: 1.2 }, vsProvinceMorale: { attack: 0.2, defense: null }, vsRocket: { attack: 0, defense: 0 }, },
+        terrainEffects: { plains: { health: 30, attackModifier: null, speedModifier: null, strengthModifier: 0.25 }, hills: { health: 30, attackModifier: null, speedModifier: null, strengthModifier: 0.25 }, mountains: { health: 30, attackModifier: null, speedModifier: -0.5, strengthModifier: 0.25 }, forest: { health: 30, attackModifier: null, speedModifier: null, strengthModifier: 0.5 }, urban: { health: 30, attackModifier: null, speedModifier: null, strengthModifier: null }, sea: { health: 10, attackModifier: null, speedModifier: null, strengthModifier: null }, enemyTerritory: { health: null, attackModifier: null, speedModifier: -0.5, strengthModifier: null } },
+      },
+      {
+        unitName: 'Militia Type 1947',
+        level: 4,
+        doctrine: 'Allies',
+        type: 'Unarmored',
+        averageDamage: 8.0,
+        hitpoints: 45,
+        production: { costs: { food: 750, manpower: 900, metal: 350, cash: 900, oil: 0 }, minTimeInSeconds: 4500 },
+        specialProperties: [ 'Fast Production', 'Partial Stealth', 'Defensive', 'Anti-Unarmored' ],
+        combatStatistics: { vsUnarmored: { attack: 10, defense: 15 }, vsLightArmor: { attack: 5.8, defense: 8.7 }, vsHeavyArmor: { attack: 3.5, defense: 5.3 }, vsAirplane: { attack: 5, defense: 7.5 }, vsShip: { attack: 3.3, defense: 4.9 }, vsSubmarine: { attack: 3.3, defense: 4.9 }, vsBuildings: { attack: 1.2, defense: 1.8 }, vsProvinceMorale: { attack: 0.2, defense: null }, vsRocket: { attack: 0, defense: 0 }, },
+        terrainEffects: { plains: { health: 45, attackModifier: null, speedModifier: null, strengthModifier: 0.25 }, hills: { health: 45, attackModifier: null, speedModifier: null, strengthModifier: 0.25 }, mountains: { health: 45, attackModifier: null, speedModifier: -0.5, strengthModifier: 0.25 }, forest: { health: 45, attackModifier: null, speedModifier: null, strengthModifier: 0.5 }, urban: { health: 45, attackModifier: null, speedModifier: null, strengthModifier: null }, sea: { health: 10, attackModifier: null, speedModifier: null, strengthModifier: null }, enemyTerritory: { health: null, attackModifier: null, speedModifier: -0.5, strengthModifier: null } },
+      },
+    ],
+    Axis: [], Communist: [], "Pan-Asian": [],
+  },
+};
