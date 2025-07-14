@@ -4,12 +4,11 @@ body {
   color: #f0f0f0;
   font-family: sans-serif;
   margin: 0;
-  padding: 2rem;
+  padding: 0;
 }
 
 main {
-  max-width: 900px;
-  margin: 0 auto;
+  /* Remove max-width and margin from here */
 }
 
 .unit-title {
@@ -268,7 +267,7 @@ tbody tr:nth-child(even) {
 
 .main-layout {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 2rem;
 }
 
@@ -278,6 +277,9 @@ tbody tr:nth-child(even) {
   padding: 1rem;
   border-radius: 8px;
   align-self: flex-start; /* Aligns sidebar to the top */
+  position: sticky;
+  max-height: calc(100vh - 4rem);
+  overflow-y: auto;
 }
 
 .sidebar h2 {
@@ -332,4 +334,43 @@ tbody tr:nth-child(even) {
 .content {
   flex: 1;
   min-width: 300px; /* Ensures content doesn't get too squished */
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.sidebar-toggle {
+  display: none;
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 10;
+  background: #333;
+  border: 1px solid #777;
+  color: white;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    z-index: 5;
+  }
+
+  .sidebar.open {
+    display: block;
+  }
+
+  .sidebar-toggle {
+    display: block;
+  }
+
+  .sidebar-toggle.open {
+    display: none;
+  }
+
 }

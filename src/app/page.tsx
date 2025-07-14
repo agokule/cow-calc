@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import UnitDisplay from "@/components/UnitDisplay";
 import { IUnitType } from "@/types";
 import { unitDataCategorized } from "@/data/units";
@@ -10,11 +10,45 @@ export default function Home() {
   const [selectedUnitData, setSelectedUnitData] = useState<IUnitType | IUnitType[]>(
     unitDataCategorized.Infantry[0]
   );
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const sidebarRef = useRef<HTMLElement>(null);
+  const sidebarToggleRef = useRef<HTMLButtonElement>(null);
+
+  // Close sidebar when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        sidebarRef.current &&
+        !sidebarRef.current.contains(event.target as Node) &&
+        sidebarToggleRef.current &&
+        !sidebarToggleRef.current.contains(event.target as Node)
+      ) {
+        setIsSidebarOpen(false);
+      }
+    }
+
+    if (isSidebarOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isSidebarOpen]);
 
   return (
     <main>
       <div className="main-layout">
-        <nav className="sidebar">
+        <button
+          className={`sidebar-toggle ${isSidebarOpen ? 'open' : ''}`}
+          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+          ref={sidebarToggleRef}
+        >
+          &#9776;
+        </button>
+        <nav className={`sidebar ${isSidebarOpen ? 'open' : ''}`} ref={sidebarRef}>
           <h2>Unit Browser</h2>
           {Object.entries(unitDataCategorized).map(([category, units]) => (
             <div key={category} className="sidebar-category">
