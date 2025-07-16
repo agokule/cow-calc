@@ -11,10 +11,37 @@ export const cruiserData: IUnitType = {
         type: 'Ship',
         averageDamage: 3.2,
         hitpoints: 35,
-        production: { costs: { food: 1900, manpower: 1000, metal: 1100, cash: 1400, oil: 0 }, minTimeInSeconds: 6900 },
+        production: {
+          costs: {
+            food: 1900,
+            manpower: 1000,
+            metal: 1100,
+            cash: 1400,
+            oil: 0
+          },
+          minTimeInSeconds: 6900
+        },
         specialProperties: [ 'Ranged Attack', 'Anti-Ship', 'Anti-Air' ],
-        combatStatistics: { vsUnarmored: { attack: 1.5, defense: 1.5 }, vsLightArmor: { attack: 1.5, defense: 1.5 }, vsHeavyArmor: { attack: 1.5, defense: 1.5 }, vsAirplane: { attack: 6, defense: 6 }, vsShip: { attack: 4, defense: 4 }, vsSubmarine: { attack: 2.3, defense: 2.3 }, vsBuildings: { attack: 1.5, defense: 1.5 }, vsProvinceMorale: { attack: 0.5, defense: null }, vsRocket: { attack: 0, defense: 0 }, },
-        terrainEffects: { plains: { health: null, attackModifier: null, speedModifier: null, strengthModifier: null }, hills: { health: null, attackModifier: null, speedModifier: null, strengthModifier: null }, mountains: { health: null, attackModifier: null, speedModifier: null, strengthModifier: null }, forest: { health: null, attackModifier: null, speedModifier: null, strengthModifier: null }, urban: { health: null, attackModifier: null, speedModifier: null, strengthModifier: null }, sea: { health: 35, attackModifier: null, speedModifier: null, strengthModifier: null }, enemyTerritory: { health: null, attackModifier: null, speedModifier: null, strengthModifier: null } },
+        combatStatistics: {
+          vsUnarmored:      { attack: 1.5, defense: 1.5 },
+          vsLightArmor:     { attack: 1.5, defense: 1.5 },
+          vsHeavyArmor:     { attack: 1.5, defense: 1.5 },
+          vsAirplane:       { attack: 6,   defense: 6 },
+          vsShip:           { attack: 4,   defense: 4 },
+          vsSubmarine:      { attack: 2.3, defense: 2.3 },
+          vsBuildings:      { attack: 1.5, defense: 1.5 },
+          vsProvinceMorale: { attack: 0.5, defense: null },
+          vsRocket:         { attack: 0,   defense: 0 },
+        },
+        terrainEffects: {
+          plains:         { health: null, attackModifier: null, speedModifier: null, strengthModifier: null },
+          hills:          { health: null, attackModifier: null, speedModifier: null, strengthModifier: null },
+          mountains:      { health: null, attackModifier: null, speedModifier: null, strengthModifier: null },
+          forest:         { health: null, attackModifier: null, speedModifier: null, strengthModifier: null },
+          urban:          { health: null, attackModifier: null, speedModifier: null, strengthModifier: null },
+          sea:            { health: 35,   attackModifier: null, speedModifier: null, strengthModifier: null },
+          enemyTerritory: { health: null, attackModifier: null, speedModifier: null, strengthModifier: null }
+        },
       },
       {
         unitName: 'Brooklyn Class',
@@ -23,10 +50,37 @@ export const cruiserData: IUnitType = {
         type: 'Ship',
         averageDamage: 4.3,
         hitpoints: 50,
-        production: { costs: { food: 2100, manpower: 1000, metal: 1200, cash: 1500, oil: 0 }, minTimeInSeconds: 11700 },
+        production: {
+          costs: {
+            food: 2100,
+            manpower: 1000,
+            metal: 1200,
+            cash: 1500,
+            oil: 0
+          },
+          minTimeInSeconds: 11700
+        },
         specialProperties: [ 'Ranged Attack', 'Anti-Ship', 'Anti-Air' ],
-        combatStatistics: { vsUnarmored: { attack: 2, defense: 2 }, vsLightArmor: { attack: 2, defense: 2 }, vsHeavyArmor: { attack: 2, defense: 2 }, vsAirplane: { attack: 8, defense: 8 }, vsShip: { attack: 5.5, defense: 5.5 }, vsSubmarine: { attack: 3, defense: 3 }, vsBuildings: { attack: 2, defense: 2 }, vsProvinceMorale: { attack: 0.8, defense: null }, vsRocket: { attack: 0, defense: 0 }, },
-        terrainEffects: { plains: { health: null, attackModifier: null, speedModifier: null, strengthModifier: null }, hills: { health: null, attackModifier: null, speedModifier: null, strengthModifier: null }, mountains: { health: null, attackModifier: null, speedModifier: null, strengthModifier: null }, forest: { health: null, attackModifier: null, speedModifier: null, strengthModifier: null }, urban: { health: null, attackModifier: null, speedModifier: null, strengthModifier: null }, sea: { health: 50, attackModifier: null, speedModifier: null, strengthModifier: null }, enemyTerritory: { health: null, attackModifier: null, speedModifier: null, strengthModifier: null } },
+        combatStatistics: {
+          vsUnarmored:      { attack: 2,   defense: 2 },
+          vsLightArmor:     { attack: 2,   defense: 2 },
+          vsHeavyArmor:     { attack: 2,   defense: 2 },
+          vsAirplane:       { attack: 8,   defense: 8 },
+          vsShip:           { attack: 5.5, defense: 5.5 },
+          vsSubmarine:      { attack: 3,   defense: 3 },
+          vsBuildings:      { attack: 2,   defense: 2 },
+          vsProvinceMorale: { attack: 0.8, defense: null },
+          vsRocket:         { attack: 0,   defense: 0 },
+        },
+        terrainEffects: {
+          plains:         { health: null, attackModifier: null, speedModifier: null, strengthModifier: null },
+          hills:          { health: null, attackModifier: null, speedModifier: null, strengthModifier: null },
+          mountains:      { health: null, attackModifier: null, speedModifier: null, strengthModifier: null },
+          forest:         { health: null, attackModifier: null, speedModifier: null, strengthModifier: null },
+          urban:          { health: null, attackModifier: null, speedModifier: null, strengthModifier: null },
+          sea:            { health: 50,   attackModifier: null, speedModifier: null, strengthModifier: null },
+          enemyTerritory: { health: null, attackModifier: null, speedModifier: null, strengthModifier: null }
+        },
       },
       {
         unitName: 'St. Louis Class',
@@ -35,10 +89,37 @@ export const cruiserData: IUnitType = {
         type: 'Ship',
         averageDamage: 5.8,
         hitpoints: 70,
-        production: { costs: { food: 2300, manpower: 1100, metal: 1300, cash: 1700, oil: 0 }, minTimeInSeconds: 14400 },
+        production: {
+          costs: {
+            food: 2300,
+            manpower: 1100,
+            metal: 1300,
+            cash: 1700,
+            oil: 0
+          },
+          minTimeInSeconds: 14400
+        },
         specialProperties: [ 'Ranged Attack', 'Anti-Ship', 'Anti-Air' ],
-        combatStatistics: { vsUnarmored: { attack: 3.5, defense: 3.5 }, vsLightArmor: { attack: 3, defense: 3 }, vsHeavyArmor: { attack: 3, defense: 3 }, vsAirplane: { attack: 11, defense: 11 }, vsShip: { attack: 7.5, defense: 7.5 }, vsSubmarine: { attack: 4, defense: 4 }, vsBuildings: { attack: 2.6, defense: 2.6 }, vsProvinceMorale: { attack: 1.2, defense: null }, vsRocket: { attack: 0, defense: 0 }, },
-        terrainEffects: { plains: { health: null, attackModifier: null, speedModifier: null, strengthModifier: null }, hills: { health: null, attackModifier: null, speedModifier: null, strengthModifier: null }, mountains: { health: null, attackModifier: null, speedModifier: null, strengthModifier: null }, forest: { health: null, attackModifier: null, speedModifier: null, strengthModifier: null }, urban: { health: null, attackModifier: null, speedModifier: null, strengthModifier: null }, sea: { health: 70, attackModifier: null, speedModifier: null, strengthModifier: null }, enemyTerritory: { health: null, attackModifier: null, speedModifier: null, strengthModifier: null } },
+        combatStatistics: {
+          vsUnarmored:      { attack: 3.5, defense: 3.5 },
+          vsLightArmor:     { attack: 3,   defense: 3 },
+          vsHeavyArmor:     { attack: 3,   defense: 3 },
+          vsAirplane:       { attack: 11,  defense: 11 },
+          vsShip:           { attack: 7.5, defense: 7.5 },
+          vsSubmarine:      { attack: 4,   defense: 4 },
+          vsBuildings:      { attack: 2.6, defense: 2.6 },
+          vsProvinceMorale: { attack: 1.2, defense: null },
+          vsRocket:         { attack: 0,   defense: 0 },
+        },
+        terrainEffects: {
+          plains:         { health: null, attackModifier: null, speedModifier: null, strengthModifier: null },
+          hills:          { health: null, attackModifier: null, speedModifier: null, strengthModifier: null },
+          mountains:      { health: null, attackModifier: null, speedModifier: null, strengthModifier: null },
+          forest:         { health: null, attackModifier: null, speedModifier: null, strengthModifier: null },
+          urban:          { health: null, attackModifier: null, speedModifier: null, strengthModifier: null },
+          sea:            { health: 70,   attackModifier: null, speedModifier: null, strengthModifier: null },
+          enemyTerritory: { health: null, attackModifier: null, speedModifier: null, strengthModifier: null }
+        },
       },
       {
         unitName: 'Atlanta Class',
@@ -47,10 +128,37 @@ export const cruiserData: IUnitType = {
         type: 'Ship',
         averageDamage: 7.8,
         hitpoints: 90,
-        production: { costs: { food: 2600, manpower: 1100, metal: 1500, cash: 1900, oil: 0 }, minTimeInSeconds: 17100 },
+        production: {
+          costs: {
+            food: 2600,
+            manpower: 1100,
+            metal: 1500,
+            cash: 1900,
+            oil: 0
+          },
+          minTimeInSeconds: 17100
+        },
         specialProperties: [ 'Ranged Attack', 'Anti-Ship', 'Anti-Air' ],
-        combatStatistics: { vsUnarmored: { attack: 4.5, defense: 4.5 }, vsLightArmor: { attack: 4.5, defense: 4.5 }, vsHeavyArmor: { attack: 4.5, defense: 4.5 }, vsAirplane: { attack: 15, defense: 15 }, vsShip: { attack: 10, defense: 10 }, vsSubmarine: { attack: 5.5, defense: 5.5 }, vsBuildings: { attack: 3.4, defense: 3.4 }, vsProvinceMorale: { attack: 1.7, defense: null }, vsRocket: { attack: 0, defense: 0 }, },
-        terrainEffects: { plains: { health: null, attackModifier: null, speedModifier: null, strengthModifier: null }, hills: { health: null, attackModifier: null, speedModifier: null, strengthModifier: null }, mountains: { health: null, attackModifier: null, speedModifier: null, strengthModifier: null }, forest: { health: null, attackModifier: null, speedModifier: null, strengthModifier: null }, urban: { health: null, attackModifier: null, speedModifier: null, strengthModifier: null }, sea: { health: 90, attackModifier: null, speedModifier: null, strengthModifier: null }, enemyTerritory: { health: null, attackModifier: null, speedModifier: null, strengthModifier: null } },
+        combatStatistics: {
+          vsUnarmored:      { attack: 4.5, defense: 4.5 },
+          vsLightArmor:     { attack: 4.5, defense: 4.5 },
+          vsHeavyArmor:     { attack: 4.5, defense: 4.5 },
+          vsAirplane:       { attack: 15,  defense: 15 },
+          vsShip:           { attack: 10,  defense: 10 },
+          vsSubmarine:      { attack: 5.5, defense: 5.5 },
+          vsBuildings:      { attack: 3.4, defense: 3.4 },
+          vsProvinceMorale: { attack: 1.7, defense: null },
+          vsRocket:         { attack: 0,   defense: 0 },
+        },
+        terrainEffects: {
+          plains:         { health: null, attackModifier: null, speedModifier: null, strengthModifier: null },
+          hills:          { health: null, attackModifier: null, speedModifier: null, strengthModifier: null },
+          mountains:      { health: null, attackModifier: null, speedModifier: null, strengthModifier: null },
+          forest:         { health: null, attackModifier: null, speedModifier: null, strengthModifier: null },
+          urban:          { health: null, attackModifier: null, speedModifier: null, strengthModifier: null },
+          sea:            { health: 90,   attackModifier: null, speedModifier: null, strengthModifier: null },
+          enemyTerritory: { health: null, attackModifier: null, speedModifier: null, strengthModifier: null }
+        },
       },
       {
         unitName: 'Baltimore Class',
@@ -59,10 +167,37 @@ export const cruiserData: IUnitType = {
         type: 'Ship',
         averageDamage: 10.3,
         hitpoints: 115,
-        production: { costs: { food: 3100, manpower: 1100, metal: 1800, cash: 2200, oil: 0 }, minTimeInSeconds: 19800 },
+        production: {
+          costs: {
+            food: 3100,
+            manpower: 1100,
+            metal: 1800,
+            cash: 2200,
+            oil: 0
+          },
+          minTimeInSeconds: 19800
+        },
         specialProperties: [ 'Ranged Attack', 'Anti-Ship', 'Anti-Air' ],
-        combatStatistics: { vsUnarmored: { attack: 6, defense: 6 }, vsLightArmor: { attack: 6, defense: 6 }, vsHeavyArmor: { attack: 6, defense: 6 }, vsAirplane: { attack: 20, defense: 20 }, vsShip: { attack: 13.5, defense: 13.5 }, vsSubmarine: { attack: 7, defense: 7 }, vsBuildings: { attack: 4.5, defense: 4.5 }, vsProvinceMorale: { attack: 2.3, defense: null }, vsRocket: { attack: 0, defense: 0 }, },
-        terrainEffects: { plains: { health: null, attackModifier: null, speedModifier: null, strengthModifier: null }, hills: { health: null, attackModifier: null, speedModifier: null, strengthModifier: null }, mountains: { health: null, attackModifier: null, speedModifier: null, strengthModifier: null }, forest: { health: null, attackModifier: null, speedModifier: null, strengthModifier: null }, urban: { health: null, attackModifier: null, speedModifier: null, strengthModifier: null }, sea: { health: 115, attackModifier: null, speedModifier: null, strengthModifier: null }, enemyTerritory: { health: null, attackModifier: null, speedModifier: null, strengthModifier: null } },
+        combatStatistics: {
+          vsUnarmored:      { attack: 6,    defense: 6 },
+          vsLightArmor:     { attack: 6,    defense: 6 },
+          vsHeavyArmor:     { attack: 6,    defense: 6 },
+          vsAirplane:       { attack: 20,   defense: 20 },
+          vsShip:           { attack: 13.5, defense: 13.5 },
+          vsSubmarine:      { attack: 7,    defense: 7 },
+          vsBuildings:      { attack: 4.5,  defense: 4.5 },
+          vsProvinceMorale: { attack: 2.3,  defense: null },
+          vsRocket:         { attack: 0,    defense: 0 },
+        },
+        terrainEffects: {
+          plains:         { health: null, attackModifier: null, speedModifier: null, strengthModifier: null },
+          hills:          { health: null, attackModifier: null, speedModifier: null, strengthModifier: null },
+          mountains:      { health: null, attackModifier: null, speedModifier: null, strengthModifier: null },
+          forest:         { health: null, attackModifier: null, speedModifier: null, strengthModifier: null },
+          urban:          { health: null, attackModifier: null, speedModifier: null, strengthModifier: null },
+          sea:            { health: 115,  attackModifier: null, speedModifier: null, strengthModifier: null },
+          enemyTerritory: { health: null, attackModifier: null, speedModifier: null, strengthModifier: null }
+        },
       },
       {
         unitName: 'Oregon City Class',
@@ -71,10 +206,37 @@ export const cruiserData: IUnitType = {
         type: 'Ship',
         averageDamage: 13.8,
         hitpoints: 140,
-        production: { costs: { food: 3400, manpower: 1200, metal: 2000, cash: 2400, oil: 0 }, minTimeInSeconds: 22500 },
+        production: {
+          costs: {
+            food: 3400,
+            manpower: 1200,
+            metal: 2000,
+            cash: 2400,
+            oil: 0
+          },
+          minTimeInSeconds: 22500
+        },
         specialProperties: [ 'Ranged Attack', 'Anti-Ship', 'Anti-Air' ],
-        combatStatistics: { vsUnarmored: { attack: 8, defense: 8 }, vsLightArmor: { attack: 8, defense: 8 }, vsHeavyArmor: { attack: 8, defense: 8 }, vsAirplane: { attack: 26, defense: 26 }, vsShip: { attack: 18, defense: 18 }, vsSubmarine: { attack: 9.5, defense: 9.5 }, vsBuildings: { attack: 6, defense: 6 }, vsProvinceMorale: { attack: 3, defense: null }, vsRocket: { attack: 0, defense: 0 }, },
-        terrainEffects: { plains: { health: null, attackModifier: null, speedModifier: null, strengthModifier: null }, hills: { health: null, attackModifier: null, speedModifier: null, strengthModifier: null }, mountains: { health: null, attackModifier: null, speedModifier: null, strengthModifier: null }, forest: { health: null, attackModifier: null, speedModifier: null, strengthModifier: null }, urban: { health: null, attackModifier: null, speedModifier: null, strengthModifier: null }, sea: { health: 140, attackModifier: null, speedModifier: null, strengthModifier: null }, enemyTerritory: { health: null, attackModifier: null, speedModifier: null, strengthModifier: null } },
+        combatStatistics: {
+          vsUnarmored:      { attack: 8,   defense: 8 },
+          vsLightArmor:     { attack: 8,   defense: 8 },
+          vsHeavyArmor:     { attack: 8,   defense: 8 },
+          vsAirplane:       { attack: 26,  defense: 26 },
+          vsShip:           { attack: 18,  defense: 18 },
+          vsSubmarine:      { attack: 9.5, defense: 9.5 },
+          vsBuildings:      { attack: 6,   defense: 6 },
+          vsProvinceMorale: { attack: 3,   defense: null },
+          vsRocket:         { attack: 0,   defense: 0 },
+        },
+        terrainEffects: {
+          plains:         { health: null, attackModifier: null, speedModifier: null, strengthModifier: null },
+          hills:          { health: null, attackModifier: null, speedModifier: null, strengthModifier: null },
+          mountains:      { health: null, attackModifier: null, speedModifier: null, strengthModifier: null },
+          forest:         { health: null, attackModifier: null, speedModifier: null, strengthModifier: null },
+          urban:          { health: null, attackModifier: null, speedModifier: null, strengthModifier: null },
+          sea:            { health: 140,  attackModifier: null, speedModifier: null, strengthModifier: null },
+          enemyTerritory: { health: null, attackModifier: null, speedModifier: null, strengthModifier: null }
+        },
       },
     ],
     Axis: [], Communist: [], "Pan-Asian": [],

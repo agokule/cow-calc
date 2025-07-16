@@ -88,4 +88,4 @@ export const unitDataCategorized = {
     nuclearBomberData,
     nuclearRocketData,
   ],
-};
+} as const;
