@@ -15,9 +15,9 @@ export const submarineData: IUnitType = {
           costs: {
             food: 950,
             manpower: 700,
-            metal: 950,
+            oil: 950,
             cash: 1600,
-            oil: 0
+            metal: 0
           },
           minTimeInSeconds: 7140
         },
@@ -54,9 +54,9 @@ export const submarineData: IUnitType = {
           costs: {
             food: 1100,
             manpower: 700,
-            metal: 1100,
+            oil: 1100,
             cash: 1700,
-            oil: 0
+            metal: 0
           },
           minTimeInSeconds: 9900
         },
@@ -93,9 +93,9 @@ export const submarineData: IUnitType = {
           costs: {
             food: 1200,
             manpower: 700,
-            metal: 1200,
+            oil: 1200,
             cash: 1900,
-            oil: 0
+            metal: 0
           },
           minTimeInSeconds: 14400
         },
@@ -132,9 +132,9 @@ export const submarineData: IUnitType = {
           costs: {
             food: 1300,
             manpower: 750,
-            metal: 1300,
+            oil: 1300,
             cash: 2200,
-            oil: 0
+            metal: 0
           },
           minTimeInSeconds: 16200
         },
@@ -171,9 +171,9 @@ export const submarineData: IUnitType = {
           costs: {
             food: 1600,
             manpower: 750,
-            metal: 1600,
+            oil: 1600,
             cash: 2600,
-            oil: 0
+            metal: 0
           },
           minTimeInSeconds: 18000
         },
@@ -210,9 +210,9 @@ export const submarineData: IUnitType = {
           costs: {
             food: 1700,
             manpower: 800,
-            metal: 1700,
+            oil: 1700,
             cash: 2900,
-            oil: 0
+            metal: 0
           },
           minTimeInSeconds: 19800
         },

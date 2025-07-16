@@ -13,11 +13,11 @@ export const armoredCarData: IUnitType = {
         hitpoints: 20,
         production: {
           costs: {
-            food: 1100,
+            food: 0,
             manpower: 1100,
-            metal: 1000,
+            metal: 1100,
             cash: 1800,
-            oil: 0
+            oil: 1000
           },
           minTimeInSeconds: 7200
         },
@@ -52,11 +52,11 @@ export const armoredCarData: IUnitType = {
         hitpoints: 30,
         production: {
           costs: {
-            food: 1100,
-            manpower: 1200,
-            metal: 1100,
+            food: 0,
+            manpower: 1100,
+            metal: 1200,
             cash: 1900,
-            oil: 0
+            oil: 1100
           },
           minTimeInSeconds: 9000
         },
@@ -91,11 +91,11 @@ export const armoredCarData: IUnitType = {
         hitpoints: 45,
         production: {
           costs: {
-            food: 1100,
-            manpower: 1400,
-            metal: 1200,
+            food: 0,
+            manpower: 1100,
+            metal: 1400,
             cash: 2100,
-            oil: 0
+            oil: 1200
           },
           minTimeInSeconds: 13500
         },
@@ -129,11 +129,12 @@ export const armoredCarData: IUnitType = {
         averageDamage: 8.1,
         hitpoints: 65,
         production: {
-          costs: { food: 1100,
-            manpower: 1600,
-            metal: 1500,
+          costs: {
+            food: 0,
+            manpower: 1100,
+            metal: 1600,
             cash: 2500,
-            oil: 0
+            oil: 1500
           },
           minTimeInSeconds: 16200
         },
@@ -168,11 +169,11 @@ export const armoredCarData: IUnitType = {
         hitpoints: 85,
         production: {
           costs: {
-            food: 1200,
-            manpower: 1900,
-            metal: 1700,
+            food: 0,
+            manpower: 1200,
+            metal: 1900,
             cash: 3000,
-            oil: 0
+            oil: 1700
           },
           minTimeInSeconds: 18900
         },

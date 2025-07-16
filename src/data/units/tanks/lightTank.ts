@@ -13,11 +13,11 @@ export const lightTankData: IUnitType = {
         hitpoints: 20,
         production: {
           costs: {
-            food: 900,
-            manpower: 1500,
-            metal: 1400,
+            manpower: 900,
+            metal: 1500,
+            oil: 1400,
             cash: 1100,
-            oil: 0
+            food: 0
           },
           minTimeInSeconds: 8100
         },
@@ -52,11 +52,11 @@ export const lightTankData: IUnitType = {
         hitpoints: 30,
         production: {
           costs: {
-            food: 950,
-            manpower: 1600,
-            metal: 1500,
+            manpower: 950,
+            metal: 1600,
+            oil: 1500,
             cash: 1200,
-            oil: 0
+            food: 0
           },
           minTimeInSeconds: 11700
         },
@@ -91,11 +91,11 @@ export const lightTankData: IUnitType = {
         hitpoints: 45,
         production: {
           costs: {
-            food: 950,
-            manpower: 1800,
-            metal: 1700,
+            manpower: 950,
+            metal: 1800,
+            oil: 1700,
             cash: 1400,
-            oil: 0
+            food: 0
           },
           minTimeInSeconds: 14400
         },
@@ -130,11 +130,11 @@ export const lightTankData: IUnitType = {
         hitpoints: 65,
         production: {
           costs: {
-            food: 1000,
-            manpower: 2200,
-            metal: 2000,
+            manpower: 1000,
+            metal: 2200,
+            oil: 2000,
             cash: 1600,
-            oil: 0
+            food: 0
           },
           minTimeInSeconds: 19800
         },
@@ -169,11 +169,11 @@ export const lightTankData: IUnitType = {
         hitpoints: 85,
         production: {
           costs: {
-            food: 1100,
-            manpower: 2600,
-            metal: 2300,
+            manpower: 1100,
+            metal: 2600,
+            oil: 2300,
             cash: 1900,
-            oil: 0
+            food: 0
           },
           minTimeInSeconds: 21600
         },

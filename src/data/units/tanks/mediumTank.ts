@@ -13,11 +13,11 @@ export const mediumTankData: IUnitType = {
         hitpoints: 40,
         production: {
           costs: {
-            food: 1400,
-            manpower: 1800,
-            metal: 1900,
+            manpower: 1400,
+            metal: 1800,
+            oil: 1900,
             cash: 1800,
-            oil: 0
+            food: 0
           },
           minTimeInSeconds: 13500
         },
@@ -52,11 +52,11 @@ export const mediumTankData: IUnitType = {
         hitpoints: 50,
         production: {
           costs: {
-            food: 1400,
-            manpower: 2000,
-            metal: 2100,
+            manpower: 1400,
+            metal: 2000,
+            oil: 2100,
             cash: 2000,
-            oil: 0
+            food: 0
           },
           minTimeInSeconds: 18000
         },
@@ -91,11 +91,11 @@ export const mediumTankData: IUnitType = {
         hitpoints: 65,
         production: {
           costs: {
-            food: 1500,
-            manpower: 2200,
-            metal: 2400,
+            manpower: 1500,
+            metal: 2200,
+            oil: 2400,
             cash: 2200,
-            oil: 0
+            food: 0
           },
           minTimeInSeconds: 20700
         },
@@ -130,11 +130,11 @@ export const mediumTankData: IUnitType = {
         hitpoints: 80,
         production: {
           costs: {
-            food: 1500,
-            manpower: 2500,
-            metal: 2700,
+            manpower: 1500,
+            metal: 2500,
+            oil: 2700,
             cash: 2500,
-            oil: 0
+            food: 0
           },
           minTimeInSeconds: 23400
         },
@@ -169,11 +169,11 @@ export const mediumTankData: IUnitType = {
         hitpoints: 100,
         production: {
           costs: {
-            food: 1500,
-            manpower: 2800,
-            metal: 3000,
+            manpower: 1500,
+            metal: 2800,
+            oil: 3000,
             cash: 2800,
-            oil: 0
+            food: 0
           },
           minTimeInSeconds: 26100
         },
@@ -208,11 +208,11 @@ export const mediumTankData: IUnitType = {
         hitpoints: 125,
         production: {
           costs: {
-            food: 1600,
-            manpower: 3000,
-            metal: 3300,
+            manpower: 1600,
+            metal: 3000,
+            oil: 3300,
             cash: 3000,
-            oil: 0
+            food: 0
           },
           minTimeInSeconds: 27900
         },

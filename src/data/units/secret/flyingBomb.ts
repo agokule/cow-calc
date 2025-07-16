@@ -13,11 +13,11 @@ export const flyingBombData: IUnitType = {
         hitpoints: 15,
         production: {
           costs: {
-            food: 200,
-            manpower: 750,
-            metal: 0,
+            manpower: 200,
+            metal: 750,
+            oil: 400,
             cash: 750,
-            oil: 400
+            food: 0
           },
           minTimeInSeconds: 6300
         },

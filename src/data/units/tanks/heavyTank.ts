@@ -13,11 +13,11 @@ export const heavyTankData: IUnitType = {
         hitpoints: 100,
         production: {
           costs: {
-            food: 1300,
-            manpower: 2100,
-            metal: 3100,
+            manpower: 1300,
+            metal: 2100,
+            oil: 3100,
             cash: 2600,
-            oil: 0
+            food: 0
           },
           minTimeInSeconds: 22500
         },
@@ -52,11 +52,11 @@ export const heavyTankData: IUnitType = {
         hitpoints: 130,
         production: {
           costs: {
-            food: 1400,
-            manpower: 2400,
-            metal: 3500,
+            manpower: 1400,
+            metal: 2400,
+            oil: 3500,
             cash: 3000,
-            oil: 0
+            food: 0
           },
           minTimeInSeconds: 26100
         },
@@ -91,11 +91,11 @@ export const heavyTankData: IUnitType = {
         hitpoints: 170,
         production: {
           costs: {
-            food: 1400,
-            manpower: 2900,
-            metal: 4100,
+            manpower: 1400,
+            metal: 2900,
+            oil: 4100,
             cash: 3500,
-            oil: 0
+            food: 0
           },
           minTimeInSeconds: 30600
         },
@@ -130,11 +130,11 @@ export const heavyTankData: IUnitType = {
         hitpoints: 220,
         production: {
           costs: {
-            food: 1500,
-            manpower: 3300,
-            metal: 4800,
+            manpower: 1500,
+            metal: 3300,
+            oil: 4800,
             cash: 4000,
-            oil: 0
+            food: 0
           },
           minTimeInSeconds: 34200
         },

@@ -13,11 +13,11 @@ export const spRocketArtilleryData: IUnitType = {
         hitpoints: 25,
         production: {
           costs: {
-            food: 1600,
-            manpower: 1900,
+            manpower: 1600,
             metal: 1900,
+            oil: 1900,
             cash: 1900,
-            oil: 0
+            food: 0
           },
           minTimeInSeconds: 19800
         },
@@ -52,11 +52,11 @@ export const spRocketArtilleryData: IUnitType = {
         hitpoints: 45,
         production: {
           costs: {
-            food: 1600,
-            manpower: 2500,
+            manpower: 1600,
             metal: 2500,
+            oil: 2500,
             cash: 2500,
-            oil: 0
+            food: 0
           },
           minTimeInSeconds: 23400
         },

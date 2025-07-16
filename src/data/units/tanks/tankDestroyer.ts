@@ -13,11 +13,11 @@ export const tankDestroyerData: IUnitType = {
         hitpoints: 40,
         production: {
           costs: {
-            food: 940,
-            manpower: 1600,
-            metal: 940,
+            manpower: 940,
+            metal: 1600,
+            oil: 940,
             cash: 1700,
-            oil: 0
+            food: 0
           },
           minTimeInSeconds: 12600
         },
@@ -52,11 +52,11 @@ export const tankDestroyerData: IUnitType = {
         hitpoints: 50,
         production: {
           costs: {
-            food: 980,
-            manpower: 1800,
-            metal: 1100,
+            manpower: 980,
+            metal: 1800,
+            oil: 1100,
             cash: 2000,
-            oil: 0
+            food: 0
           },
           minTimeInSeconds: 16200
         },
@@ -91,11 +91,11 @@ export const tankDestroyerData: IUnitType = {
         hitpoints: 65,
         production: {
           costs: {
-            food: 980,
-            manpower: 2000,
-            metal: 1200,
+            manpower: 980,
+            metal: 2000,
+            oil: 1200,
             cash: 2200,
-            oil: 0
+            food: 0
           },
           minTimeInSeconds: 18900
         },
@@ -130,11 +130,11 @@ export const tankDestroyerData: IUnitType = {
         hitpoints: 80,
         production: {
           costs: {
-            food: 1000,
-            manpower: 2300,
-            metal: 1400,
+            manpower: 1000,
+            metal: 2300,
+            oil: 1400,
             cash: 2500,
-            oil: 0
+            food: 0
           },
           minTimeInSeconds: 22500
         },
@@ -169,11 +169,11 @@ export const tankDestroyerData: IUnitType = {
         hitpoints: 100,
         production: {
           costs: {
-            food: 1000,
-            manpower: 2600,
-            metal: 1500,
+            manpower: 1000,
+            metal: 2600,
+            oil: 1500,
             cash: 2800,
-            oil: 0
+            food: 0
           },
           minTimeInSeconds: 24300
         },
@@ -208,11 +208,11 @@ export const tankDestroyerData: IUnitType = {
         hitpoints: 125,
         production: {
           costs: {
-            food: 1100,
-            manpower: 2800,
-            metal: 1600,
+            manpower: 1100,
+            metal: 2800,
+            oil: 1600,
             cash: 3000,
-            oil: 0
+            food: 0
           },
           minTimeInSeconds: 25200
         },

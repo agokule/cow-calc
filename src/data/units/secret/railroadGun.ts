@@ -13,11 +13,11 @@ export const railroadGunData: IUnitType = {
         hitpoints: 30,
         production: {
           costs: {
-            food: 2700,
-            manpower: 3400,
-            metal: 1900,
+            manpower: 2700,
+            metal: 3400,
+            oil: 1900,
             cash: 4100,
-            oil: 0
+            food: 0
           },
           minTimeInSeconds: 22500
         },
@@ -52,11 +52,11 @@ export const railroadGunData: IUnitType = {
         hitpoints: 50,
         production: {
           costs: {
-            food: 2900,
-            manpower: 4700,
-            metal: 2600,
+            manpower: 2900,
+            metal: 4700,
+            oil: 2600,
             cash: 5600,
-            oil: 0
+            food: 0
           },
           minTimeInSeconds: 33300
         },

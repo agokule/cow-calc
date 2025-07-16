@@ -13,9 +13,9 @@ export const rocketData: IUnitType = {
         hitpoints: 10,
         production: {
           costs: {
-            food: 450,
-            manpower: 800,
-            metal: 0,
+            manpower: 450,
+            metal: 800,
+            food: 0,
             cash: 2200,
             oil: 1100
           },
@@ -52,9 +52,9 @@ export const rocketData: IUnitType = {
         hitpoints: 15,
         production: {
           costs: {
-            food: 450,
-            manpower: 900,
-            metal: 0,
+            manpower: 450,
+            metal: 900,
+            food: 0,
             cash: 2500,
             oil: 1200
           },
@@ -91,9 +91,9 @@ export const rocketData: IUnitType = {
         hitpoints: 20,
         production: {
           costs: {
-            food: 500,
-            manpower: 1100,
-            metal: 0,
+            manpower: 500,
+            metal: 1100,
+            food: 0,
             cash: 2800,
             oil: 1400
           },
@@ -130,9 +130,9 @@ export const rocketData: IUnitType = {
         hitpoints: 25,
         production: {
           costs: {
-            food: 500,
-            manpower: 1200,
-            metal: 0,
+            manpower: 500,
+            metal: 1200,
+            food: 0,
             cash: 3100,
             oil: 1500
           },

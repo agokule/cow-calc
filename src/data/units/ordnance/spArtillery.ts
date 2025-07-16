@@ -14,11 +14,11 @@ export const spArtilleryData: IUnitType = {
         hitpoints: 22,
         production: {
           costs: {
-            food: 1400,
-            manpower: 1800,
-            metal: 1700,
+            manpower: 1400,
+            metal: 1800,
+            oil: 1700,
             cash: 2200,
-            oil: 0
+            food: 0
           },
           minTimeInSeconds: 12600
         },
@@ -53,11 +53,11 @@ export const spArtilleryData: IUnitType = {
         hitpoints: 28,
         production: {
           costs: {
-            food: 1500,
-            manpower: 2100,
-            metal: 1900,
+            manpower: 1500,
+            metal: 2100,
+            oil: 1900,
             cash: 2500,
-            oil: 0
+            food: 0
           },
           minTimeInSeconds: 19800
         },
@@ -92,11 +92,11 @@ export const spArtilleryData: IUnitType = {
         hitpoints: 33,
         production: {
           costs: {
-            food: 1500,
-            manpower: 2400,
-            metal: 2200,
+            manpower: 1500,
+            metal: 2400,
+            oil: 2200,
             cash: 2900,
-            oil: 0
+            food: 0
           },
           minTimeInSeconds: 22500
         },
@@ -131,11 +131,11 @@ export const spArtilleryData: IUnitType = {
         hitpoints: 44,
         production: {
           costs: {
-            food: 1600,
-            manpower: 2700,
-            metal: 2400,
+            manpower: 1500,
+            metal: 2700,
+            oil: 2400,
             cash: 3200,
-            oil: 0
+            food: 0
           },
           minTimeInSeconds: 25200
         },
@@ -170,11 +170,11 @@ export const spArtilleryData: IUnitType = {
         hitpoints: 61,
         production: {
           costs: {
-            food: 1600,
-            manpower: 2900,
-            metal: 2600,
+            manpower: 1600,
+            metal: 2900,
+            oil: 2600,
             cash: 3500,
-            oil: 0
+            food: 0
           },
           minTimeInSeconds: 27000
         },

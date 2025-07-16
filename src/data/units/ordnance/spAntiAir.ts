@@ -15,9 +15,9 @@ export const spAntiAirData: IUnitType = {
           costs: {
             food: 900,
             manpower: 1000,
-            metal: 1400,
-            cash: 1700,
-            oil: 0
+            cash: 1400,
+            oil: 1700,
+            metal: 0
           },
           minTimeInSeconds: 11700
         },
@@ -54,9 +54,9 @@ export const spAntiAirData: IUnitType = {
           costs: {
             food: 1100,
             manpower: 1000,
-            metal: 1600,
-            cash: 1800,
-            oil: 0
+            cash: 1600,
+            oil: 1900,
+            metal: 0
           },
           minTimeInSeconds: 13500
         },
@@ -93,9 +93,9 @@ export const spAntiAirData: IUnitType = {
           costs: {
             food: 1200,
             manpower: 1100,
-            metal: 1900,
-            cash: 2200,
-            oil: 0
+            cash: 1900,
+            oil: 2200,
+            metal: 0
           },
           minTimeInSeconds: 16200
         },
@@ -132,9 +132,9 @@ export const spAntiAirData: IUnitType = {
           costs: {
             food: 1300,
             manpower: 1100,
-            metal: 2100,
-            cash: 2400,
-            oil: 0
+            cash: 2100,
+            oil: 2400,
+            metal: 0
           },
           minTimeInSeconds: 18000
         },
@@ -171,9 +171,9 @@ export const spAntiAirData: IUnitType = {
           costs: {
             food: 1500,
             manpower: 1100,
-            metal: 2300,
-            cash: 2700,
-            oil: 0
+            cash: 2300,
+            oil: 2700,
+            metal: 0
           },
           minTimeInSeconds: 19800
         },
