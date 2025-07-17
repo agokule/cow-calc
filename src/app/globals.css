@@ -269,6 +269,7 @@ tbody tr:nth-child(even) {
   display: flex;
   flex-wrap: nowrap;
   gap: 2rem;
+  padding-top: 0;
 }
 
 .sidebar {
@@ -278,7 +279,8 @@ tbody tr:nth-child(even) {
   border-radius: 8px;
   align-self: flex-start; /* Aligns sidebar to the top */
   position: sticky;
-  max-height: calc(100vh - 4rem);
+  top: 0;
+  max-height: 100vh;
   overflow-y: auto;
 }
 
@@ -307,7 +309,8 @@ tbody tr:nth-child(even) {
   margin: 0.5rem 0 0 0;
 }
 
-.sidebar button {
+.sidebar a {
+  display: block;
   width: 100%;
   text-align: left;
   padding: 0.5rem;
@@ -318,14 +321,15 @@ tbody tr:nth-child(even) {
   font-size: 1rem;
   border-radius: 4px;
   transition: background-color 0.2s, color 0.2s;
+  text-decoration: none;
 }
 
-.sidebar button:hover {
+.sidebar a:hover {
   background-color: #4f4f4f;
   color: white;
 }
 
-.sidebar button.active {
+.sidebar a.active {
   background-color: #6a8e6a;
   color: white;
   font-weight: bold;

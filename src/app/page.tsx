@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import UnitDisplay from "@/components/UnitDisplay";
 import { IUnitType } from "@/types";
 import { unitDataCategorized } from "@/data/units";
+import Link from 'next/link';
 
 export default function Home() {
   // State to hold the currently selected unit type. Default to the first unit (Militia).
@@ -42,7 +43,7 @@ export default function Home() {
     <main>
       <div className="main-layout">
         <button
-          className={`sidebar-toggle ${isSidebarOpen ? 'open' : ''}`}
+          className="sidebar-toggle"
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
           ref={sidebarToggleRef}
         >
@@ -55,18 +56,21 @@ export default function Home() {
               <h3>{category}</h3>
               <ul>
                 {units.map((unitData) => {
-                  // Handle both single and dual-mode units for key and name
                   const unitName = Array.isArray(unitData) ? unitData[0].genericName : unitData.genericName;
+                  const slug = unitName.toLowerCase().replace(/ /g, '-');
                   const currentUnitName = Array.isArray(selectedUnitData) ? selectedUnitData[0].genericName : selectedUnitData.genericName;
 
                   return (
                     <li key={unitName}>
-                      <button
-                        className={unitName === currentUnitName ? 'active' : ''}
-                        onClick={() => setSelectedUnitData(unitData)}
-                      >
-                        {unitName}
-                      </button>
+                      <Link href={`/unit/${slug}`} passHref legacyBehavior>
+                        <a
+                          target="_blank"
+                          className={unitName === currentUnitName ? 'active' : ''}
+                          onClick={() => setSelectedUnitData(unitData)}
+                        >
+                          {unitName}
+                        </a>
+                      </Link>
                     </li>
                   );
                 })}
