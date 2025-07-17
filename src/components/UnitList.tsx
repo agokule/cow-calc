@@ -10,9 +10,10 @@ interface UnitListProps {
   units: Unit[];
   onDrop: (e: DragEvent<HTMLDivElement>) => void;
   onDragOver: (e: DragEvent<HTMLDivElement>) => void;
+  onDelete: (index: number) => void;
 }
 
-const UnitList = ({ title, units, onDrop, onDragOver }: UnitListProps) => {
+const UnitList = ({ title, units, onDrop, onDragOver, onDelete }: UnitListProps) => {
   return (
     <div className="unit-list-container" onDrop={onDrop} onDragOver={onDragOver}>
       <h2>{title}</h2>
@@ -20,7 +21,8 @@ const UnitList = ({ title, units, onDrop, onDragOver }: UnitListProps) => {
         <ul>
           {units.map((unit, index) => (
             <li key={index}>
-              {unit.genericName} ({unit.category})
+              <span>{unit.genericName} ({unit.category})</span>
+              <button onClick={() => onDelete(index)}>Delete</button>
             </li>
           ))}
         </ul>

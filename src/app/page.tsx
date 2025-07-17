@@ -64,6 +64,18 @@ export default function Home() {
     }
   };
 
+  const handleDelete = (index: number, listType: "you" | "enemy") => {
+    if (listType === "you") {
+      const newUnits = [...yourUnits];
+      newUnits.splice(index, 1);
+      setYourUnits(newUnits);
+    } else {
+      const newUnits = [...enemyUnits];
+      newUnits.splice(index, 1);
+      setEnemyUnits(newUnits);
+    }
+  };
+
   return (
     <main>
       <div className="main-layout">
@@ -102,8 +114,8 @@ export default function Home() {
         </nav>
 
         <div className="content">
-          <UnitList title="You" units={yourUnits} onDrop={(e) => handleDrop(e, "you")} onDragOver={handleDragOver} />
-          <UnitList title="Enemy" units={enemyUnits} onDrop={(e) => handleDrop(e, "enemy")} onDragOver={handleDragOver} />
+          <UnitList title="You" units={yourUnits} onDrop={(e) => handleDrop(e, "you")} onDragOver={handleDragOver} onDelete={(index) => handleDelete(index, "you")} />
+          <UnitList title="Enemy" units={enemyUnits} onDrop={(e) => handleDrop(e, "enemy")} onDragOver={handleDragOver} onDelete={(index) => handleDelete(index, "enemy")} />
         </div>
       </div>
     </main>
