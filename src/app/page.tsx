@@ -1,13 +1,17 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import UnitDisplay from "@/components/UnitDisplay";
+import { useState, useEffect, useRef, DragEvent } from "react";
 import { IUnitType } from "@/types";
 import { unitDataCategorized } from "@/data/units";
 import Link from 'next/link';
+import UnitList from '@/components/UnitList';
+
+interface Unit {
+  category: string;
+  genericName: string;
+}
 
 export default function Home() {
-  // State to hold the currently selected unit type. Default to the first unit (Militia).
   const [selectedUnitData, setSelectedUnitData] = useState<IUnitType | IUnitType[]>(
     unitDataCategorized.Infantry[0]
   );
@@ -15,7 +19,9 @@ export default function Home() {
   const sidebarRef = useRef<HTMLElement>(null);
   const sidebarToggleRef = useRef<HTMLButtonElement>(null);
 
-  // Close sidebar when clicking outside
+  const [yourUnits, setYourUnits] = useState<Unit[]>([]);
+  const [enemyUnits, setEnemyUnits] = useState<Unit[]>([]);
+
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
@@ -38,6 +44,25 @@ export default function Home() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isSidebarOpen]);
+
+  const handleDragStart = (e: DragEvent<HTMLAnchorElement>, unit: Unit) => {
+    e.dataTransfer.setData("application/json", JSON.stringify(unit));
+  };
+
+  const handleDragOver = (e: DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+  };
+
+  const handleDrop = (e: DragEvent<HTMLDivElement>, listType: "you" | "enemy") => {
+    e.preventDefault();
+    const unit = JSON.parse(e.dataTransfer.getData("application/json"));
+
+    if (listType === "you") {
+      setYourUnits([...yourUnits, unit]);
+    } else {
+      setEnemyUnits([...enemyUnits, unit]);
+    }
+  };
 
   return (
     <main>
@@ -63,7 +88,9 @@ export default function Home() {
                   return (
                     <li key={unitName}>
                       <Link href={`/unit/${slug}`} passHref target="_blank" className={unitName === currentUnitName ? 'active' : ''}
-                        onClick={() => setSelectedUnitData(unitData)}>
+                        onClick={() => setSelectedUnitData(unitData)}
+                        draggable
+                        onDragStart={(e) => handleDragStart(e, { category, genericName: unitName })}>
                           {unitName}
                       </Link>
                     </li>
@@ -75,9 +102,11 @@ export default function Home() {
         </nav>
 
         <div className="content">
-          <UnitDisplay unitTypeData={selectedUnitData} />
+          <UnitList title="You" units={yourUnits} onDrop={(e) => handleDrop(e, "you")} onDragOver={handleDragOver} />
+          <UnitList title="Enemy" units={enemyUnits} onDrop={(e) => handleDrop(e, "enemy")} onDragOver={handleDragOver} />
         </div>
       </div>
     </main>
   );
 }
+
