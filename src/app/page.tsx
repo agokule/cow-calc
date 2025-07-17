@@ -62,14 +62,9 @@ export default function Home() {
 
                   return (
                     <li key={unitName}>
-                      <Link href={`/unit/${slug}`} passHref legacyBehavior>
-                        <a
-                          target="_blank"
-                          className={unitName === currentUnitName ? 'active' : ''}
-                          onClick={() => setSelectedUnitData(unitData)}
-                        >
+                      <Link href={`/unit/${slug}`} passHref target="_blank" className={unitName === currentUnitName ? 'active' : ''}
+                        onClick={() => setSelectedUnitData(unitData)}>
                           {unitName}
-                        </a>
                       </Link>
                     </li>
                   );
