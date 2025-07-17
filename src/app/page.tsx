@@ -114,8 +114,14 @@ export default function Home() {
         </nav>
 
         <div className="content">
-          <UnitList title="You" units={yourUnits} onDrop={(e) => handleDrop(e, "you")} onDragOver={handleDragOver} onDelete={(index) => handleDelete(index, "you")} />
-          <UnitList title="Enemy" units={enemyUnits} onDrop={(e) => handleDrop(e, "enemy")} onDragOver={handleDragOver} onDelete={(index) => handleDelete(index, "enemy")} />
+          <div className="unit-list-wrapper">
+            <h2>You</h2>
+            <UnitList units={yourUnits} onDrop={(e) => handleDrop(e, "you")} onDragOver={handleDragOver} onDelete={(index) => handleDelete(index, "you")} />
+          </div>
+          <div className="unit-list-wrapper">
+            <h2>Enemy</h2>
+            <UnitList units={enemyUnits} onDrop={(e) => handleDrop(e, "enemy")} onDragOver={handleDragOver} onDelete={(index) => handleDelete(index, "enemy")} />
+          </div>
         </div>
       </div>
     </main>

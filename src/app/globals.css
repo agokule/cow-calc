@@ -379,8 +379,16 @@ tbody tr:nth-child(even) {
 
 }
 
-.unit-list-container {
+.unit-list-wrapper {
   margin-bottom: 2rem;
+}
+
+.unit-list-container {
+  background-color: #3e3e3e;
+  border: 1px solid #555;
+  border-radius: 8px;
+  padding: 1rem;
+  min-height: 100px;
 }
 
 .unit-list ul {
