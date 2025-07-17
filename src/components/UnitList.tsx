@@ -22,7 +22,7 @@ const UnitList = ({ title, units, onDrop, onDragOver, onDelete }: UnitListProps)
           {units.map((unit, index) => (
             <li key={index}>
               <span>{unit.genericName} ({unit.category})</span>
-              <button onClick={() => onDelete(index)}>Delete</button>
+              <button onClick={() => onDelete(index)} className="delete-btn">&times;</button>
             </li>
           ))}
         </ul>
