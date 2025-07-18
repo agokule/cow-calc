@@ -9,7 +9,7 @@ interface UnitListProps {
   units: Unit[];
   onDrop: (e: DragEvent<HTMLDivElement>) => void;
   onDragOver: (e: DragEvent<HTMLDivElement>) => void;
-  onDelete: (index: number) => void;
+  onDelete: (unitIndex: number) => void;
 }
 
 const UnitList = ({ units, onDrop, onDragOver, onDelete }: UnitListProps) => {

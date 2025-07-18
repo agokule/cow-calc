@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, DragEvent } from "react";
+import TrashIcon from '@/components/TrashIcon';
 import { IUnitType } from "@/types";
 import { unitDataCategorized } from "@/data/units";
 import Link from 'next/link';
@@ -19,8 +20,8 @@ export default function Home() {
   const sidebarRef = useRef<HTMLElement>(null);
   const sidebarToggleRef = useRef<HTMLButtonElement>(null);
 
-  const [yourUnits, setYourUnits] = useState<Unit[]>([]);
-  const [enemyUnits, setEnemyUnits] = useState<Unit[]>([]);
+  const [yourUnitLists, setYourUnitLists] = useState<Unit[][]>([[]]);
+  const [enemyUnitLists, setEnemyUnitLists] = useState<Unit[][]>([[]]);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -53,26 +54,50 @@ export default function Home() {
     e.preventDefault();
   };
 
-  const handleDrop = (e: DragEvent<HTMLDivElement>, listType: "you" | "enemy") => {
+  const handleDrop = (e: DragEvent<HTMLDivElement>, listType: "you" | "enemy", listIndex: number) => {
     e.preventDefault();
     const unit = JSON.parse(e.dataTransfer.getData("application/json"));
 
     if (listType === "you") {
-      setYourUnits([...yourUnits, unit]);
+      const newLists = [...yourUnitLists];
+      newLists[listIndex] = [...newLists[listIndex], unit];
+      setYourUnitLists(newLists);
     } else {
-      setEnemyUnits([...enemyUnits, unit]);
+      const newLists = [...enemyUnitLists];
+      newLists[listIndex] = [...newLists[listIndex], unit];
+      setEnemyUnitLists(newLists);
     }
   };
 
-  const handleDelete = (index: number, listType: "you" | "enemy") => {
+  const handleDelete = (listIndex: number, unitIndex: number, listType: "you" | "enemy") => {
     if (listType === "you") {
-      const newUnits = [...yourUnits];
-      newUnits.splice(index, 1);
-      setYourUnits(newUnits);
+      const newLists = [...yourUnitLists];
+      newLists[listIndex].splice(unitIndex, 1);
+      setYourUnitLists(newLists);
     } else {
-      const newUnits = [...enemyUnits];
-      newUnits.splice(index, 1);
-      setEnemyUnits(newUnits);
+      const newLists = [...enemyUnitLists];
+      newLists[listIndex].splice(unitIndex, 1);
+      setEnemyUnitLists(newLists);
+    }
+  };
+
+  const addUnitList = (listType: "you" | "enemy") => {
+    if (listType === "you") {
+      setYourUnitLists([...yourUnitLists, []]);
+    } else {
+      setEnemyUnitLists([...enemyUnitLists, []]);
+    }
+  };
+
+  const deleteUnitList = (listIndex: number, listType: "you" | "enemy") => {
+    if (listType === "you") {
+      const newLists = [...yourUnitLists];
+      newLists.splice(listIndex, 1);
+      setYourUnitLists(newLists);
+    } else {
+      const newLists = [...enemyUnitLists];
+      newLists.splice(listIndex, 1);
+      setEnemyUnitLists(newLists);
     }
   };
 
@@ -116,11 +141,37 @@ export default function Home() {
         <div className="content">
           <div className="unit-list-wrapper">
             <h2>You</h2>
-            <UnitList units={yourUnits} onDrop={(e) => handleDrop(e, "you")} onDragOver={handleDragOver} onDelete={(index) => handleDelete(index, "you")} />
+            {yourUnitLists.map((units, index) => (
+              <div key={index} className="unit-list-item">
+                <UnitList
+                  units={units}
+                  onDrop={(e) => handleDrop(e, "you", index)}
+                  onDragOver={handleDragOver}
+                  onDelete={(unitIndex) => handleDelete(index, unitIndex, "you")}
+                />
+                <button onClick={() => deleteUnitList(index, "you")} className="delete-list-btn">
+                  <TrashIcon />
+                </button>
+              </div>
+            ))}
+            <button onClick={() => addUnitList("you")} className="add-list-btn">+ Add Unit List</button>
           </div>
           <div className="unit-list-wrapper">
             <h2>Enemy</h2>
-            <UnitList units={enemyUnits} onDrop={(e) => handleDrop(e, "enemy")} onDragOver={handleDragOver} onDelete={(index) => handleDelete(index, "enemy")} />
+            {enemyUnitLists.map((units, index) => (
+              <div key={index} className="unit-list-item">
+                <UnitList
+                  units={units}
+                  onDrop={(e) => handleDrop(e, "enemy", index)}
+                  onDragOver={handleDragOver}
+                  onDelete={(unitIndex) => handleDelete(index, unitIndex, "enemy")}
+                />
+                <button onClick={() => deleteUnitList(index, "enemy")} className="delete-list-btn">
+                  <TrashIcon />
+                </button>
+              </div>
+            ))}
+            <button onClick={() => addUnitList("enemy")} className="add-list-btn">+ Add Unit List</button>
           </div>
         </div>
       </div>
