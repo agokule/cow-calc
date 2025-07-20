@@ -6,14 +6,7 @@ import { IUnitType } from "@/types";
 import { unitDataCategorized } from "@/data/units";
 import Link from 'next/link';
 import UnitList from '@/components/UnitList';
-
-interface Unit {
-  category: string;
-  genericName: string;
-  mode?: string;
-  doctrine: string;
-  level: number;
-}
+import { Unit } from "@/utils/Unit";
 
 export default function Home() {
   const [selectedUnitData, setSelectedUnitData] = useState<IUnitType | IUnitType[]>(

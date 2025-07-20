@@ -2,14 +2,7 @@ import { DragEvent } from "react";
 import { getUnitData } from "@/utils/getUnitData";
 import { getAvailableDoctrines } from "@/utils/getUnitDoctrines";
 import { IUnitType } from "@/types";
-
-interface Unit {
-  category: string;
-  genericName: string;
-  doctrine: string;
-  level: number;
-  mode?: string;
-}
+import { Unit } from "@/utils/Unit";
 
 interface UnitListProps {
   units: Unit[];
