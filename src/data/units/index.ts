@@ -47,7 +47,7 @@ export const unitDataCategorized = {
     motorizedInfantryData,
     mechanizedInfantryData,
     commandosData,
-    paratrooperData,
+    ...paratrooperData,
   ],
   Ordnance: [
     antiTankData,

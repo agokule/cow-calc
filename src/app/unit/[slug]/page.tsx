@@ -6,24 +6,31 @@ import UnitDisplay from "@/components/UnitDisplay";
 import { unitDataCategorized } from "@/data/units";
 import { IUnitType } from "@/types";
 
-const getUnitDataBySlug = (slug: string): IUnitType | IUnitType[] | undefined => {
+const getUnitDataBySlug = (slug: string, mode?: string): IUnitType | undefined => {
   const formattedSlug = slug.toLowerCase().replace(/ /g, '-');
+  const formattedMode = mode ? mode.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) : undefined;
+
   for (const category in unitDataCategorized) {
     const units = unitDataCategorized[category as keyof typeof unitDataCategorized];
     for (const unit of units) {
-      const unitName = Array.isArray(unit) ? unit[0].genericName : unit.genericName;
-      if (unitName.toLowerCase().replace(/ /g, '-') === formattedSlug) {
-        return unit;
-      }
+      const unitName = unit.genericName;
+      const mode = unit.mode
+
+      if (unitName.toLowerCase().replace(/ /g, '-') !== formattedSlug)
+        continue
+      if (mode !== formattedMode)
+        continue
+
+      return unit;
     }
   }
   return undefined;
 };
 
-export default function UnitPage({ params }: any) {
-  // @ts-ignore: Property 'slug' does not exist on type 'unknown'. [2339]
+export default function UnitPage({ params, searchParams }: { params: React.Usable<{ slug: string }>, searchParams?: React.Usable<{ [key: string]: string | undefined }> }) {
+  const { mode } = searchParams ? React.use(searchParams) : { mode: undefined };
   const { slug } = React.use(params);
-  const unitData = getUnitDataBySlug(slug);
+  const unitData = getUnitDataBySlug(slug, mode);
 
   if (!unitData) {
     return (
@@ -41,3 +48,4 @@ export default function UnitPage({ params }: any) {
     </main>
   );
 }
+

@@ -10,6 +10,9 @@ import UnitList from '@/components/UnitList';
 interface Unit {
   category: string;
   genericName: string;
+  mode?: string;
+  doctrine: string;
+  level: number;
 }
 
 export default function Home() {
@@ -46,7 +49,7 @@ export default function Home() {
     };
   }, [isSidebarOpen]);
 
-  const handleDragStart = (e: DragEvent<HTMLAnchorElement>, unit: Unit) => {
+  const handleDragStart = (e: DragEvent<HTMLAnchorElement>, unit: Omit<Unit, 'doctrine' | 'level'>) => {
     e.dataTransfer.setData("application/json", JSON.stringify(unit));
   };
 
@@ -57,14 +60,15 @@ export default function Home() {
   const handleDrop = (e: DragEvent<HTMLDivElement>, listType: "you" | "enemy", listIndex: number) => {
     e.preventDefault();
     const unit = JSON.parse(e.dataTransfer.getData("application/json"));
+    const newUnit: Unit = { ...unit, doctrine: "Allies", level: 1 };
 
     if (listType === "you") {
       const newLists = [...yourUnitLists];
-      newLists[listIndex] = [...newLists[listIndex], unit];
+      newLists[listIndex] = [...newLists[listIndex], newUnit];
       setYourUnitLists(newLists);
     } else {
       const newLists = [...enemyUnitLists];
-      newLists[listIndex] = [...newLists[listIndex], unit];
+      newLists[listIndex] = [...newLists[listIndex], newUnit];
       setEnemyUnitLists(newLists);
     }
   };
@@ -101,6 +105,30 @@ export default function Home() {
     }
   };
 
+  const handleDoctrineChange = (listIndex: number, unitIndex: number, doctrine: string, listType: "you" | "enemy") => {
+    if (listType === "you") {
+      const newLists = [...yourUnitLists];
+      newLists[listIndex][unitIndex].doctrine = doctrine;
+      setYourUnitLists(newLists);
+    } else {
+      const newLists = [...enemyUnitLists];
+      newLists[listIndex][unitIndex].doctrine = doctrine;
+      setEnemyUnitLists(newLists);
+    }
+  };
+
+  const handleLevelChange = (listIndex: number, unitIndex: number, level: number, listType: "you" | "enemy") => {
+    if (listType === "you") {
+      const newLists = [...yourUnitLists];
+      newLists[listIndex][unitIndex].level = level;
+      setYourUnitLists(newLists);
+    } else {
+      const newLists = [...enemyUnitLists];
+      newLists[listIndex][unitIndex].level = level;
+      setEnemyUnitLists(newLists);
+    }
+  };
+
   return (
     <main>
       <div className="main-layout">
@@ -118,17 +146,19 @@ export default function Home() {
               <h3>{category}</h3>
               <ul>
                 {units.map((unitData) => {
-                  const unitName = Array.isArray(unitData) ? unitData[0].genericName : unitData.genericName;
+                  const unitName = unitData.genericName;
+                  const mode = unitData.mode;
                   const slug = unitName.toLowerCase().replace(/ /g, '-');
+                  const modeSlug = mode ? `?mode=${mode.toLowerCase().replace(/ /g, '-')}` : '';
                   const currentUnitName = Array.isArray(selectedUnitData) ? selectedUnitData[0].genericName : selectedUnitData.genericName;
 
                   return (
-                    <li key={unitName}>
-                      <Link href={`/unit/${slug}`} passHref target="_blank" className={unitName === currentUnitName ? 'active' : ''}
+                    <li key={unitName + (mode || '')}>
+                      <Link href={`/unit/${slug}${modeSlug}`} passHref target="_blank" className={unitName === currentUnitName ? 'active' : ''}
                         onClick={() => setSelectedUnitData(unitData)}
                         draggable
-                        onDragStart={(e) => handleDragStart(e, { category, genericName: unitName })}>
-                          {unitName}
+                        onDragStart={(e) => handleDragStart(e, { category, genericName: unitName, mode })}>
+                          {unitName} {mode && `(${mode})`}
                       </Link>
                     </li>
                   );
@@ -148,6 +178,8 @@ export default function Home() {
                   onDrop={(e) => handleDrop(e, "you", index)}
                   onDragOver={handleDragOver}
                   onDelete={(unitIndex) => handleDelete(index, unitIndex, "you")}
+                  onDoctrineChange={(unitIndex, doctrine) => handleDoctrineChange(index, unitIndex, doctrine, "you")}
+                  onLevelChange={(unitIndex, level) => handleLevelChange(index, unitIndex, level, "you")}
                 />
                 <button onClick={() => deleteUnitList(index, "you")} className="delete-list-btn">
                   <TrashIcon />
@@ -165,6 +197,8 @@ export default function Home() {
                   onDrop={(e) => handleDrop(e, "enemy", index)}
                   onDragOver={handleDragOver}
                   onDelete={(unitIndex) => handleDelete(index, unitIndex, "enemy")}
+                  onDoctrineChange={(unitIndex, doctrine) => handleDoctrineChange(index, unitIndex, doctrine, "enemy")}
+                  onLevelChange={(unitIndex, level) => handleLevelChange(index, unitIndex, level, "enemy")}
                 />
                 <button onClick={() => deleteUnitList(index, "enemy")} className="delete-list-btn">
                   <TrashIcon />

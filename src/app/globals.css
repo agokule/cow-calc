@@ -443,6 +443,16 @@ tbody tr:nth-child(even) {
   transition: color 0.2s;
 }
 
-.unit-list .delete-btn:hover {
+.unit-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.unit-controls select {
+  background-color: #4f4f4f;
   color: white;
+  border: 1px solid #777;
+  border-radius: 4px;
+  padding: 0.3rem;
 }
