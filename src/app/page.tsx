@@ -53,7 +53,7 @@ export default function Home() {
   const handleDrop = (e: DragEvent<HTMLDivElement>, listType: "you" | "enemy", listIndex: number) => {
     e.preventDefault();
     const unit = JSON.parse(e.dataTransfer.getData("application/json"));
-    const newUnit: Unit = { ...unit, doctrine: "Allies", level: 1 };
+    const newUnit: Unit = { ...unit, doctrine: "Allies", level: 1, quantity: 1 };
 
     if (listType === "you") {
       const newLists = [...yourUnitLists];
@@ -122,6 +122,18 @@ export default function Home() {
     }
   };
 
+  const handleQuantityChange = (listIndex: number, unitIndex: number, quantity: number, listType: "you" | "enemy") => {
+    if (listType === "you") {
+      const newLists = [...yourUnitLists];
+      newLists[listIndex][unitIndex].quantity = quantity;
+      setYourUnitLists(newLists);
+    } else {
+      const newLists = [...enemyUnitLists];
+      newLists[listIndex][unitIndex].quantity = quantity;
+      setEnemyUnitLists(newLists);
+    }
+  };
+
   return (
     <main>
       <div className="main-layout">
@@ -150,7 +162,7 @@ export default function Home() {
                       <Link href={`/unit/${slug}${modeSlug}`} passHref target="_blank" className={unitName === currentUnitName ? 'active' : ''}
                         onClick={() => setSelectedUnitData(unitData)}
                         draggable
-                        onDragStart={(e) => handleDragStart(e, { category, genericName: unitName, mode })}>
+                        onDragStart={(e) => handleDragStart(e, { category, genericName: unitName, quantity: 1, mode })}>
                           {unitName} {mode && `(${mode})`}
                       </Link>
                     </li>
@@ -173,6 +185,7 @@ export default function Home() {
                   onDelete={(unitIndex) => handleDelete(index, unitIndex, "you")}
                   onDoctrineChange={(unitIndex, doctrine) => handleDoctrineChange(index, unitIndex, doctrine, "you")}
                   onLevelChange={(unitIndex, level) => handleLevelChange(index, unitIndex, level, "you")}
+                  onQuantityChange={(unitIndex, quantity) => handleQuantityChange(index, unitIndex, quantity, "you")}
                 />
                 <button onClick={() => deleteUnitList(index, "you")} className="delete-list-btn">
                   <TrashIcon />
@@ -192,6 +205,7 @@ export default function Home() {
                   onDelete={(unitIndex) => handleDelete(index, unitIndex, "enemy")}
                   onDoctrineChange={(unitIndex, doctrine) => handleDoctrineChange(index, unitIndex, doctrine, "enemy")}
                   onLevelChange={(unitIndex, level) => handleLevelChange(index, unitIndex, level, "enemy")}
+                  onQuantityChange={(unitIndex, quantity) => handleQuantityChange(index, unitIndex, quantity, "enemy")}
                 />
                 <button onClick={() => deleteUnitList(index, "enemy")} className="delete-list-btn">
                   <TrashIcon />
