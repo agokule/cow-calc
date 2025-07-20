@@ -1,42 +1,26 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Doctrine, IUnitType } from "@/types";
 import UnitStatsCard from "./UnitStatsCard";
+import { getUnitData } from "@/utils/getUnitData";
+import { getAvailableDoctrines } from "@/utils/getUnitDoctrines";
 
-// Helper to get doctrines that actually have unit variants defined
-const getAvailableDoctrines = (unitType: IUnitType): Doctrine[] => {
-  return (Object.keys(unitType.doctrineVariants) as Doctrine[]).filter(
-    (d) => unitType.doctrineVariants[d].length > 0
-  );
-};
-
-const UnitDisplay = ({ unitTypeData }: { unitTypeData: IUnitType | IUnitType[] }) => {
-  // Determine if the passed data is for a dual-mode unit (like Paratroopers)
-  const isDualMode = Array.isArray(unitTypeData);
-
+const UnitDisplay = ({ unitTypeData, modes }: { unitTypeData: IUnitType, modes?: string[] }) => {
   // State for the currently selected mode (e.g., "On Ground" or "In Air")
-  const [selectedModeIndex, setSelectedModeIndex] = useState(0);
+  const [selectedMode, setSelectedModeRaw] = useState(unitTypeData.mode);
 
-  // Determine the current IUnitType object to work with based on the selected mode
-  const activeUnitType = isDualMode ? unitTypeData[selectedModeIndex] : unitTypeData;
+  const [activeUnitData, setActiveUnitData] = useState(unitTypeData);
 
-  const availableDoctrines = getAvailableDoctrines(activeUnitType);
+  function setSelectedMode(newMode: string) {
+    setSelectedModeRaw(newMode)
+    setActiveUnitData(getUnitData(unitTypeData.genericName, newMode) as IUnitType)
+  }
+
+  const availableDoctrines = getAvailableDoctrines(activeUnitData);
   
   const [selectedDoctrine, setSelectedDoctrine] = useState<Doctrine>(availableDoctrines[0]);
   const [selectedLevelIndex, setSelectedLevelIndex] = useState(0);
-
-  // This is a crucial effect. It runs whenever the top-level unit changes (e.g., user selects
-  // a new unit from the sidebar). It resets the internal state to avoid errors.
-  useEffect(() => {
-    const newIsDualMode = Array.isArray(unitTypeData);
-    const newActiveUnitType = newIsDualMode ? unitTypeData[0] : unitTypeData;
-    const newAvailableDoctrines = getAvailableDoctrines(newActiveUnitType);
-
-    setSelectedModeIndex(0); // Reset to the first mode
-    setSelectedDoctrine(newAvailableDoctrines[0] || 'Allies'); // Reset to the first available doctrine
-    setSelectedLevelIndex(0); // Reset to level 1
-  }, [unitTypeData]);
 
   // Handler to reset level when the doctrine changes
   const handleDoctrineChange = (doctrine: Doctrine) => {
@@ -44,25 +28,25 @@ const UnitDisplay = ({ unitTypeData }: { unitTypeData: IUnitType | IUnitType[] }
     setSelectedLevelIndex(0);
   };
 
-  const currentLevels = activeUnitType.doctrineVariants[selectedDoctrine];
+  const currentLevels = activeUnitData.doctrineVariants[selectedDoctrine];
   const selectedUnit = currentLevels?.[selectedLevelIndex];
 
   return (
     <div>
-      <h1 className="unit-title">{activeUnitType.genericName}</h1>
+      <h1 className="unit-title">{activeUnitData.genericName}</h1>
 
       {/* Mode Selector - Only shows for units with multiple modes */}
-      {isDualMode && (
+      {modes && modes.length > 0 && (
         <div className="selector-group">
           <h4>Select Mode</h4>
           <div className="button-row">
-            {unitTypeData.map((unitMode, index) => (
+            {modes.flatMap((unitMode) => (
               <button
-                key={unitMode.mode}
-                className={index === selectedModeIndex ? 'active' : ''}
-                onClick={() => setSelectedModeIndex(index)}
+                key={unitMode}
+                className={unitMode === selectedMode ? 'active' : ''}
+                onClick={() => setSelectedMode(unitMode)}
               >
-                {unitMode.mode}
+                {unitMode}
               </button>
             ))}
           </div>
