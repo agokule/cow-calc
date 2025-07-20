@@ -37,6 +37,7 @@ const UnitList = ({ units, onDrop, onDragOver, onDelete, onDoctrineChange, onLev
                   <select value={unit.doctrine} onChange={(e) => onDoctrineChange(index, e.target.value)}>
                     {availableDoctrines.map(d => <option key={d} value={d}>{d}</option>)}
                   </select>
+                  <p>Level: </p>
                   <select value={unit.level} onChange={(e) => onLevelChange(index, parseInt(e.target.value))}>
                     {availableLevels?.map(l => <option key={l} value={l}>{l}</option>)}
                   </select>
