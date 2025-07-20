@@ -1,5 +1,7 @@
 import { DragEvent } from "react";
 import { getUnitData } from "@/utils/getUnitData";
+import { getAvailableDoctrines } from "@/utils/getUnitDoctrines";
+import { IUnitType } from "@/types";
 
 interface Unit {
   category: string;
@@ -24,8 +26,8 @@ const UnitList = ({ units, onDrop, onDragOver, onDelete, onDoctrineChange, onLev
       <div className="unit-list">
         <ul>
           {units.map((unit, index) => {
-            const unitData = getUnitData(unit.genericName);
-            const availableDoctrines = unitData ? Object.keys(unitData.doctrineVariants).filter(doctrine => unitData.doctrineVariants[doctrine as keyof typeof unitData.doctrineVariants]!.length > 0) : [];
+            const unitData = getUnitData(unit.genericName, unit.mode);
+            const availableDoctrines = getAvailableDoctrines(unitData as IUnitType);
             const availableLevels = unitData ? unitData.doctrineVariants[unit.doctrine as keyof typeof unitData.doctrineVariants]?.map(l => l.level) : [];
 
             return (
