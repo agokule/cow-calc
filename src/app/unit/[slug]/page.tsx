@@ -8,7 +8,7 @@ import { getUnitData } from '@/utils/getUnitData';
 import { getUnitModes } from '@/utils/getUnitModes';
 
 const getUnitDataBySlug = (slug: string, mode?: string): IUnitType | undefined => {
-  const formattedSlug = slug.toLowerCase().replace(/ /g, '-');
+  const formattedSlug = slug.toLowerCase().replace(/-/g, ' ');
   const formattedMode = mode ? mode.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) : undefined;
 
   return getUnitData(formattedSlug, formattedMode)
