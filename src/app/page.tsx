@@ -2,11 +2,12 @@
 
 import { useState, useEffect, useRef, DragEvent } from "react";
 import TrashIcon from '@/components/TrashIcon';
-import { IUnitType } from "@/types";
+import { Doctrine, IUnitType, UnitType } from "@/types";
 import { unitDataCategorized } from "@/data/units";
 import Link from 'next/link';
 import UnitList from '@/components/UnitList';
 import { Unit } from "@/utils/Unit";
+import { getUnitType } from "@/utils/getUnitType";
 
 export default function Home() {
   const [selectedUnitData, setSelectedUnitData] = useState<IUnitType | IUnitType[]>(
@@ -55,15 +56,24 @@ export default function Home() {
     const unit = JSON.parse(e.dataTransfer.getData("application/json"));
     const newUnit: Unit = { ...unit, doctrine: "Allies", level: 1, quantity: 1 };
 
-    if (listType === "you") {
-      const newLists = [...yourUnitLists];
-      newLists[listIndex] = [...newLists[listIndex], newUnit];
-      setYourUnitLists(newLists);
-    } else {
-      const newLists = [...enemyUnitLists];
-      newLists[listIndex] = [...newLists[listIndex], newUnit];
-      setEnemyUnitLists(newLists);
+    const lists = listType === "you" ? yourUnitLists : enemyUnitLists;
+    const setLists = listType === "you" ? setYourUnitLists : setEnemyUnitLists;
+
+    const currentList = lists[listIndex];
+
+    if (currentList.length > 0) {
+      const listCategory = getUnitType(currentList[0].genericName, currentList[0].mode);
+      const newItemCategory = getUnitType(newUnit.genericName, newUnit.mode)
+      if (newItemCategory !== listCategory) {
+        console.log(listCategory, newItemCategory)
+        alert(`You can only add ${UnitType[listCategory as UnitType]} units to this list.`);
+        return;
+      }
     }
+
+    const newLists = [...lists];
+    newLists[listIndex] = [...currentList, newUnit];
+    setLists(newLists);
   };
 
   const handleDelete = (listIndex: number, unitIndex: number, listType: "you" | "enemy") => {
@@ -98,7 +108,7 @@ export default function Home() {
     }
   };
 
-  const handleDoctrineChange = (listIndex: number, unitIndex: number, doctrine: string, listType: "you" | "enemy") => {
+  const handleDoctrineChange = (listIndex: number, unitIndex: number, doctrine: Doctrine, listType: "you" | "enemy") => {
     if (listType === "you") {
       const newLists = [...yourUnitLists];
       newLists[listIndex][unitIndex].doctrine = doctrine;

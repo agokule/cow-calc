@@ -47,6 +47,13 @@ export type ICombatStatistics = {
 export type ResourceType = "food" | "manpower" | "metal" | "cash" | "oil";
 
 /**
+ * Whether the unit is land, water, air, or rocket
+ */
+export enum UnitType {
+  land, water, air, rocket
+}
+
+/**
  * Defines the structure for a unit's production costs.
  * It's a record mapping each resource type to its required amount.
  */

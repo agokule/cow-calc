@@ -1,15 +1,16 @@
 import { DragEvent } from "react";
 import { getUnitData } from "@/utils/getUnitData";
 import { getAvailableDoctrines } from "@/utils/getUnitDoctrines";
-import { IUnitType } from "@/types";
+import { Doctrine, IUnitType, UnitType } from "@/types";
 import { Unit } from "@/utils/Unit";
+import { getUnitType } from "@/utils/getUnitType";
 
 interface UnitListProps {
   units: Unit[];
   onDrop: (e: DragEvent<HTMLDivElement>) => void;
   onDragOver: (e: DragEvent<HTMLDivElement>) => void;
   onDelete: (unitIndex: number) => void;
-  onDoctrineChange: (unitIndex: number, doctrine: string) => void;
+  onDoctrineChange: (unitIndex: number, doctrine: Doctrine) => void;
   onLevelChange: (unitIndex: number, level: number) => void;
   onQuantityChange: (unitIndex: number, quantity: number) => void;
 }
@@ -17,6 +18,11 @@ interface UnitListProps {
 const UnitList = ({ units, onDrop, onDragOver, onDelete, onDoctrineChange, onLevelChange, onQuantityChange }: UnitListProps) => {
   return (
     <div className="unit-list-container" onDrop={onDrop} onDragOver={onDragOver}>
+      {units.length > 0 && (
+        <div className="unit-list-category">
+          {UnitType[getUnitType(units[0].genericName, units[0].mode) as UnitType]} Units
+        </div>
+      )}
       <div className="unit-list">
         <ul>
           {units.map((unit, index) => {
@@ -28,7 +34,7 @@ const UnitList = ({ units, onDrop, onDragOver, onDelete, onDoctrineChange, onLev
               <li key={index}>
                 <span>{unit.genericName} {unit.mode && `(${unit.mode})`} ({unit.category})</span>
                 <div className="unit-controls">
-                  <select value={unit.doctrine} onChange={(e) => onDoctrineChange(index, e.target.value)}>
+                  <select value={unit.doctrine} onChange={(e) => onDoctrineChange(index, e.target.value as Doctrine)}>
                     {availableDoctrines.map(d => <option key={d} value={d}>{d}</option>)}
                   </select>
                   <p>Level: </p>
