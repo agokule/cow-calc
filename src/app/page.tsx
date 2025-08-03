@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect, useRef, DragEvent } from "react";
+import { useState, useEffect, useRef, DragEvent, useContext } from "react";
+import { UnitListsContext } from "@/context/UnitListsContext";
 import TrashIcon from '@/components/TrashIcon';
 import { Doctrine, IUnitType, UnitType } from "@/types";
 import { unitDataCategorized } from "@/data/units";
@@ -17,8 +18,7 @@ export default function Home() {
   const sidebarRef = useRef<HTMLElement>(null);
   const sidebarToggleRef = useRef<HTMLButtonElement>(null);
 
-  const [yourUnitLists, setYourUnitLists] = useState<Unit[][]>([[]]);
-  const [enemyUnitLists, setEnemyUnitLists] = useState<Unit[][]>([[]]);
+  const { yourUnitLists, setYourUnitLists, enemyUnitLists, setEnemyUnitLists } = useContext(UnitListsContext)!;
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -146,6 +146,13 @@ export default function Home() {
 
   return (
     <main>
+      <div className="connections-button-container">
+        <Link href="/connections">
+          <button className="connections-button">
+            Connections
+          </button>
+        </Link>
+      </div>
       <div className="main-layout">
         <button
           className="sidebar-toggle"
