@@ -163,7 +163,7 @@ export const paratrooperData: IUnitType[] = [
           },
         },
       ],
-      Axis: [], Communist: [], "Pan-Asian": [],
+      Axis: [], Comintern: [], "Pan-Asian": [],
     },
   },
   {
@@ -328,7 +328,7 @@ export const paratrooperData: IUnitType[] = [
           },
         },
       ],
-      Axis: [], Communist: [], "Pan-Asian": [],
+      Axis: [], Comintern: [], "Pan-Asian": [],
     },
   },
 ];

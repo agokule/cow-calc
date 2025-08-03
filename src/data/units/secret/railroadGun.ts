@@ -83,6 +83,6 @@ export const railroadGunData: IUnitType = {
         },
       },
     ],
-    Axis: [], Communist: [], "Pan-Asian": [],
+    Axis: [], Comintern: [], "Pan-Asian": [],
   },
 };

@@ -83,6 +83,6 @@ export const rocketFighterData: IUnitType = {
         },
       },
     ],
-    Axis: [], Communist: [], "Pan-Asian": [],
+    Axis: [], Comintern: [], "Pan-Asian": [],
   },
 };

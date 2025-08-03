@@ -278,6 +278,6 @@ export const infantryData: IUnitType = {
         },
       },
     ],
-    Axis: [], Communist: [], "Pan-Asian": [],
+    Axis: [], Comintern: [], "Pan-Asian": [],
   },
 };

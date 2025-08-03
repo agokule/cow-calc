@@ -200,6 +200,6 @@ export const lightTankData: IUnitType = {
         },
       },
     ],
-    Axis: [], Communist: [], "Pan-Asian": [],
+    Axis: [], Comintern: [], "Pan-Asian": [],
   },
 };
