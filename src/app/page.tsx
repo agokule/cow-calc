@@ -12,12 +12,20 @@ import { getUnitType } from "@/utils/getUnitType";
 import { convert, diff, normalize } from "@/data/units/synthesiser";
 
 export default function Home() {
-  diff("Pan-Asian", "Infantry")
-
   for (const unit of possibleUnitNames) {
-    const n = normalize("Allies", "Light Tank") as IUnitStats[]
-    console.log(convert(n, "Pan-Asian", "Light Tank"))
+    if (unit == "Paratroopers" || unit == "Atomic Bomb")
+      continue
+    const n = normalize("Allies", unit) as IUnitStats[]
+
+    let data: any = {}
+
+    for (const doctrine of ["Axis", "Comintern", "Pan-Asian"] as const)
+      data[doctrine] = convert(n, doctrine, unit)
+
+    console.log(unit, "data", data)
   }
+
+  console.log('done')
 
   const [selectedUnitData, setSelectedUnitData] = useState<IUnitType | IUnitType[]>(
     unitDataCategorized.Infantry[0]

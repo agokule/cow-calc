@@ -722,7 +722,1049 @@ export const lightTankData: IUnitType = {
         }
       }
     ],
-    Comintern: [],
-    "Pan-Asian": [],
+    Comintern: [
+      {
+        "unitName": "Comintern Light Tank (Estimated Stats)",
+        "level": 1,
+        "doctrine": "Comintern",
+        "type": "LightArmor",
+        "averageDamage": 2.1,
+        "hitpoints": 20,
+        "production": {
+          "costs": {
+            "manpower": 765,
+            "metal": 1275,
+            "oil": 1190,
+            "cash": 935,
+            "food": 0
+          },
+          "minTimeInSeconds": 11571.428571428572
+        },
+        "specialProperties": [
+          "Anti-Light Armor",
+          "Offensive"
+        ],
+        "combatStatistics": {
+          "vsUnarmored": {
+            "attack": 2.4,
+            "defense": 1.6
+          },
+          "vsLightArmor": {
+            "attack": 3.6,
+            "defense": 2.4
+          },
+          "vsHeavyArmor": {
+            "attack": 1.4,
+            "defense": 0.9
+          },
+          "vsAirplane": {
+            "attack": 0.7,
+            "defense": 0.5
+          },
+          "vsShip": {
+            "attack": 0.7,
+            "defense": 0.5
+          },
+          "vsSubmarine": {
+            "attack": 0.7,
+            "defense": 0.5
+          },
+          "vsBuildings": {
+            "attack": 0.4,
+            "defense": 0.3
+          },
+          "vsProvinceMorale": {
+            "attack": 0.1,
+            "defense": null
+          },
+          "vsRocket": {
+            "attack": 0,
+            "defense": 0
+          }
+        },
+        "terrainEffects": {
+          "plains": {
+            "health": 20,
+            "attackModifier": null,
+            "speedModifier": 0.25,
+            "strengthModifier": 0.5
+          },
+          "hills": {
+            "health": 20,
+            "attackModifier": null,
+            "speedModifier": -0.25,
+            "strengthModifier": null
+          },
+          "mountains": {
+            "health": 20,
+            "attackModifier": null,
+            "speedModifier": -0.5,
+            "strengthModifier": null
+          },
+          "forest": {
+            "health": 20,
+            "attackModifier": null,
+            "speedModifier": -0.25,
+            "strengthModifier": null
+          },
+          "urban": {
+            "health": 20,
+            "attackModifier": null,
+            "speedModifier": null,
+            "strengthModifier": null
+          },
+          "sea": {
+            "health": 10,
+            "attackModifier": null,
+            "speedModifier": null,
+            "strengthModifier": null
+          },
+          "enemyTerritory": {
+            "health": null,
+            "attackModifier": null,
+            "speedModifier": -0.5,
+            "strengthModifier": null
+          }
+        }
+      },
+      {
+        "unitName": "Comintern Light Tank (Estimated Stats)",
+        "level": 2,
+        "doctrine": "Comintern",
+        "type": "LightArmor",
+        "averageDamage": 3.2,
+        "hitpoints": 30,
+        "production": {
+          "costs": {
+            "manpower": 808,
+            "metal": 1360,
+            "oil": 1275,
+            "cash": 1020,
+            "food": 0
+          },
+          "minTimeInSeconds": 16714.285714285714
+        },
+        "specialProperties": [
+          "Anti-Light Armor",
+          "Offensive"
+        ],
+        "combatStatistics": {
+          "vsUnarmored": {
+            "attack": 3.6,
+            "defense": 2.4
+          },
+          "vsLightArmor": {
+            "attack": 5.9,
+            "defense": 3.9
+          },
+          "vsHeavyArmor": {
+            "attack": 2.3,
+            "defense": 1.5
+          },
+          "vsAirplane": {
+            "attack": 1.4,
+            "defense": 0.9
+          },
+          "vsShip": {
+            "attack": 1.4,
+            "defense": 0.9
+          },
+          "vsSubmarine": {
+            "attack": 1.4,
+            "defense": 0.9
+          },
+          "vsBuildings": {
+            "attack": 0.5,
+            "defense": 0.4
+          },
+          "vsProvinceMorale": {
+            "attack": 0.1,
+            "defense": null
+          },
+          "vsRocket": {
+            "attack": 0,
+            "defense": 0
+          }
+        },
+        "terrainEffects": {
+          "plains": {
+            "health": 30,
+            "attackModifier": null,
+            "speedModifier": 0.25,
+            "strengthModifier": 0.5
+          },
+          "hills": {
+            "health": 30,
+            "attackModifier": null,
+            "speedModifier": -0.25,
+            "strengthModifier": null
+          },
+          "mountains": {
+            "health": 30,
+            "attackModifier": null,
+            "speedModifier": -0.5,
+            "strengthModifier": null
+          },
+          "forest": {
+            "health": 30,
+            "attackModifier": null,
+            "speedModifier": -0.25,
+            "strengthModifier": null
+          },
+          "urban": {
+            "health": 30,
+            "attackModifier": null,
+            "speedModifier": null,
+            "strengthModifier": null
+          },
+          "sea": {
+            "health": 10,
+            "attackModifier": null,
+            "speedModifier": null,
+            "strengthModifier": null
+          },
+          "enemyTerritory": {
+            "health": null,
+            "attackModifier": null,
+            "speedModifier": -0.5,
+            "strengthModifier": null
+          }
+        }
+      },
+      {
+        "unitName": "Comintern Light Tank (Estimated Stats)",
+        "level": 3,
+        "doctrine": "Comintern",
+        "type": "LightArmor",
+        "averageDamage": 5.1,
+        "hitpoints": 45,
+        "production": {
+          "costs": {
+            "manpower": 808,
+            "metal": 1530,
+            "oil": 1445,
+            "cash": 1190,
+            "food": 0
+          },
+          "minTimeInSeconds": 20571.428571428572
+        },
+        "specialProperties": [
+          "Anti-Light Armor",
+          "Offensive"
+        ],
+        "combatStatistics": {
+          "vsUnarmored": {
+            "attack": 5.9,
+            "defense": 3.9
+          },
+          "vsLightArmor": {
+            "attack": 9,
+            "defense": 6
+          },
+          "vsHeavyArmor": {
+            "attack": 3.6,
+            "defense": 2.4
+          },
+          "vsAirplane": {
+            "attack": 2.3,
+            "defense": 1.5
+          },
+          "vsShip": {
+            "attack": 2.3,
+            "defense": 1.5
+          },
+          "vsSubmarine": {
+            "attack": 2.3,
+            "defense": 1.5
+          },
+          "vsBuildings": {
+            "attack": 0.8,
+            "defense": 0.5
+          },
+          "vsProvinceMorale": {
+            "attack": 0.2,
+            "defense": null
+          },
+          "vsRocket": {
+            "attack": 0,
+            "defense": 0
+          }
+        },
+        "terrainEffects": {
+          "plains": {
+            "health": 45,
+            "attackModifier": null,
+            "speedModifier": 0.25,
+            "strengthModifier": 0.5
+          },
+          "hills": {
+            "health": 45,
+            "attackModifier": null,
+            "speedModifier": -0.25,
+            "strengthModifier": null
+          },
+          "mountains": {
+            "health": 45,
+            "attackModifier": null,
+            "speedModifier": -0.5,
+            "strengthModifier": null
+          },
+          "forest": {
+            "health": 45,
+            "attackModifier": null,
+            "speedModifier": -0.25,
+            "strengthModifier": null
+          },
+          "urban": {
+            "health": 45,
+            "attackModifier": null,
+            "speedModifier": null,
+            "strengthModifier": null
+          },
+          "sea": {
+            "health": 10,
+            "attackModifier": null,
+            "speedModifier": null,
+            "strengthModifier": null
+          },
+          "enemyTerritory": {
+            "health": null,
+            "attackModifier": null,
+            "speedModifier": -0.5,
+            "strengthModifier": null
+          }
+        }
+      },
+      {
+        "unitName": "Comintern Light Tank (Estimated Stats)",
+        "level": 4,
+        "doctrine": "Comintern",
+        "type": "LightArmor",
+        "averageDamage": 8.4,
+        "hitpoints": 65,
+        "production": {
+          "costs": {
+            "manpower": 850,
+            "metal": 1870,
+            "oil": 1700,
+            "cash": 1360,
+            "food": 0
+          },
+          "minTimeInSeconds": 28285.714285714286
+        },
+        "specialProperties": [
+          "Anti-Light Armor",
+          "Offensive"
+        ],
+        "combatStatistics": {
+          "vsUnarmored": {
+            "attack": 9.5,
+            "defense": 6.3
+          },
+          "vsLightArmor": {
+            "attack": 14,
+            "defense": 9.3
+          },
+          "vsHeavyArmor": {
+            "attack": 6.8,
+            "defense": 4.5
+          },
+          "vsAirplane": {
+            "attack": 3.6,
+            "defense": 2.4
+          },
+          "vsShip": {
+            "attack": 3.6,
+            "defense": 2.4
+          },
+          "vsSubmarine": {
+            "attack": 3.6,
+            "defense": 2.4
+          },
+          "vsBuildings": {
+            "attack": 1.6,
+            "defense": 1.1
+          },
+          "vsProvinceMorale": {
+            "attack": 0.2,
+            "defense": null
+          },
+          "vsRocket": {
+            "attack": 0,
+            "defense": 0
+          }
+        },
+        "terrainEffects": {
+          "plains": {
+            "health": 65,
+            "attackModifier": null,
+            "speedModifier": 0.25,
+            "strengthModifier": 0.5
+          },
+          "hills": {
+            "health": 65,
+            "attackModifier": null,
+            "speedModifier": -0.25,
+            "strengthModifier": null
+          },
+          "mountains": {
+            "health": 65,
+            "attackModifier": null,
+            "speedModifier": -0.5,
+            "strengthModifier": null
+          },
+          "forest": {
+            "health": 65,
+            "attackModifier": null,
+            "speedModifier": -0.25,
+            "strengthModifier": null
+          },
+          "urban": {
+            "health": 65,
+            "attackModifier": null,
+            "speedModifier": null,
+            "strengthModifier": null
+          },
+          "sea": {
+            "health": 10,
+            "attackModifier": null,
+            "speedModifier": null,
+            "strengthModifier": null
+          },
+          "enemyTerritory": {
+            "health": null,
+            "attackModifier": null,
+            "speedModifier": -0.5,
+            "strengthModifier": null
+          }
+        }
+      },
+      {
+        "unitName": "Comintern Light Tank (Estimated Stats)",
+        "level": 5,
+        "doctrine": "Comintern",
+        "type": "LightArmor",
+        "averageDamage": 12.4,
+        "hitpoints": 85,
+        "production": {
+          "costs": {
+            "manpower": 935,
+            "metal": 2210,
+            "oil": 1955,
+            "cash": 1615,
+            "food": 0
+          },
+          "minTimeInSeconds": 30857.14285714286
+        },
+        "specialProperties": [
+          "Anti-Light Armor",
+          "Offensive"
+        ],
+        "combatStatistics": {
+          "vsUnarmored": {
+            "attack": 14,
+            "defense": 9.3
+          },
+          "vsLightArmor": {
+            "attack": 20.7,
+            "defense": 13.8
+          },
+          "vsHeavyArmor": {
+            "attack": 9.9,
+            "defense": 6.6
+          },
+          "vsAirplane": {
+            "attack": 5.4,
+            "defense": 3.6
+          },
+          "vsShip": {
+            "attack": 5.4,
+            "defense": 3.6
+          },
+          "vsSubmarine": {
+            "attack": 5.4,
+            "defense": 3.6
+          },
+          "vsBuildings": {
+            "attack": 2.5,
+            "defense": 1.7
+          },
+          "vsProvinceMorale": {
+            "attack": 0.3,
+            "defense": null
+          },
+          "vsRocket": {
+            "attack": 0,
+            "defense": 0
+          }
+        },
+        "terrainEffects": {
+          "plains": {
+            "health": 85,
+            "attackModifier": null,
+            "speedModifier": 0.25,
+            "strengthModifier": 0.5
+          },
+          "hills": {
+            "health": 85,
+            "attackModifier": null,
+            "speedModifier": -0.25,
+            "strengthModifier": null
+          },
+          "mountains": {
+            "health": 85,
+            "attackModifier": null,
+            "speedModifier": -0.5,
+            "strengthModifier": null
+          },
+          "forest": {
+            "health": 85,
+            "attackModifier": null,
+            "speedModifier": -0.25,
+            "strengthModifier": null
+          },
+          "urban": {
+            "health": 85,
+            "attackModifier": null,
+            "speedModifier": null,
+            "strengthModifier": null
+          },
+          "sea": {
+            "health": 10,
+            "attackModifier": null,
+            "speedModifier": null,
+            "strengthModifier": null
+          },
+          "enemyTerritory": {
+            "health": null,
+            "attackModifier": null,
+            "speedModifier": -0.5,
+            "strengthModifier": null
+          }
+        }
+      }
+    ],
+    "Pan-Asian": [
+      {
+        "unitName": "Pan-Asian Light Tank (Estimated Stats)",
+        "level": 1,
+        "doctrine": "Pan-Asian",
+        "type": "LightArmor",
+        "averageDamage": 2.3,
+        "hitpoints": 20,
+        "production": {
+          "costs": {
+            "manpower": 900,
+            "metal": 1500,
+            "oil": 1400,
+            "cash": 1100,
+            "food": 0
+          },
+          "minTimeInSeconds": 11571.428571428572
+        },
+        "specialProperties": [
+          "Anti-Light Armor",
+          "Offensive"
+        ],
+        "combatStatistics": {
+          "vsUnarmored": {
+            "attack": 3.1,
+            "defense": 2.1
+          },
+          "vsLightArmor": {
+            "attack": 4.6,
+            "defense": 3.1
+          },
+          "vsHeavyArmor": {
+            "attack": 1.5,
+            "defense": 1
+          },
+          "vsAirplane": {
+            "attack": 0.8,
+            "defense": 0.5
+          },
+          "vsShip": {
+            "attack": 0.8,
+            "defense": 0.5
+          },
+          "vsSubmarine": {
+            "attack": 0.8,
+            "defense": 0.5
+          },
+          "vsBuildings": {
+            "attack": 0.4,
+            "defense": 0.3
+          },
+          "vsProvinceMorale": {
+            "attack": 0.1,
+            "defense": null
+          },
+          "vsRocket": {
+            "attack": 0,
+            "defense": 0
+          }
+        },
+        "terrainEffects": {
+          "plains": {
+            "health": 20,
+            "attackModifier": null,
+            "speedModifier": 0.25,
+            "strengthModifier": 0.7
+          },
+          "hills": {
+            "health": 20,
+            "attackModifier": null,
+            "speedModifier": -0.25,
+            "strengthModifier": null
+          },
+          "mountains": {
+            "health": 20,
+            "attackModifier": null,
+            "speedModifier": -0.5,
+            "strengthModifier": null
+          },
+          "forest": {
+            "health": 20,
+            "attackModifier": null,
+            "speedModifier": -0.25,
+            "strengthModifier": null
+          },
+          "urban": {
+            "health": 20,
+            "attackModifier": null,
+            "speedModifier": null,
+            "strengthModifier": null
+          },
+          "sea": {
+            "health": 10,
+            "attackModifier": null,
+            "speedModifier": null,
+            "strengthModifier": null
+          },
+          "enemyTerritory": {
+            "health": null,
+            "attackModifier": null,
+            "speedModifier": -0.5,
+            "strengthModifier": null
+          }
+        }
+      },
+      {
+        "unitName": "Pan-Asian Light Tank (Estimated Stats)",
+        "level": 2,
+        "doctrine": "Pan-Asian",
+        "type": "LightArmor",
+        "averageDamage": 3.6,
+        "hitpoints": 30,
+        "production": {
+          "costs": {
+            "manpower": 950,
+            "metal": 1600,
+            "oil": 1500,
+            "cash": 1200,
+            "food": 0
+          },
+          "minTimeInSeconds": 16714.285714285714
+        },
+        "specialProperties": [
+          "Anti-Light Armor",
+          "Offensive"
+        ],
+        "combatStatistics": {
+          "vsUnarmored": {
+            "attack": 4.6,
+            "defense": 3.1
+          },
+          "vsLightArmor": {
+            "attack": 7.5,
+            "defense": 4.9
+          },
+          "vsHeavyArmor": {
+            "attack": 2.5,
+            "defense": 1.7
+          },
+          "vsAirplane": {
+            "attack": 1.5,
+            "defense": 1
+          },
+          "vsShip": {
+            "attack": 1.5,
+            "defense": 1
+          },
+          "vsSubmarine": {
+            "attack": 1.5,
+            "defense": 1
+          },
+          "vsBuildings": {
+            "attack": 0.6,
+            "defense": 0.4
+          },
+          "vsProvinceMorale": {
+            "attack": 0.1,
+            "defense": null
+          },
+          "vsRocket": {
+            "attack": 0,
+            "defense": 0
+          }
+        },
+        "terrainEffects": {
+          "plains": {
+            "health": 30,
+            "attackModifier": null,
+            "speedModifier": 0.25,
+            "strengthModifier": 0.7
+          },
+          "hills": {
+            "health": 30,
+            "attackModifier": null,
+            "speedModifier": -0.25,
+            "strengthModifier": null
+          },
+          "mountains": {
+            "health": 30,
+            "attackModifier": null,
+            "speedModifier": -0.5,
+            "strengthModifier": null
+          },
+          "forest": {
+            "health": 30,
+            "attackModifier": null,
+            "speedModifier": -0.25,
+            "strengthModifier": null
+          },
+          "urban": {
+            "health": 30,
+            "attackModifier": null,
+            "speedModifier": null,
+            "strengthModifier": null
+          },
+          "sea": {
+            "health": 10,
+            "attackModifier": null,
+            "speedModifier": null,
+            "strengthModifier": null
+          },
+          "enemyTerritory": {
+            "health": null,
+            "attackModifier": null,
+            "speedModifier": -0.5,
+            "strengthModifier": null
+          }
+        }
+      },
+      {
+        "unitName": "Pan-Asian Light Tank (Estimated Stats)",
+        "level": 3,
+        "doctrine": "Pan-Asian",
+        "type": "LightArmor",
+        "averageDamage": 5.7,
+        "hitpoints": 45,
+        "production": {
+          "costs": {
+            "manpower": 950,
+            "metal": 1800,
+            "oil": 1700,
+            "cash": 1400,
+            "food": 0
+          },
+          "minTimeInSeconds": 20571.428571428572
+        },
+        "specialProperties": [
+          "Anti-Light Armor",
+          "Offensive"
+        ],
+        "combatStatistics": {
+          "vsUnarmored": {
+            "attack": 7.5,
+            "defense": 4.9
+          },
+          "vsLightArmor": {
+            "attack": 11.5,
+            "defense": 7.7
+          },
+          "vsHeavyArmor": {
+            "attack": 4,
+            "defense": 2.7
+          },
+          "vsAirplane": {
+            "attack": 2.5,
+            "defense": 1.7
+          },
+          "vsShip": {
+            "attack": 2.5,
+            "defense": 1.7
+          },
+          "vsSubmarine": {
+            "attack": 2.5,
+            "defense": 1.7
+          },
+          "vsBuildings": {
+            "attack": 0.9,
+            "defense": 0.6
+          },
+          "vsProvinceMorale": {
+            "attack": 0.2,
+            "defense": null
+          },
+          "vsRocket": {
+            "attack": 0,
+            "defense": 0
+          }
+        },
+        "terrainEffects": {
+          "plains": {
+            "health": 45,
+            "attackModifier": null,
+            "speedModifier": 0.25,
+            "strengthModifier": 0.7
+          },
+          "hills": {
+            "health": 45,
+            "attackModifier": null,
+            "speedModifier": -0.25,
+            "strengthModifier": null
+          },
+          "mountains": {
+            "health": 45,
+            "attackModifier": null,
+            "speedModifier": -0.5,
+            "strengthModifier": null
+          },
+          "forest": {
+            "health": 45,
+            "attackModifier": null,
+            "speedModifier": -0.25,
+            "strengthModifier": null
+          },
+          "urban": {
+            "health": 45,
+            "attackModifier": null,
+            "speedModifier": null,
+            "strengthModifier": null
+          },
+          "sea": {
+            "health": 10,
+            "attackModifier": null,
+            "speedModifier": null,
+            "strengthModifier": null
+          },
+          "enemyTerritory": {
+            "health": null,
+            "attackModifier": null,
+            "speedModifier": -0.5,
+            "strengthModifier": null
+          }
+        }
+      },
+      {
+        "unitName": "Pan-Asian Light Tank (Estimated Stats)",
+        "level": 4,
+        "doctrine": "Pan-Asian",
+        "type": "LightArmor",
+        "averageDamage": 9.3,
+        "hitpoints": 65,
+        "production": {
+          "costs": {
+            "manpower": 1000,
+            "metal": 2200,
+            "oil": 2000,
+            "cash": 1600,
+            "food": 0
+          },
+          "minTimeInSeconds": 28285.714285714286
+        },
+        "specialProperties": [
+          "Anti-Light Armor",
+          "Offensive"
+        ],
+        "combatStatistics": {
+          "vsUnarmored": {
+            "attack": 12.1,
+            "defense": 8
+          },
+          "vsLightArmor": {
+            "attack": 17.8,
+            "defense": 11.8
+          },
+          "vsHeavyArmor": {
+            "attack": 7.5,
+            "defense": 5
+          },
+          "vsAirplane": {
+            "attack": 4,
+            "defense": 2.7
+          },
+          "vsShip": {
+            "attack": 4,
+            "defense": 2.7
+          },
+          "vsSubmarine": {
+            "attack": 4,
+            "defense": 2.7
+          },
+          "vsBuildings": {
+            "attack": 1.8,
+            "defense": 1.2
+          },
+          "vsProvinceMorale": {
+            "attack": 0.2,
+            "defense": null
+          },
+          "vsRocket": {
+            "attack": 0,
+            "defense": 0
+          }
+        },
+        "terrainEffects": {
+          "plains": {
+            "health": 65,
+            "attackModifier": null,
+            "speedModifier": 0.25,
+            "strengthModifier": 0.7
+          },
+          "hills": {
+            "health": 65,
+            "attackModifier": null,
+            "speedModifier": -0.25,
+            "strengthModifier": null
+          },
+          "mountains": {
+            "health": 65,
+            "attackModifier": null,
+            "speedModifier": -0.5,
+            "strengthModifier": null
+          },
+          "forest": {
+            "health": 65,
+            "attackModifier": null,
+            "speedModifier": -0.25,
+            "strengthModifier": null
+          },
+          "urban": {
+            "health": 65,
+            "attackModifier": null,
+            "speedModifier": null,
+            "strengthModifier": null
+          },
+          "sea": {
+            "health": 10,
+            "attackModifier": null,
+            "speedModifier": null,
+            "strengthModifier": null
+          },
+          "enemyTerritory": {
+            "health": null,
+            "attackModifier": null,
+            "speedModifier": -0.5,
+            "strengthModifier": null
+          }
+        }
+      },
+      {
+        "unitName": "Pan-Asian Light Tank (Estimated Stats)",
+        "level": 5,
+        "doctrine": "Pan-Asian",
+        "type": "LightArmor",
+        "averageDamage": 13.8,
+        "hitpoints": 85,
+        "production": {
+          "costs": {
+            "manpower": 1100,
+            "metal": 2600,
+            "oil": 2300,
+            "cash": 1900,
+            "food": 0
+          },
+          "minTimeInSeconds": 30857.14285714286
+        },
+        "specialProperties": [
+          "Anti-Light Armor",
+          "Offensive"
+        ],
+        "combatStatistics": {
+          "vsUnarmored": {
+            "attack": 17.8,
+            "defense": 11.8
+          },
+          "vsLightArmor": {
+            "attack": 26.5,
+            "defense": 17.6
+          },
+          "vsHeavyArmor": {
+            "attack": 11,
+            "defense": 7.3
+          },
+          "vsAirplane": {
+            "attack": 6,
+            "defense": 4
+          },
+          "vsShip": {
+            "attack": 6,
+            "defense": 4
+          },
+          "vsSubmarine": {
+            "attack": 6,
+            "defense": 4
+          },
+          "vsBuildings": {
+            "attack": 2.8,
+            "defense": 1.9
+          },
+          "vsProvinceMorale": {
+            "attack": 0.3,
+            "defense": null
+          },
+          "vsRocket": {
+            "attack": 0,
+            "defense": 0
+          }
+        },
+        "terrainEffects": {
+          "plains": {
+            "health": 85,
+            "attackModifier": null,
+            "speedModifier": 0.25,
+            "strengthModifier": 0.7
+          },
+          "hills": {
+            "health": 85,
+            "attackModifier": null,
+            "speedModifier": -0.25,
+            "strengthModifier": null
+          },
+          "mountains": {
+            "health": 85,
+            "attackModifier": null,
+            "speedModifier": -0.5,
+            "strengthModifier": null
+          },
+          "forest": {
+            "health": 85,
+            "attackModifier": null,
+            "speedModifier": -0.25,
+            "strengthModifier": null
+          },
+          "urban": {
+            "health": 85,
+            "attackModifier": null,
+            "speedModifier": null,
+            "strengthModifier": null
+          },
+          "sea": {
+            "health": 10,
+            "attackModifier": null,
+            "speedModifier": null,
+            "strengthModifier": null
+          },
+          "enemyTerritory": {
+            "health": null,
+            "attackModifier": null,
+            "speedModifier": -0.5,
+            "strengthModifier": null
+          }
+        }
+      }
+    ],
   },
 };

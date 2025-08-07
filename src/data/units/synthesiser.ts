@@ -327,7 +327,7 @@ export function normalize(doctrine: Doctrine, unit: UnitName) {
     let newStats: IUnitStats = unitStats;
 
     if (buffs.time)
-      newStats.production.minTimeInSeconds = reversePercentageAdjustment(unitStats.production.minTimeInSeconds, buffs.time)
+      newStats.production.minTimeInSeconds = round(reversePercentageAdjustment(unitStats.production.minTimeInSeconds, buffs.time))
     if (buffs.hp)
       newStats.hitpoints = reversePercentageAdjustment(unitStats.hitpoints, buffs.hp)
     if (buffs.cost) {
@@ -391,42 +391,47 @@ export function convert(normalizedStats: IUnitStats[], doctrine: Doctrine, unit:
   for (const unitStats of normalizedStats) {
     const newStats = structuredClone(unitStats)
 
-    if (buffs.time)
-      newStats.production.minTimeInSeconds = round(doPercentageAdjustment(unitStats.production.minTimeInSeconds, buffs.time))
-    if (buffs.hp)
-      newStats.hitpoints = round(doPercentageAdjustment(unitStats.hitpoints, buffs.hp))
-    if (buffs.cost) {
-      newStats.production.costs.manpower = round(doPercentageAdjustment(unitStats.production.costs.manpower, buffs.cost))
-      newStats.production.costs.cash = round(doPercentageAdjustment(unitStats.production.costs.cash, buffs.cost))
-      newStats.production.costs.metal = round(doPercentageAdjustment(unitStats.production.costs.metal, buffs.cost))
-      newStats.production.costs.food = round(doPercentageAdjustment(unitStats.production.costs.food, buffs.cost))
-      newStats.production.costs.oil = round(doPercentageAdjustment(unitStats.production.costs.oil, buffs.cost))
+    if (!buffs.time)
+      buffs.time = 0
+    newStats.production.minTimeInSeconds = round(doPercentageAdjustment(unitStats.production.minTimeInSeconds, buffs.time))
+
+    if (!buffs.hp)
+      buffs.hp = 0
+    newStats.hitpoints = round(doPercentageAdjustment(unitStats.hitpoints, buffs.hp))
+    if (!buffs.cost)
+      buffs.cost = 0
+
+    newStats.production.costs.manpower = round(doPercentageAdjustment(unitStats.production.costs.manpower, buffs.cost))
+    newStats.production.costs.cash = round(doPercentageAdjustment(unitStats.production.costs.cash, buffs.cost))
+    newStats.production.costs.metal = round(doPercentageAdjustment(unitStats.production.costs.metal, buffs.cost))
+    newStats.production.costs.food = round(doPercentageAdjustment(unitStats.production.costs.food, buffs.cost))
+    newStats.production.costs.oil = round(doPercentageAdjustment(unitStats.production.costs.oil, buffs.cost))
+
+    if (!buffs.dmg)
+      buffs.dmg = {vsAll: 0}
+    const combatExtra = (buffs.dmg.vsAll ? buffs.dmg.vsAll : 0)
+    type CombatKey = `${keyof ICombatStatistics}`
+    for (const [stat, combatStats] of Object.entries(unitStats.combatStatistics) as [CombatKey, IDamageModifier][]) {
+      if (!buffs.dmg[stat] && !combatExtra) continue
+
+      const buffValue = (buffs.dmg[stat] || 0) + combatExtra
+      newStats.combatStatistics[stat].attack = round(doPercentageAdjustment(combatStats.attack, buffValue), 1)
+      if (combatStats.defense)
+        newStats.combatStatistics[stat].defense = round(doPercentageAdjustment(combatStats.defense, buffValue), 1)
     }
+    newStats.averageDamage = round(doPercentageAdjustment(unitStats.averageDamage, combatExtra), 1);
 
-    if (buffs.dmg) {
-      const extra = (buffs.dmg.vsAll ? buffs.dmg.vsAll : 0)
-      type Key = `${keyof ICombatStatistics}`
-      for (const [stat, combatStats] of Object.entries(unitStats.combatStatistics) as [Key, IDamageModifier][]) {
-        if (!buffs.dmg[stat] && !extra) continue
+    if (!buffs.terrain)
+      buffs.terrain = { all: 0 }
 
-        const buffValue = (buffs.dmg[stat] || 0) + extra
-        newStats.combatStatistics[stat].attack = round(doPercentageAdjustment(combatStats.attack, buffValue), 1)
-        if (combatStats.defense)
-          newStats.combatStatistics[stat].defense = round(doPercentageAdjustment(combatStats.defense, buffValue), 1)
-      }
-      newStats.averageDamage = round(doPercentageAdjustment(unitStats.averageDamage, extra), 1);
-    }
+    const terrainExtra = overall.terrain?.all || 0
+    type TerrainKey = `${keyof ITerrainEffects}`
+    for (const [stat, terrainStats] of Object.entries(unitStats.terrainEffects) as [TerrainKey, ITerrainModifier][]) {
+      if (!terrainStats.strengthModifier) continue
 
-    if (buffs.terrain) {
-      const extra = overall.terrain?.all || 0
-      type Key = `${keyof ITerrainEffects}`
-      for (const [stat, terrainStats] of Object.entries(unitStats.terrainEffects) as [Key, ITerrainModifier][]) {
-        if (!terrainStats.strengthModifier) continue
-
-        const buffValue = (buffs.terrain[stat] || 0) + extra
-        newStats.terrainEffects[stat].strengthModifier = (terrainStats.strengthModifier || 0) + buffValue / 100;
-        newStats.terrainEffects[stat].health = newStats.hitpoints
-      }
+      const buffValue = (buffs.terrain[stat] || 0) + terrainExtra
+      newStats.terrainEffects[stat].strengthModifier = (terrainStats.strengthModifier || 0) + buffValue / 100;
+      newStats.terrainEffects[stat].health = newStats.hitpoints
     }
 
     newStats.doctrine = doctrine
