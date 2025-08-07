@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, DragEvent, useContext } from "react";
 import { UnitListsContext } from "@/context/UnitListsContext";
 import TrashIcon from '@/components/TrashIcon';
-import { Doctrine, IUnitStats, IUnitType, UnitType } from "@/types";
+import { Doctrine, IUnitStats, IUnitType, UnitType, possibleUnitNames } from "@/types";
 import { unitDataCategorized } from "@/data/units";
 import Link from 'next/link';
 import UnitList from '@/components/UnitList';
@@ -14,8 +14,10 @@ import { convert, diff, normalize } from "@/data/units/synthesiser";
 export default function Home() {
   diff("Pan-Asian", "Infantry")
 
-  const n = normalize("Allies", "Light Tank") as IUnitStats[]
-  console.log(convert(n, "Axis", "Light Tank"))
+  for (const unit of possibleUnitNames) {
+    const n = normalize("Allies", "Light Tank") as IUnitStats[]
+    console.log(convert(n, "Pan-Asian", "Light Tank"))
+  }
 
   const [selectedUnitData, setSelectedUnitData] = useState<IUnitType | IUnitType[]>(
     unitDataCategorized.Infantry[0]

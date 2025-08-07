@@ -18,45 +18,6 @@ interface ITerrainEffects2 {
   enemyTerritory: number;
 }
 
-const units = [
-  "Militia",
-  "Infantry",
-  "Motorized Infantry",
-  "Mechanized Infantry",
-  "Commandos",
-  "Paratroopers",
-  "Anti Tank",
-  "Artillery",
-  "SP Artillery",
-  "Anti Air",
-  "SP Anti Air",
-  "Armored Car",
-  "Light Tank",
-  "Medium Tank",
-  "Heavy Tank",
-  "Tank Destroyer",
-  "Interceptor",
-  "Tactical Bomber",
-  "Attack Bomber",
-  "Strategic Bomber",
-  "Naval Bomber",
-  "Destroyer",
-  "Submarine",
-  "Cruiser",
-  "Battleship",
-  "Aircraft Carrier",
-  "Transport Ship",
-  "Rocket Artillery",
-  "SP Rocket Artillery",
-  "Railroad Gun",
-  "Flying Bomb",
-  "Rocket",
-  "Rocket Fighter",
-  "Atomic Bomb",
-  "Nuclear Bomber",
-  "Nuclear Rocket",
-] as const;
-
 type UnitClass2 = UnitClass | "All";
 
 /**

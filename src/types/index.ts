@@ -113,46 +113,49 @@ export interface IUnitStats {
   terrainEffects: ITerrainEffects;
 }
 
+export const possibleUnitNames = [
+  "Militia",
+  "Infantry",
+  "Motorized Infantry",
+  "Mechanized Infantry",
+  "Commandos",
+  "Paratroopers",
+  "Anti Tank",
+  "Artillery",
+  "SP Artillery",
+  "Anti Air",
+  "SP Anti Air",
+  "Armored Car",
+  "Light Tank",
+  "Medium Tank",
+  "Heavy Tank",
+  "Tank Destroyer",
+  "Interceptor",
+  "Tactical Bomber",
+  "Attack Bomber",
+  "Strategic Bomber",
+  "Naval Bomber",
+  "Destroyer",
+  "Submarine",
+  "Cruiser",
+  "Battleship",
+  "Aircraft Carrier",
+  "Transport Ship",
+  "Rocket Artillery",
+  "SP Rocket Artillery",
+  "Railroad Gun",
+  "Flying Bomb",
+  "Rocket",
+  "Rocket Fighter",
+  "Atomic Bomb",
+  "Nuclear Bomber",
+  "Nuclear Rocket",
+] as const;
+
 /**
  * A type-safe list of all possible generic unit names in the game.
  */
-export type UnitName =
-  | "Militia"
-  | "Infantry"
-  | "Motorized Infantry"
-  | "Mechanized Infantry"
-  | "Commandos"
-  | "Paratroopers"
-  | "Anti Tank"
-  | "Artillery"
-  | "SP Artillery"
-  | "Anti Air"
-  | "SP Anti Air"
-  | "Armored Car"
-  | "Light Tank"
-  | "Medium Tank"
-  | "Heavy Tank"
-  | "Tank Destroyer"
-  | "Interceptor"
-  | "Tactical Bomber"
-  | "Attack Bomber"
-  | "Strategic Bomber"
-  | "Naval Bomber"
-  | "Destroyer"
-  | "Submarine"
-  | "Cruiser"
-  | "Battleship"
-  | "Aircraft Carrier"
-  | "Transport Ship"
-  | "Rocket Artillery"
-  | "SP Rocket Artillery"
-  | "Railroad Gun"
-  | "Flying Bomb"
-  | "Rocket"
-  | "Rocket Fighter"
-  | "Atomic Bomb"
-  | "Nuclear Bomber"
-  | "Nuclear Rocket";
+export type UnitName = typeof possibleUnitNames[number];
 
 /**
  * Represents a generic unit type, containing its name and an
