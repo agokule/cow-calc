@@ -27,7 +27,7 @@ export type Doctrine = "Allies" | "Axis" | "Comintern" | "Pan-Asian";
  * Represents the damage modifier a unit has when attacking or defending
  * against a specific type of enemy.
  */
-interface IDamageModifier {
+export interface IDamageModifier {
   /** The damage value when this unit is on the OFFENSIVE. */
   attack: number;
   /** The damage value when this unit is on the DEFENSIVE. A null value indicates no specific defensive bonus. */
@@ -73,7 +73,7 @@ export interface IProductionInfo {
  * Percentage values are stored as decimals (e.g., +50% is 0.5, -50% is -0.5).
  * A null value indicates no effect.
  */
-interface ITerrainModifier {
+export interface ITerrainModifier {
   /** The base hitpoints of the unit in this terrain. */
   health: number | null;
   /** The attack modifier */
