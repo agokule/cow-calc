@@ -8,6 +8,7 @@ import {
   useReactFlow,
   type EdgeProps,
 } from "reactflow";
+import TrashIcon from "./TrashIcon";
 
 type EdgeAction = "attack" | "defend" | "patrol" | "nothing" | "both";
 
@@ -200,6 +201,11 @@ export default function ActionEdge(props: EdgeProps<ActionEdgeData>) {
     updateEdgeData(() => ({ minutes: value }));
   };
 
+  const handleDeleteEdge = (ev: React.MouseEvent<HTMLButtonElement>) => {
+    ev.stopPropagation();
+    setEdges((eds) => eds.filter((e) => e.id !== id));
+  };
+
   // positions for the action controls near ends
   const leftX = sourceX + (targetX - sourceX) * 0.15;
   const leftY = sourceY + (targetY - sourceY) * 0.15;
@@ -251,6 +257,28 @@ export default function ActionEdge(props: EdgeProps<ActionEdgeData>) {
             aria-label="minutes"
           />
           <span style={{ color: "black" }}>m</span>
+          <button
+            type="button"
+            onClick={handleDeleteEdge}
+            title="Delete connection"
+            style={{
+              marginLeft: 6,
+              display: "grid",
+              placeItems: "center",
+              width: 24,
+              height: 24,
+              borderRadius: 4,
+              border: "1px solid #ddd",
+              background: "#fff",
+              color: "#c0392b",
+              cursor: "pointer",
+            }}
+            onMouseDown={(e) => e.stopPropagation()}
+          >
+            <span style={{ width: 16, height: 16, display: "inline-block" }}>
+              <TrashIcon />
+            </span>
+          </button>
         </div>
 
         {/* Left control near source - icon with dropdown on click */}

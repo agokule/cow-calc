@@ -54,6 +54,7 @@ const ConnectionsPage = () => {
         onConnect={onConnect}
         nodeTypes={nodeTypes}
         edgeTypes={edgeTypes}
+        deleteKeyCode={['Delete', 'Backspace']}
       >
         <Controls />
         <Background variant="dots" gap={12} size={1} />
