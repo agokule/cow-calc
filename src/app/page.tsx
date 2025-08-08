@@ -9,7 +9,7 @@ import Link from 'next/link';
 import UnitList from '@/components/UnitList';
 import { Unit } from "@/utils/Unit";
 import { getUnitType } from "@/utils/getUnitType";
-import { convert, diff, normalize } from "@/data/units/synthesiser";
+import { convert, normalize } from "@/data/units/synthesiser";
 
 export default function Home() {
   for (const unit of possibleUnitNames) {

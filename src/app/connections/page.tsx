@@ -6,8 +6,10 @@ import 'reactflow/dist/style.css';
 
 import { UnitListsContext } from '@/context/UnitListsContext';
 import UnitListNode from '@/components/UnitListNode';
+import ActionEdge, { type ActionEdgeData } from '@/components/ActionEdge';
 
 const nodeTypes = { unitList: UnitListNode };
+const edgeTypes = { action: ActionEdge };
 
 const ConnectionsPage = () => {
   const { yourUnitLists, enemyUnitLists } = useContext(UnitListsContext)!;
@@ -36,7 +38,11 @@ const ConnectionsPage = () => {
     (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
     []
   );
-  const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
+  const onEdgesChange = useCallback((changes) => setEdges((eds) => applyEdgeChanges(changes, eds)), []);
+  const onConnect = useCallback((params) => {
+    const defaultData: ActionEdgeData = { sourceAction: 'nothing', targetAction: 'nothing', hours: 0, minutes: 0 };
+    setEdges((eds) => addEdge({ ...params, type: 'action', data: defaultData, animated: false }, eds));
+  }, []);
 
   return (
     <div style={{ width: '100vw', height: '100vh' }}>
@@ -44,8 +50,10 @@ const ConnectionsPage = () => {
         nodes={nodes}
         edges={edges}
         onNodesChange={onNodesChange}
+        onEdgesChange={onEdgesChange}
         onConnect={onConnect}
         nodeTypes={nodeTypes}
+        edgeTypes={edgeTypes}
       >
         <Controls />
         <Background variant="dots" gap={12} size={1} />

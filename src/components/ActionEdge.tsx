@@ -1,0 +1,404 @@
+"use client";
+
+import React, { useMemo, useState, useId } from "react";
+import {
+  BaseEdge,
+  EdgeLabelRenderer,
+  getBezierPath,
+  useReactFlow,
+  type EdgeProps,
+} from "reactflow";
+
+type EdgeAction = "attack" | "defend" | "patrol" | "nothing" | "both";
+
+export type ActionEdgeData = {
+  sourceAction?: EdgeAction;
+  targetAction?: EdgeAction;
+  hours?: number; // duration hours
+  minutes?: number; // duration minutes
+};
+
+// dropdown-based selection instead of cycling
+
+function ActionIcon({ action }: { action: EdgeAction }) {
+  const size = 16;
+  const common = { width: size, height: size } as const;
+  const uid = useId();
+  switch (action) {
+    case "attack":
+      // crossed swords icon
+      return (
+        <svg {...common} viewBox="0 0 24 24" aria-label="Attack">
+          {/* Sword 1 blade */}
+          <path d="M3 6 L15 18" stroke="#bdc3c7" strokeWidth="2.5" strokeLinecap="round" />
+          {/* Sword 1 guard */}
+          <path d="M12.5 15.5 L15.5 12.5" stroke="#7f8c8d" strokeWidth="2" strokeLinecap="round" />
+          {/* Sword 1 handle */}
+          <path d="M15 18 L17 20" stroke="#6b4f1d" strokeWidth="3" strokeLinecap="round" />
+
+          {/* Sword 2 blade */}
+          <path d="M21 6 L9 18" stroke="#bdc3c7" strokeWidth="2.5" strokeLinecap="round" />
+          {/* Sword 2 guard */}
+          <path d="M11.5 15.5 L8.5 12.5" stroke="#7f8c8d" strokeWidth="2" strokeLinecap="round" />
+          {/* Sword 2 handle */}
+          <path d="M9 18 L7 20" stroke="#6b4f1d" strokeWidth="3" strokeLinecap="round" />
+        </svg>
+      );
+    case "defend":
+      // shield
+      return (
+        <svg {...common} viewBox="0 0 24 24" aria-label="Defend">
+          <path
+            d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z"
+            fill="#2c3e50"
+          />
+        </svg>
+      );
+    case "patrol":
+      // spinning arrows taken from
+      // https://www.svgrepo.com/svg/364192/arrows-clockwise-fill
+      return (
+        <svg {...common} viewBox="0 0 256 256" aria-label="Patrol">
+          <g transform="translate(25.6 25.6) scale(0.8)">
+            <path
+              d="M232.167,51.71582v48a8.00039,8.00039,0,0,1-8,8h-48a8.00065,8.00065,0,0,1-5.65722-13.65723l18.34277-18.34277-4.28418-4.28418a80.08769,80.08769,0,0,0-113.13672,0A8.00052,8.00052,0,0,1,60.11719,60.11719a96.11137,96.11137,0,0,1,135.76562,0l4.28418,4.28418,18.34278-18.34278A8.00065,8.00065,0,0,1,232.167,51.71582ZM184.56836,184.56836a80.08769,80.08769,0,0,1-113.13672,0l-4.28418-4.28418,18.34277-18.34277A8.00065,8.00065,0,0,0,79.833,148.28418h-48a8.00039,8.00039,0,0,0-8,8v48a8.00052,8.00052,0,0,0,13.65722,5.65723L55.833,191.59863l4.28418,4.28418a96.11136,96.11136,0,0,0,135.76562,0,8.00052,8.00052,0,0,0-11.31445-11.31445Z"
+              fill="#16a085"
+            />
+          </g>
+        </svg>
+      );
+    case "both":
+      // half attack (left) + half defend (right) using clip paths
+      const leftClipId = `leftClip-${uid}`;
+      const rightClipId = `rightClip-${uid}`;
+      return (
+        <svg {...common} viewBox="0 0 24 24" aria-label="Attack & Defend">
+          <defs>
+            <clipPath id={leftClipId}>
+              <rect x="0" y="0" width="12" height="24" />
+            </clipPath>
+            <clipPath id={rightClipId}>
+              <rect x="12" y="0" width="12" height="24" />
+            </clipPath>
+          </defs>
+          {/* Left half: swords */}
+          <g clipPath={`url(#${leftClipId})`}>
+            <path d="M3 6 L15 18" stroke="#bdc3c7" strokeWidth="2.5" strokeLinecap="round" />
+            <path d="M12.5 15.5 L15.5 12.5" stroke="#7f8c8d" strokeWidth="2" strokeLinecap="round" />
+            <path d="M15 18 L17 20" stroke="#6b4f1d" strokeWidth="3" strokeLinecap="round" />
+
+            <path d="M21 6 L9 18" stroke="#bdc3c7" strokeWidth="2.5" strokeLinecap="round" />
+            <path d="M11.5 15.5 L8.5 12.5" stroke="#7f8c8d" strokeWidth="2" strokeLinecap="round" />
+            <path d="M9 18 L7 20" stroke="#6b4f1d" strokeWidth="3" strokeLinecap="round" />
+          </g>
+
+          {/* Right half: shield */}
+          <g clipPath={`url(#${rightClipId})`}>
+            <path
+              d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z"
+              fill="#2c3e50"
+            />
+          </g>
+
+          {/* Divider */}
+          <path d="M12 2v20" stroke="#dfe6e9" strokeWidth="1" />
+        </svg>
+      );
+    case "nothing":
+    default:
+      // circle with slash
+      return (
+        <svg {...common} viewBox="0 0 24 24" aria-label="Nothing">
+          <circle cx="12" cy="12" r="8" stroke="#7f8c8d" strokeWidth="2" fill="none" />
+          <path d="M6 18L18 6" stroke="#7f8c8d" strokeWidth="2" />
+        </svg>
+      );
+  }
+}
+
+export default function ActionEdge(props: EdgeProps<ActionEdgeData>) {
+  const {
+    id,
+    sourceX,
+    sourceY,
+    targetX,
+    targetY,
+    sourcePosition,
+    targetPosition,
+    markerEnd,
+    style,
+    data,
+  } = props;
+
+  const [edgePath, labelX, labelY] = useMemo(
+    () => getBezierPath({ sourceX, sourceY, targetX, targetY, sourcePosition, targetPosition }),
+    [sourceX, sourceY, targetX, targetY, sourcePosition, targetPosition]
+  );
+
+  const { setEdges } = useReactFlow();
+
+  const sourceAction: EdgeAction = data?.sourceAction ?? "nothing";
+  const targetAction: EdgeAction = data?.targetAction ?? "nothing";
+  const hours = data?.hours ?? 0;
+  const minutes = data?.minutes ?? 0;
+
+  const updateEdgeData = (updater: (d: Required<ActionEdgeData>) => Partial<ActionEdgeData>) => {
+    setEdges((eds) =>
+      eds.map((e) =>
+        e.id === id
+          ? {
+              ...e,
+              data: {
+                sourceAction,
+                targetAction,
+                hours,
+                minutes,
+                ...(updater({ sourceAction, targetAction, hours, minutes } as Required<ActionEdgeData>)),
+              },
+            }
+          : e
+      )
+    );
+  };
+
+  const handleSourcePick = (value: EdgeAction) => {
+    // Update source, and sync target for specific cases
+    const computeOther = (picked: EdgeAction, currentOther: EdgeAction): EdgeAction => {
+      if (picked === "both") return "both";
+      if (picked === "attack") return "defend";
+      if (picked === "defend") return "attack";
+      if (picked === "patrol") return "defend";
+      return currentOther;
+    };
+    const newTarget = computeOther(value, targetAction);
+    updateEdgeData(() => ({ sourceAction: value, targetAction: newTarget }));
+  };
+
+  const handleTargetPick = (value: EdgeAction) => {
+    // Update target, and sync source for specific cases
+    const computeOther = (picked: EdgeAction, currentOther: EdgeAction): EdgeAction => {
+      if (picked === "both") return "both";
+      if (picked === "attack") return "defend";
+      if (picked === "defend") return "attack";
+      if (picked === "patrol") return "defend";
+      return currentOther;
+    };
+    const newSource = computeOther(value, sourceAction);
+    updateEdgeData(() => ({ targetAction: value, sourceAction: newSource }));
+  };
+
+  const handleHoursChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
+    ev.stopPropagation();
+    const value = Math.max(0, parseInt(ev.target.value || "0", 10));
+    updateEdgeData(() => ({ hours: value }));
+  };
+
+  const handleMinutesChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
+    ev.stopPropagation();
+    let value = Math.max(0, parseInt(ev.target.value || "0", 10));
+    value = Math.min(59, value);
+    updateEdgeData(() => ({ minutes: value }));
+  };
+
+  // positions for the action controls near ends
+  const leftX = sourceX + (targetX - sourceX) * 0.15;
+  const leftY = sourceY + (targetY - sourceY) * 0.15;
+  const rightX = sourceX + (targetX - sourceX) * 0.85;
+  const rightY = sourceY + (targetY - sourceY) * 0.85;
+
+  const [showSourceMenu, setShowSourceMenu] = useState(false);
+  const [showTargetMenu, setShowTargetMenu] = useState(false);
+
+  return (
+    <>
+      <BaseEdge id={id} path={edgePath} markerEnd={markerEnd} style={style} />
+      <EdgeLabelRenderer>
+        <div
+          style={{
+            position: "absolute",
+            transform: `translate(-50%, -50%) translate(${labelX}px, ${labelY}px)`,
+            pointerEvents: "all",
+            background: "rgba(255,255,255,0.85)",
+            padding: 6,
+            borderRadius: 6,
+            boxShadow: "0 1px 4px rgba(0,0,0,0.2)",
+            display: "flex",
+            alignItems: "center",
+            gap: 6,
+            zIndex: 5,
+            fontSize: 12,
+          }}
+          onMouseDown={(e) => e.stopPropagation()}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <span style={{ color: "black" }}>Does this in:</span>
+          <input
+            type="number"
+            min={0}
+            value={hours}
+            onChange={handleHoursChange}
+            style={{ width: 48, padding: 2 }}
+            aria-label="hours"
+          />
+          <span style={{ color: "black" }}>h</span>
+          <input
+            type="number"
+            min={0}
+            max={59}
+            value={minutes}
+            onChange={handleMinutesChange}
+            style={{ width: 48, padding: 2 }}
+            aria-label="minutes"
+          />
+          <span style={{ color: "black" }}>m</span>
+        </div>
+
+        {/* Left control near source - icon with dropdown on click */}
+        <button
+          type="button"
+          title="Source action"
+          onClick={(e) => {
+            e.stopPropagation();
+            setShowSourceMenu((s) => !s);
+            setShowTargetMenu(false);
+          }}
+          style={{
+            position: "absolute",
+            transform: `translate(-50%, -50%) translate(${leftX}px, ${leftY}px)`,
+            pointerEvents: "all",
+            background: "#fff",
+            border: "1px solid #ddd",
+            borderRadius: 16,
+            width: 28,
+            height: 28,
+            display: "grid",
+            placeItems: "center",
+            boxShadow: "0 1px 3px rgba(0,0,0,0.2)",
+            zIndex: 6,
+          }}
+          onMouseDown={(e) => e.stopPropagation()}
+        >
+          <ActionIcon action={sourceAction} />
+        </button>
+        {showSourceMenu && (
+          <div
+            style={{
+              position: "absolute",
+              transform: `translate(-50%, -50%) translate(${leftX}px, ${leftY + 30}px)`,
+              pointerEvents: "all",
+              background: "#fff",
+              border: "1px solid #ddd",
+              borderRadius: 6,
+              boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
+              zIndex: 7,
+              overflow: "hidden",
+            }}
+            onMouseDown={(e) => e.stopPropagation()}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {(["attack", "defend", "patrol", "nothing", "both"] as EdgeAction[]).map((opt) => (
+              <button
+                key={opt}
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleSourcePick(opt);
+                  setShowSourceMenu(false);
+                }}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 8,
+                  padding: "6px 10px",
+                  width: 160,
+                  background: opt === sourceAction ? "#f0f6ff" : "#fff",
+                  border: "none",
+                  cursor: "pointer",
+                  fontSize: 12,
+                  textAlign: "left",
+                }}
+              >
+                <ActionIcon action={opt} />
+                <span style={{ textTransform: "capitalize" }}>{opt === "both" ? "Both" : opt}</span>
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* Right control near target - icon with dropdown on click */}
+        <button
+          type="button"
+          title="Target action"
+          onClick={(e) => {
+            e.stopPropagation();
+            setShowTargetMenu((s) => !s);
+            setShowSourceMenu(false);
+          }}
+          style={{
+            position: "absolute",
+            transform: `translate(-50%, -50%) translate(${rightX}px, ${rightY}px)`,
+            pointerEvents: "all",
+            background: "#fff",
+            border: "1px solid #ddd",
+            borderRadius: 16,
+            width: 28,
+            height: 28,
+            display: "grid",
+            placeItems: "center",
+            boxShadow: "0 1px 3px rgba(0,0,0,0.2)",
+            zIndex: 6,
+          }}
+          onMouseDown={(e) => e.stopPropagation()}
+        >
+          <ActionIcon action={targetAction} />
+        </button>
+        {showTargetMenu && (
+          <div
+            style={{
+              position: "absolute",
+              transform: `translate(-50%, -50%) translate(${rightX}px, ${rightY + 30}px)`,
+              pointerEvents: "all",
+              background: "#fff",
+              border: "1px solid #ddd",
+              borderRadius: 6,
+              boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
+              zIndex: 7,
+              overflow: "hidden",
+            }}
+            onMouseDown={(e) => e.stopPropagation()}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {(["attack", "defend", "patrol", "nothing", "both"] as EdgeAction[]).map((opt) => (
+              <button
+                key={opt}
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleTargetPick(opt);
+                  setShowTargetMenu(false);
+                }}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 8,
+                  padding: "6px 10px",
+                  width: 160,
+                  background: opt === targetAction ? "#f0f6ff" : "#fff",
+                  border: "none",
+                  cursor: "pointer",
+                  fontSize: 12,
+                  textAlign: "left",
+                }}
+              >
+                <ActionIcon action={opt} />
+                <span style={{ textTransform: "capitalize" }}>{opt === "both" ? "Both" : opt}</span>
+              </button>
+            ))}
+          </div>
+        )}
+      </EdgeLabelRenderer>
+    </>
+  );
+}
+
+
