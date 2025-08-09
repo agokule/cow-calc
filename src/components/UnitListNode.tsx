@@ -1,11 +1,20 @@
 import { memo } from 'react';
 import { Handle, Position } from 'reactflow';
 import { Unit } from '@/utils/Unit';
+import { getUnitType } from '@/utils/getUnitType';
+import { UnitType } from '@/types';
+import { toTitleCase } from '@/utils/toTitleCase';
 
 const UnitListNode = ({ data }: { data: { label: string, units: Unit[] } }) => {
+  const firstUnit = data.units[0];
+  const firstType = firstUnit ? getUnitType(firstUnit.genericName, firstUnit.mode) : undefined;
+  const listTypeLabel =
+    !firstUnit ? 'Empty' : firstType !== undefined ? toTitleCase(UnitType[firstType]) : 'Unknown';
+
   return (
     <div className="react-flow__node-default" style={{ padding: 10, minWidth: 150 }}>
       <Handle type="target" position={Position.Top} />
+      <div style={{ fontSize: 12, color: '#666', marginBottom: 4 }}>{listTypeLabel}</div>
       <div>
         <strong>{data.label}</strong>
       </div>
