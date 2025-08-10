@@ -1,30 +1,38 @@
 "use client";
 
 import React, { useContext, useEffect, useState, useCallback } from 'react';
-import ReactFlow, { Controls, Background, applyEdgeChanges, applyNodeChanges, addEdge } from 'reactflow';
+import ReactFlow, { Controls, Background, applyEdgeChanges, applyNodeChanges, addEdge, BackgroundVariant, NodeChange, Edge, EdgeChange, Connection } from 'reactflow';
 import 'reactflow/dist/style.css';
 
 import { UnitListsContext } from '@/context/UnitListsContext';
 import UnitListNode from '@/components/UnitListNode';
 import ActionEdge, { type ActionEdgeData } from '@/components/ActionEdge';
+import { Unit } from '@/utils/Unit';
 
-const nodeTypes = { unitList: UnitListNode };
-const edgeTypes = { action: ActionEdge };
+const nodeTypes = { unitList: UnitListNode } as const;
+const edgeTypes = { action: ActionEdge } as const;
+
+interface NodeDataConnections {
+  id: string;
+  type: string;
+  position: { x: number; y: number; };
+  data: { label: string; units: Unit[]; };
+}
 
 const ConnectionsPage = () => {
   const { yourUnitLists, enemyUnitLists } = useContext(UnitListsContext)!;
-  const [nodes, setNodes] = useState([]);
-  const [edges, setEdges] = useState([]);
+  const [nodes, setNodes] = useState<NodeDataConnections[]>([]);
+  const [edges, setEdges] = useState<Edge<ActionEdgeData>[]>([]);
 
   useEffect(() => {
-    const yourNodes = yourUnitLists.map((units, index) => ({
+    const yourNodes: NodeDataConnections[] = yourUnitLists.map((units, index) => ({
       id: `your-${index}`,
       type: 'unitList',
       position: { x: 100, y: 100 + index * 200 },
       data: { label: `Your Unit List ${index + 1}`, units },
     }));
 
-    const enemyNodes = enemyUnitLists.map((units, index) => ({
+    const enemyNodes: NodeDataConnections[] = enemyUnitLists.map((units, index) => ({
       id: `enemy-${index}`,
       type: 'unitList',
       position: { x: 500, y: 100 + index * 200 },
@@ -35,11 +43,11 @@ const ConnectionsPage = () => {
   }, [yourUnitLists, enemyUnitLists]);
 
   const onNodesChange = React.useCallback(
-    (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
+    (changes: NodeChange[]) => setNodes((nds) => applyNodeChanges(changes, nds) as NodeDataConnections[]),
     []
   );
-  const onEdgesChange = useCallback((changes) => setEdges((eds) => applyEdgeChanges(changes, eds)), []);
-  const onConnect = useCallback((params) => {
+  const onEdgesChange = useCallback((changes: EdgeChange[]) => setEdges((eds: Edge<ActionEdgeData>[]) => applyEdgeChanges(changes, eds)), []);
+  const onConnect = useCallback((params: Connection) => {
     const defaultData: ActionEdgeData = { sourceAction: 'nothing', targetAction: 'nothing', hours: 0, minutes: 0 };
     setEdges((eds) => addEdge({ ...params, type: 'action', data: defaultData, animated: false }, eds));
   }, []);
@@ -57,7 +65,7 @@ const ConnectionsPage = () => {
         deleteKeyCode={['Delete', 'Backspace']}
       >
         <Controls />
-        <Background variant="dots" gap={12} size={1} />
+        <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
       </ReactFlow>
     </div>
   );

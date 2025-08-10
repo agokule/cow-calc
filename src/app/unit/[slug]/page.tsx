@@ -14,7 +14,7 @@ const getUnitDataBySlug = (slug: string, mode?: string): IUnitType | undefined =
   return getUnitData(formattedSlug, formattedMode)
 };
 
-export default function UnitPage({ params, searchParams }: { params: React.Usable<{ slug: string }>, searchParams?: React.Usable<{ [key: string]: string | undefined }> }) {
+export default function UnitPage({ params, searchParams }: { params: Promise<{ slug: string }>, searchParams?: Promise<{ [key: string]: string | undefined }> }) {
   const { mode } = searchParams ? React.use(searchParams) : { mode: undefined };
   const { slug } = React.use(params);
   const unitData = getUnitDataBySlug(slug, mode);
