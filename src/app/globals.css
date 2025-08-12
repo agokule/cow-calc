@@ -509,6 +509,10 @@ tbody tr:nth-child(even) {
   font-size: 0.85rem;
 }
 
+.unit-list-compact span {
+  color: #f1f1f1;
+}
+
 .unit-item-compact:last-child {
   margin-bottom: 0;
 }
