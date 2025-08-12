@@ -4,6 +4,7 @@ import { Unit } from '@/utils/Unit';
 import { getUnitType } from '@/utils/getUnitType';
 import { UnitType } from '@/types';
 import { toTitleCase } from '@/utils/toTitleCase';
+import HealthBar from './HealthPoints';
 
 const UnitListNode = ({ data }: { data: { label: string, units: Unit[] } }) => {
   const firstUnit = data.units[0];
@@ -25,6 +26,7 @@ const UnitListNode = ({ data }: { data: { label: string, units: Unit[] } }) => {
             <div className="unit-details-compact">
               <span>{unit.doctrine} · Lvl {unit.level} · Qty {unit.quantity}</span>
             </div>
+            <HealthBar currentHP={unit.hp as number} maxHP={unit.maxHp as number}></HealthBar>
           </div>
         ))}
       </div>

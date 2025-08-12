@@ -8,6 +8,9 @@ import { UnitListsContext } from '@/context/UnitListsContext';
 import UnitListNode from '@/components/UnitListNode';
 import ActionEdge, { type ActionEdgeData } from '@/components/ActionEdge';
 import { Unit } from '@/utils/Unit';
+import { stringToNumber } from '@/utils/stringToNumber';
+import { getUnitData } from '@/utils/getUnitData';
+import { IUnitType } from '@/types';
 
 const nodeTypes = { unitList: UnitListNode } as const;
 const edgeTypes = { action: ActionEdge } as const;
@@ -25,19 +28,40 @@ const ConnectionsPage = () => {
   const [edges, setEdges] = useState<Edge<ActionEdgeData>[]>([]);
 
   useEffect(() => {
-    const yourNodes: NodeDataConnections[] = yourUnitLists.map((units, index) => ({
-      id: `your-${index}`,
-      type: 'unitList',
-      position: { x: 100, y: 100 + index * 200 },
-      data: { label: `Your Unit List ${index + 1}`, units },
-    }));
+    const yourNodes: NodeDataConnections[] = yourUnitLists.map((units, index) => {
+      for (let unit of units) {
+        const data = getUnitData(unit.genericName, unit.mode) as IUnitType
 
-    const enemyNodes: NodeDataConnections[] = enemyUnitLists.map((units, index) => ({
-      id: `enemy-${index}`,
-      type: 'unitList',
-      position: { x: 500, y: 100 + index * 200 },
-      data: { label: `Enemy Unit List ${index + 1}`, units },
-    }));
+        const maxHP = data.doctrineVariants[unit.doctrine][unit.level].hitpoints
+        unit.maxHp = maxHP
+
+        if (typeof unit.hp === "string")
+          unit.hp = stringToNumber(unit.hp as string, maxHP)
+      }
+      return {
+        id: `your-${index}`,
+        type: 'unitList',
+        position: { x: 100, y: 100 + index * 200 },
+        data: { label: `Your Unit List ${index + 1}`, units },
+      }
+    });
+
+    const enemyNodes: NodeDataConnections[] = enemyUnitLists.map((units, index) => {
+      for (let unit of units) {
+        const data = getUnitData(unit.genericName, unit.mode) as IUnitType
+        const maxHP = data.doctrineVariants[unit.doctrine][unit.level].hitpoints
+        unit.maxHp = maxHP
+
+        if (typeof unit.hp === "string")
+          unit.hp = stringToNumber(unit.hp as string, maxHP)
+      }
+      return {
+        id: `enemy-${index}`,
+        type: 'unitList',
+        position: { x: 500, y: 100 + index * 200 },
+        data: { label: `Enemy Unit List ${index + 1}`, units },
+      }
+    });
 
     setNodes([...yourNodes, ...enemyNodes]);
   }, [yourUnitLists, enemyUnitLists]);

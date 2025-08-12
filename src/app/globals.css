@@ -446,7 +446,7 @@ tbody tr:nth-child(even) {
 }
 
 .unit-controls select,
-.unit-controls input[type="number"] {
+.unit-controls input {
   background-color: #4f4f4f;
   color: white;
   border: 1px solid #777;

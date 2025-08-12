@@ -13,9 +13,10 @@ interface UnitListProps {
   onDoctrineChange: (unitIndex: number, doctrine: Doctrine) => void;
   onLevelChange: (unitIndex: number, level: number) => void;
   onQuantityChange: (unitIndex: number, quantity: number) => void;
+  onHpChange: (unitIndex: number, hp: string) => void;
 }
 
-const UnitList = ({ units, onDrop, onDragOver, onDelete, onDoctrineChange, onLevelChange, onQuantityChange }: UnitListProps) => {
+const UnitList = ({ units, onDrop, onDragOver, onDelete, onDoctrineChange, onLevelChange, onQuantityChange, onHpChange }: UnitListProps) => {
   return (
     <div className="unit-list-container" onDrop={onDrop} onDragOver={onDragOver}>
       {units.length > 0 && (
@@ -43,6 +44,8 @@ const UnitList = ({ units, onDrop, onDragOver, onDelete, onDoctrineChange, onLev
                   </select>
                   <p>Quantity: </p>
                   <input type="number" value={unit.quantity} onChange={(e) => onQuantityChange(index, parseInt(e.target.value))} min="1" />
+                  <p>HP: </p>
+                  <input type="text" value={unit.hp} onChange={(e) => onHpChange(index, e.target.value)} />
                   <button onClick={() => onDelete(index)} className="delete-btn">&times;</button>
                 </div>
               </li>
