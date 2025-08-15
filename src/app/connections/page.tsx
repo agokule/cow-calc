@@ -32,7 +32,7 @@ const ConnectionsPage = () => {
       for (let unit of units) {
         const data = getUnitData(unit.genericName, unit.mode) as IUnitType
 
-        const maxHP = data.doctrineVariants[unit.doctrine][unit.level].hitpoints
+        const maxHP = data.doctrineVariants[unit.doctrine][unit.level - 1].hitpoints
         unit.maxHp = maxHP
 
         if (typeof unit.hp === "string")
@@ -49,7 +49,7 @@ const ConnectionsPage = () => {
     const enemyNodes: NodeDataConnections[] = enemyUnitLists.map((units, index) => {
       for (let unit of units) {
         const data = getUnitData(unit.genericName, unit.mode) as IUnitType
-        const maxHP = data.doctrineVariants[unit.doctrine][unit.level].hitpoints
+        const maxHP = data.doctrineVariants[unit.doctrine][unit.level - 1].hitpoints
         unit.maxHp = maxHP
 
         if (typeof unit.hp === "string")
