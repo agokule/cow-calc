@@ -3,7 +3,6 @@ import { getUnitData } from "./getUnitData";
 
 export function getUnitType(genericName: string, mode?: string): UnitType | undefined {
   const data = getUnitData(genericName, mode)
-  console.log(data)
   if (!data)
     return
 
