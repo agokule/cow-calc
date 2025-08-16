@@ -1,11 +1,11 @@
-import { IUnitStack, IDamagePotential, createZeroDamageDistribution, createZeroDamagePotentialAndEfficiancy, IDamageEfficiency, IDamageClassStats } from "@/types/combat";
+import { IUnitStack, IDamagePotential, createZeroDamagePotentialAndEfficiancy } from "@/types/combat";
 import { Unit } from "./Unit";
-import { ICombatStatistics, IUnitType, UNIT_CLASSES, UnitClass } from "@/types";
+import { IUnitType, UNIT_CLASSES  } from "@/types";
 import { getUnitData } from "./getUnitData";
-import { combineStats } from "./combineStats";
 import { calculateDamageEfficiencyPotential } from "./calculateDamageEfficiencyPotential";
+import { calculateDamageDistribution } from "./calculateDamageDistribution";
 
-export function getUnitStack(units: Unit[], protection: number, homeDefence: Boolean) {
+export function getUnitStack(units: Unit[], protection: number, homeDefence: Boolean): IUnitStack {
   let totalDmgPotUnprocessed: IDamagePotential =
     createZeroDamagePotentialAndEfficiancy(UNIT_CLASSES);
 
@@ -28,11 +28,17 @@ export function getUnitStack(units: Unit[], protection: number, homeDefence: Boo
     }
   }
 
-  console.log("potential damage", totalDmgPotUnprocessed)
-
   const [dmgEfficiency, dmgPotential] = calculateDamageEfficiencyPotential(newUnitList)
+  const dmgDistribution = calculateDamageDistribution(newUnitList)
 
-  console.log(dmgEfficiency, dmgPotential)
+  return {
+    units: newUnitList,
+    dmgPotential: dmgPotential,
+    dmgEfficiency: dmgEfficiency,
+    dmgDistribution: dmgDistribution,
+    protectionValue: protection,
+    homeDefenceBonus: homeDefence
+  }
 }
 
 

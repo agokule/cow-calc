@@ -34,7 +34,7 @@ export function createZeroDamagePotentialAndEfficiancy<T extends string>(
 }
 
 export function createZeroDamageDistribution<T extends string>(
-  keys: T[]
+  keys: readonly T[]
 ): { [K in T]: number } {
   return keys.reduce((acc, key) => {
     acc[key] = 0;
