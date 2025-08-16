@@ -7,11 +7,11 @@ import 'reactflow/dist/style.css';
 import { UnitListsContext } from '@/context/UnitListsContext';
 import UnitListNode from '@/components/UnitListNode';
 import ActionEdge, { type ActionEdgeData } from '@/components/ActionEdge';
-import { Unit } from '@/utils/Unit';
 import { stringToNumber } from '@/utils/stringToNumber';
 import { getUnitData } from '@/utils/getUnitData';
 import { IUnitType } from '@/types';
 import { getUnitStack } from '@/utils/getUnitStack';
+import { IUnitStack } from '@/types/combat';
 
 const nodeTypes = { unitList: UnitListNode } as const;
 const edgeTypes = { action: ActionEdge } as const;
@@ -20,7 +20,7 @@ interface NodeDataConnections {
   id: string;
   type: string;
   position: { x: number; y: number; };
-  data: { label: string; units: Unit[]; };
+  data: { label: string; stack: IUnitStack };
 }
 
 const ConnectionsPage = () => {
@@ -43,7 +43,7 @@ const ConnectionsPage = () => {
         id: `your-${index}`,
         type: 'unitList',
         position: { x: 100, y: 100 + index * 200 },
-        data: { label: `Your Unit List ${index + 1}`, units },
+        data: { label: `Your Unit List ${index + 1}`, stack: getUnitStack(units, 0, false) },
       }
     });
 
@@ -60,12 +60,9 @@ const ConnectionsPage = () => {
         id: `enemy-${index}`,
         type: 'unitList',
         position: { x: 500, y: 100 + index * 200 },
-        data: { label: `Enemy Unit List ${index + 1}`, units },
+        data: { label: `Enemy Unit List ${index + 1}`, stack: getUnitStack(units, 0, false) },
       }
     });
-
-    getUnitStack(enemyUnitLists[0], 0, false)
-    getUnitStack(yourUnitLists[0], 0, false)
 
     setNodes([...yourNodes, ...enemyNodes]);
   }, [yourUnitLists, enemyUnitLists]);

@@ -1,13 +1,13 @@
 import { memo } from 'react';
 import { Handle, Position } from 'reactflow';
-import { Unit } from '@/utils/Unit';
 import { getUnitType } from '@/utils/getUnitType';
 import { UnitType } from '@/types';
 import { toTitleCase } from '@/utils/toTitleCase';
 import HealthBar from './HealthPoints';
+import { IUnitStack } from "@/types/combat";
 
-const UnitListNode = ({ data }: { data: { label: string, units: Unit[] } }) => {
-  const firstUnit = data.units[0];
+const UnitListNode = ({ data }: { data: { label: string, stack: IUnitStack }}) => {
+  const firstUnit = data.stack.units[0];
   const firstType = firstUnit ? getUnitType(firstUnit.genericName, firstUnit.mode) : undefined;
   const listTypeLabel =
     !firstUnit ? 'Empty' : firstType !== undefined ? toTitleCase(UnitType[firstType]) : 'Unknown';
@@ -20,7 +20,7 @@ const UnitListNode = ({ data }: { data: { label: string, units: Unit[] } }) => {
         <strong>{data.label}</strong>
       </div>
       <div className="unit-list-compact">
-        {data.units.map((unit, index) => (
+        {data.stack.units.map((unit, index) => (
           <div key={index} className="unit-item-compact">
             <span>{unit.genericName} {unit.mode && `(${unit.mode})`}</span>
             <div className="unit-details-compact">
