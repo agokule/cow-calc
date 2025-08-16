@@ -1,6 +1,6 @@
 // This is the master list of all unit classes.
 // We use 'as const' to treat these as literal, readonly values.
-const UNIT_CLASSES = [
+export const UNIT_CLASSES = [
   "Unarmored",
   "LightArmor",
   "HeavyArmor",

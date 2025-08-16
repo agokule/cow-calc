@@ -11,6 +11,7 @@ import { Unit } from '@/utils/Unit';
 import { stringToNumber } from '@/utils/stringToNumber';
 import { getUnitData } from '@/utils/getUnitData';
 import { IUnitType } from '@/types';
+import { getUnitStack } from '@/utils/getUnitStack';
 
 const nodeTypes = { unitList: UnitListNode } as const;
 const edgeTypes = { action: ActionEdge } as const;
@@ -62,6 +63,9 @@ const ConnectionsPage = () => {
         data: { label: `Enemy Unit List ${index + 1}`, units },
       }
     });
+
+    getUnitStack(enemyUnitLists[0], 0, false)
+    getUnitStack(yourUnitLists[0], 0, false)
 
     setNodes([...yourNodes, ...enemyNodes]);
   }, [yourUnitLists, enemyUnitLists]);
