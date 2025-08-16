@@ -1,8 +1,7 @@
-import { IDamageEfficiency, createZeroDamagePotentialAndEfficiancy, IDamageClassStats, IDamagePotential, IDamageDistribution, createZeroDamageDistribution } from "@/types/combat"
-import { UNIT_CLASSES, IUnitType, UnitClass } from "@/types"
+import { IDamageEfficiency, createZeroDamagePotentialAndEfficiancy, IDamageClassStats, IDamagePotential } from "@/types/combat"
+import { UNIT_CLASSES, IUnitType } from "@/types"
 import { Unit } from "./Unit"
 import { getUnitData } from "./getUnitData"
-import { round } from "./rounding"
 
 export function calculateDamageEfficiencyPotential(unitList: Unit[]) {
   let dmgEfficiency: IDamageEfficiency =
