@@ -29,7 +29,7 @@ const UnitList = ({ units, onDrop, onDragOver, onDelete, onDoctrineChange, onLev
           {units.map((unit, index) => {
             const unitData = getUnitData(unit.genericName, unit.mode);
             const availableDoctrines = getAvailableDoctrines(unitData as IUnitType);
-            const availableLevels = unitData ? unitData.doctrineVariants[unit.doctrine as keyof typeof unitData.doctrineVariants]?.map(l => l.level) : [];
+            const availableLevels = unitData ? unitData.doctrineVariants[unit.doctrine].map(l => l.level) : [];
 
             return (
               <li key={index}>
