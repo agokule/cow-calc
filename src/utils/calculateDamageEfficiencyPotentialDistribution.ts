@@ -3,7 +3,7 @@ import { UNIT_CLASSES, IUnitType } from "@/types"
 import { Unit } from "./Unit"
 import { getUnitData } from "./getUnitData"
 
-export function calculateDamageEfficiencyPotential(unitList: Unit[]) {
+export function calculateDamageEfficiencyPotentialDistribution(unitList: Unit[]) {
   let dmgEfficiency: IDamageEfficiency =
     createZeroDamagePotentialAndEfficiancy(UNIT_CLASSES)
   let dmgPotential: IDamagePotential =

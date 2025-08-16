@@ -3,7 +3,7 @@ import { Unit } from "./Unit";
 import { ICombatStatistics, IUnitType, UNIT_CLASSES, UnitClass } from "@/types";
 import { getUnitData } from "./getUnitData";
 import { combineStats } from "./combineStats";
-import { calculateDamageEfficiencyPotential } from "./calculateDamageEfficiencyPotential";
+import { calculateDamageEfficiencyPotentialDistribution } from "./calculateDamageEfficiencyPotentialDistribution";
 
 export function getUnitStack(units: Unit[], protection: number, homeDefence: Boolean) {
   let totalDmgPotUnprocessed: IDamagePotential =
@@ -30,7 +30,7 @@ export function getUnitStack(units: Unit[], protection: number, homeDefence: Boo
 
   console.log("potential damage", totalDmgPotUnprocessed)
 
-  const [dmgEfficiency, dmgPotential] = calculateDamageEfficiencyPotential(newUnitList)
+  const [dmgEfficiency, dmgPotential] = calculateDamageEfficiencyPotentialDistribution(newUnitList)
 
   console.log(dmgEfficiency, dmgPotential)
 }
