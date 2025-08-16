@@ -1,7 +1,8 @@
-import { IDamageEfficiency, createZeroDamagePotentialAndEfficiancy, IDamageClassStats, IDamagePotential } from "@/types/combat"
-import { UNIT_CLASSES, IUnitType } from "@/types"
+import { IDamageEfficiency, createZeroDamagePotentialAndEfficiancy, IDamageClassStats, IDamagePotential, IDamageDistribution, createZeroDamageDistribution } from "@/types/combat"
+import { UNIT_CLASSES, IUnitType, UnitClass } from "@/types"
 import { Unit } from "./Unit"
 import { getUnitData } from "./getUnitData"
+import { round } from "./rounding"
 
 export function calculateDamageEfficiencyPotential(unitList: Unit[]) {
   let dmgEfficiency: IDamageEfficiency =
@@ -36,7 +37,6 @@ export function calculateDamageEfficiencyPotential(unitList: Unit[]) {
     let top10stats: IDamageClassStats = { attack: 0, defense: 0 }
     let allStats: IDamageClassStats = { attack: 0, defense: 0 }
 
-    let s = []
     let i = 0
     for (const unit of sortedByClass) {
       const data = getUnitData(unit.genericName, unit.mode) as IUnitType
@@ -50,7 +50,6 @@ export function calculateDamageEfficiencyPotential(unitList: Unit[]) {
       top10stats.attack += unitStats.combatStatistics[combatStatisticsKey].attack
       top10stats.defense += unitStats.combatStatistics[combatStatisticsKey].defense || 0
 
-      s.push(`${unit.genericName} ${unit.level} ${unit.doctrine}`)
       i++
     }
 
