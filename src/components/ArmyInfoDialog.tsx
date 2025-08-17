@@ -3,6 +3,15 @@ import './ArmyInfoDialog.css';
 
 import { IUnitStack } from '@/types/combat';
 import { UnitClass, UNIT_CLASSES } from '@/types';
+import LightArmor from '@/icons/lightArmor';
+import HeavyArmor from '@/icons/heavyArmor';
+import Unarmored from '@/icons/unarmoured';
+import FighterJet from '@/icons/airplane';
+import Ship from '@/icons/ship';
+import Submarine from '@/icons/submarine';
+import Buildings from '@/icons/buildings';
+import ProvinceMorale from '@/icons/provinceMorale';
+import Rocket from '@/icons/rocket';
 
 
 interface ArmyInfoDialogProps {
@@ -15,38 +24,28 @@ interface ArmyInfoDialogProps {
 
 // Icon component for unit classes
 const UnitIcon: React.FC<{ unitClass: UnitClass }> = ({ unitClass }) => {
-  const iconColor = {
-    Unarmored: '#4ade80',      // green
-    LightArmor: '#06b6d4',     // cyan
-    HeavyArmor: '#8b5cf6',     // violet
-    Airplane: '#f59e0b',       // amber
-    Ship: '#ef4444',           // red
-    Submarine: '#3b82f6',      // blue
-    Buildings: '#8b5cf6',      // violet
-    ProvinceMorale: '#06b6d4', // cyan
-    Rocket: '#f59e0b'          // amber
-  }[unitClass];
+  const size = '20px'
 
-  const iconSymbol = {
-    Unarmored: '👤',
-    LightArmor: '🚗',
-    HeavyArmor: '🛡️',
-    Airplane: '✈️',
-    Ship: '🚢',
-    Submarine: '🔱',
-    Buildings: '🏢',
-    ProvinceMorale: '⭐',
-    Rocket: '🚀'
-  }[unitClass];
-
-  return (
-    <div 
-      className="unit-icon"
-      style={{ backgroundColor: iconColor }}
-    >
-      {iconSymbol}
-    </div>
-  );
+  switch (unitClass) {
+    case 'Unarmored':
+      return <Unarmored size={size}/>
+    case 'LightArmor':
+      return <LightArmor size={size}/>
+    case 'HeavyArmor':
+      return <HeavyArmor size={size}/>
+    case 'Airplane':
+      return <FighterJet size={size}/>
+    case 'Ship':
+      return <Ship size={size}/>
+    case 'Submarine':
+      return <Submarine size={size}/>
+    case 'Buildings':
+      return <Buildings size={size}/>
+    case 'ProvinceMorale':
+      return <ProvinceMorale size={size}/>
+    case 'Rocket':
+      return <Rocket size={size}/>
+  }
 };
 
 export const ArmyInfoDialog: React.FC<ArmyInfoDialogProps> = ({ 
