@@ -17,6 +17,8 @@ export type ActionEdgeData = {
   targetAction?: EdgeAction;
   hours?: number; // duration hours
   minutes?: number; // duration minutes
+  repeatHours?: number;
+  repeatMinutes?: number;
 };
 
 // dropdown-based selection instead of cycling
@@ -142,6 +144,14 @@ export default function ActionEdge(props: EdgeProps<ActionEdgeData>) {
   const targetAction: EdgeAction = data?.targetAction ?? "nothing";
   const hours = data?.hours ?? 0;
   const minutes = data?.minutes ?? 0;
+  const repeatHours = data?.repeatHours ?? 0;
+
+  let defaultRepeatMinutes = 30;
+  if (sourceAction === "patrol" || targetAction === "patrol")
+    defaultRepeatMinutes = 15; // shorter for patrols
+
+  const repeatMinutes = data?.repeatMinutes ?? defaultRepeatMinutes;
+
 
   const updateEdgeData = (updater: (d: Required<ActionEdgeData>) => Partial<ActionEdgeData>) => {
     setEdges((eds) =>
@@ -154,7 +164,7 @@ export default function ActionEdge(props: EdgeProps<ActionEdgeData>) {
                 targetAction,
                 hours,
                 minutes,
-                ...(updater({ sourceAction, targetAction, hours, minutes } as Required<ActionEdgeData>)),
+                ...(updater({ sourceAction, targetAction, hours, minutes, repeatHours, repeatMinutes } as Required<ActionEdgeData>)),
               },
             }
           : e
@@ -202,6 +212,19 @@ export default function ActionEdge(props: EdgeProps<ActionEdgeData>) {
     setEdges((eds) => eds.filter((e) => e.id !== id));
   };
 
+  const handleRepeatHoursChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
+    ev.stopPropagation();
+    const value = Math.max(0, parseInt(ev.target.value || "0", 10));
+    updateEdgeData(() => ({ repeatHours: value }));
+  };
+
+  const handleRepeatMinutesChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
+    ev.stopPropagation();
+    let value = Math.max(0, parseInt(ev.target.value || "0", 10));
+    value = Math.min(59, value);
+    updateEdgeData(() => ({ repeatMinutes: value }));
+  };
+
   // positions for the action controls near ends
   const leftX = sourceX + (targetX - sourceX) * 0.15;
   const leftY = sourceY + (targetY - sourceY) * 0.15;
@@ -224,41 +247,67 @@ export default function ActionEdge(props: EdgeProps<ActionEdgeData>) {
             padding: 6,
             borderRadius: 6,
             boxShadow: "0 1px 4px rgba(0,0,0,0.2)",
-            display: "flex",
+            display: "grid",
+            gridTemplateColumns: "auto auto auto auto auto",
             alignItems: "center",
-            gap: 6,
+            gap: 3,
             zIndex: 5,
             fontSize: 12,
           }}
           onMouseDown={(e) => e.stopPropagation()}
           onClick={(e) => e.stopPropagation()}
         >
-          <span style={{ color: "black" }}>Does this in:</span>
-          <input
-            type="number"
-            min={0}
-            value={hours}
-            onChange={handleHoursChange}
-            style={{ width: 48, padding: 2 }}
-            aria-label="hours"
-          />
-          <span style={{ color: "black" }}>h</span>
-          <input
-            type="number"
-            min={0}
-            max={59}
-            value={minutes}
-            onChange={handleMinutesChange}
-            style={{ width: 48, padding: 2 }}
-            aria-label="minutes"
-          />
-          <span style={{ color: "black" }}>m</span>
+          <div className="edge-time-options">
+            <span>Does this in:</span>
+            <input
+              type="number"
+              min={0}
+              value={hours}
+              onChange={handleHoursChange}
+              style={{ width: 48, padding: 2 }}
+              aria-label="hours"
+            />
+            <span>h</span>
+            <input
+              type="number"
+              min={0}
+              max={59}
+              value={minutes}
+              onChange={handleMinutesChange}
+              style={{ width: 48, padding: 2 }}
+              aria-label="minutes"
+            />
+            <span>m</span>
+          </div>
+          <div className="edge-repeat-options">
+            <span>Does this every:</span>
+            <input
+              type="number"
+              min={0}
+              value={repeatHours}
+              onChange={handleRepeatHoursChange}
+              style={{ width: 48, padding: 2 }}
+              aria-label="repeat hours"
+            />
+            <span>h</span>
+            <input
+              type="number"
+              min={0}
+              max={59}
+              value={repeatMinutes}
+              onChange={handleRepeatMinutesChange}
+              style={{ width: 48, padding: 2 }}
+              aria-label="repeat minutes"
+            />
+            <span>m</span>
+          </div>
           <button
             type="button"
             onClick={handleDeleteEdge}
             title="Delete connection"
             style={{
-              marginLeft: 6,
+              gridRow: "1 / span 2",
+              gridColumn: "5 / span 1",
               display: "grid",
               placeItems: "center",
               width: 24,
@@ -268,6 +317,7 @@ export default function ActionEdge(props: EdgeProps<ActionEdgeData>) {
               background: "#fff",
               color: "#c0392b",
               cursor: "pointer",
+              padding: 0,
             }}
             onMouseDown={(e) => e.stopPropagation()}
           >
@@ -275,6 +325,7 @@ export default function ActionEdge(props: EdgeProps<ActionEdgeData>) {
               <TrashIcon />
             </span>
           </button>
+          <br />
         </div>
 
         {/* Left control near source - icon with dropdown on click */}

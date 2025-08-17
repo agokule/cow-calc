@@ -522,3 +522,20 @@ tbody tr:nth-child(even) {
   color: #aaa;
   margin-top: 0.1rem;
 }
+
+.edge-time-options, .edge-repeat-options {
+  border-radius: 6;
+  display: flex;
+  gap: 6;
+  align-items: center;
+  color: black;
+}
+
+.edge-time-options {
+  grid-row: 1;
+}
+
+.edge-repeat-options {
+  grid-row: 2;
+}
+
