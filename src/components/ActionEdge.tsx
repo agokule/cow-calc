@@ -9,6 +9,7 @@ import {
   type EdgeProps,
 } from "reactflow";
 import TrashIcon from "./TrashIcon";
+import TimeInput from "./TimeInput";
 
 type EdgeAction = "attack" | "defend" | "patrol" | "nothing" | "both";
 
@@ -257,50 +258,26 @@ export default function ActionEdge(props: EdgeProps<ActionEdgeData>) {
           onMouseDown={(e) => e.stopPropagation()}
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="edge-time-options">
-            <span>Does this in:</span>
-            <input
-              type="number"
-              min={0}
-              value={hours}
-              onChange={handleHoursChange}
-              style={{ width: 48, padding: 2 }}
-              aria-label="hours"
-            />
-            <span>h</span>
-            <input
-              type="number"
-              min={0}
-              max={59}
-              value={minutes}
-              onChange={handleMinutesChange}
-              style={{ width: 48, padding: 2 }}
-              aria-label="minutes"
-            />
-            <span>m</span>
-          </div>
-          <div className="edge-repeat-options">
-            <span>Does this every:</span>
-            <input
-              type="number"
-              min={0}
-              value={repeatHours}
-              onChange={handleRepeatHoursChange}
-              style={{ width: 48, padding: 2 }}
-              aria-label="repeat hours"
-            />
-            <span>h</span>
-            <input
-              type="number"
-              min={0}
-              max={59}
-              value={repeatMinutes}
-              onChange={handleRepeatMinutesChange}
-              style={{ width: 48, padding: 2 }}
-              aria-label="repeat minutes"
-            />
-            <span>m</span>
-          </div>
+          <TimeInput
+            label="Does this in:"
+            hours={hours}
+            minutes={minutes}
+            onHoursChange={handleHoursChange}
+            onMinutesChange={handleMinutesChange}
+            hoursAriaLabel="hours"
+            minutesAriaLabel="minutes"
+            className="edge-time-options"
+          />
+          <TimeInput
+            label="Does this every:"
+            hours={repeatHours}
+            minutes={repeatMinutes}
+            onHoursChange={handleRepeatHoursChange}
+            onMinutesChange={handleRepeatMinutesChange}
+            hoursAriaLabel="repeat hours"
+            minutesAriaLabel="repeat minutes"
+            className="edge-repeat-options"
+          />
           <button
             type="button"
             onClick={handleDeleteEdge}
