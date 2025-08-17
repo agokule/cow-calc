@@ -116,6 +116,14 @@ const ConnectionsPage = () => {
           onClose={() => {setIsArmyInfoOpen(false)}}
           unitStack={(getNodeFromId(selectedUnitStackId) as NodeDataConnections).data.stack}
           listId={selectedUnitStackId}
+          onProtectionChange={(newProtection) => {
+              (getNodeFromId(selectedUnitStackId) as NodeDataConnections).data.stack.protectionValue = newProtection
+              setNodes(nodes)
+            }}
+          onHomeBonusChange={(newBonus) => {
+              (getNodeFromId(selectedUnitStackId) as NodeDataConnections).data.stack.homeDefenceBonus = newBonus
+              setNodes(nodes)
+            }}
         /> : null
       }
       <StepNavigator></StepNavigator>
