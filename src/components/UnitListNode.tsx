@@ -6,7 +6,7 @@ import { toTitleCase } from '@/utils/toTitleCase';
 import HealthBar from './HealthPoints';
 import { IUnitStack } from "@/types/combat";
 
-const UnitListNode = ({ data }: { data: { label: string, stack: IUnitStack }}) => {
+const UnitListNode = ({ data }: { data: { label: string, stack: IUnitStack, openArmyInfo: (x: IUnitStack) => void }}) => {
   const firstUnit = data.stack.units[0];
   const firstType = firstUnit ? getUnitType(firstUnit.genericName, firstUnit.mode) : undefined;
   const listTypeLabel =
@@ -31,6 +31,9 @@ const UnitListNode = ({ data }: { data: { label: string, stack: IUnitStack }}) =
         ))}
       </div>
       <Handle type="source" position={Position.Bottom} />
+      <button onClick={() => data.openArmyInfo(data.stack)}>
+        View Army Info
+      </button>
     </div>
   );
 };

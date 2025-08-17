@@ -12,6 +12,7 @@ import { getUnitData } from '@/utils/getUnitData';
 import { IUnitType } from '@/types';
 import { getUnitStack } from '@/utils/getUnitStack';
 import { IUnitStack } from '@/types/combat';
+import { ArmyInfoDialog } from '@/components/ArmyInfoDialog';
 
 const nodeTypes = { unitList: UnitListNode } as const;
 const edgeTypes = { action: ActionEdge } as const;
@@ -20,13 +21,20 @@ interface NodeDataConnections {
   id: string;
   type: string;
   position: { x: number; y: number; };
-  data: { label: string; stack: IUnitStack };
+  data: { label: string; stack: IUnitStack, openArmyInfo: (x: IUnitStack) => void };
 }
 
 const ConnectionsPage = () => {
   const { yourUnitLists, enemyUnitLists } = useContext(UnitListsContext)!;
   const [nodes, setNodes] = useState<NodeDataConnections[]>([]);
   const [edges, setEdges] = useState<Edge<ActionEdgeData>[]>([]);
+  const [isArmyInfoOpen, setIsArmyInfoOpen] = useState(false)
+  const [selectedUnitStack, setSelectedUnitStack] = useState<IUnitStack | null>(null)
+
+  function selectArmyGroup(stack: IUnitStack) {
+    setIsArmyInfoOpen(true)
+    setSelectedUnitStack(stack)
+  }
 
   useEffect(() => {
     const yourNodes: NodeDataConnections[] = yourUnitLists.map((units, index) => {
@@ -43,7 +51,7 @@ const ConnectionsPage = () => {
         id: `your-${index}`,
         type: 'unitList',
         position: { x: 100, y: 100 + index * 200 },
-        data: { label: `Your Unit List ${index + 1}`, stack: getUnitStack(units, 0, false) },
+        data: { label: `Your Unit List ${index + 1}`, stack: getUnitStack(units, 0, false), openArmyInfo: selectArmyGroup },
       }
     });
 
@@ -60,7 +68,7 @@ const ConnectionsPage = () => {
         id: `enemy-${index}`,
         type: 'unitList',
         position: { x: 500, y: 100 + index * 200 },
-        data: { label: `Enemy Unit List ${index + 1}`, stack: getUnitStack(units, 0, false) },
+        data: { label: `Enemy Unit List ${index + 1}`, stack: getUnitStack(units, 0, false), openArmyInfo: selectArmyGroup },
       }
     });
 
@@ -92,6 +100,14 @@ const ConnectionsPage = () => {
         <Controls />
         <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
       </ReactFlow>
+      {
+        isArmyInfoOpen && selectedUnitStack ? 
+        <ArmyInfoDialog
+          isOpen={isArmyInfoOpen}
+          unitStack={selectedUnitStack}
+          onClose={() => {setIsArmyInfoOpen(false)}}
+        /> : null
+      }
     </div>
   );
 };
