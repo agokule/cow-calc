@@ -162,29 +162,25 @@ export default function ActionEdge(props: EdgeProps<ActionEdgeData>) {
     );
   };
 
+  const computeOther = (picked: EdgeAction, currentOther: EdgeAction): EdgeAction => {
+    if (picked === "both") return "both";
+    if (picked === "attack") return "defend";
+    if (picked === "defend") return "attack";
+    if (picked === "patrol") return "defend";
+    return currentOther;
+  };
+
   const handleSourcePick = (value: EdgeAction) => {
     // Update source, and sync target for specific cases
-    const computeOther = (picked: EdgeAction, currentOther: EdgeAction): EdgeAction => {
-      if (picked === "both") return "both";
-      if (picked === "attack") return "defend";
-      if (picked === "defend") return "attack";
-      if (picked === "patrol") return "defend";
-      return currentOther;
-    };
     const newTarget = computeOther(value, targetAction);
     updateEdgeData(() => ({ sourceAction: value, targetAction: newTarget }));
   };
 
   const handleTargetPick = (value: EdgeAction) => {
     // Update target, and sync source for specific cases
-    const computeOther = (picked: EdgeAction, currentOther: EdgeAction): EdgeAction => {
-      if (picked === "both") return "both";
-      if (picked === "attack") return "defend";
-      if (picked === "defend") return "attack";
-      if (picked === "patrol") return "defend";
-      return currentOther;
-    };
-    const newSource = computeOther(value, sourceAction);
+    let newSource = value;
+    if (value == "nothing")
+      newSource = sourceAction
     updateEdgeData(() => ({ targetAction: value, sourceAction: newSource }));
   };
 
