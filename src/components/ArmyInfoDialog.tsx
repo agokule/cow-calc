@@ -18,6 +18,7 @@ interface ArmyInfoDialogProps {
   unitStack: IUnitStack;
   isOpen: boolean;
   onClose: () => void;
+  listId: string;
   onProtectionChange?: (value: number) => void;
   onHomeBonusChange?: (value: boolean) => void;
 }
@@ -52,6 +53,7 @@ export const ArmyInfoDialog: React.FC<ArmyInfoDialogProps> = ({
   unitStack, 
   isOpen, 
   onClose,
+  listId,
   onProtectionChange,
   onHomeBonusChange
 }) => {
@@ -85,7 +87,7 @@ export const ArmyInfoDialog: React.FC<ArmyInfoDialogProps> = ({
       <div className="dialog-container">
         {/* Header */}
         <div className="dialog-header">
-          <h2 className="dialog-title">Army Info</h2>
+          <h2 className="dialog-title">Army Info ({listId})</h2>
           <button onClick={onClose} className="close-button">
             <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -253,6 +255,7 @@ export const ArmyInfoDemo: React.FC = () => {
           unitStack={sampleUnitStack}
           isOpen={isDialogOpen}
           onClose={() => setIsDialogOpen(false)}
+          listId='Example'
           onProtectionChange={setProtectionValue}
           onHomeBonusChange={setHomeDefenseBonus}
         />

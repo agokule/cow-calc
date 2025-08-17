@@ -42,7 +42,10 @@ export function createZeroDamageDistribution<T extends string>(
   }, {} as any);
 }
 
+export type StackId = string;
+
 export interface IUnitStack {
+  id: StackId;
   units: Unit[];
   dmgEfficiency: IDamageEfficiency;
   dmgPotential: IDamagePotential;

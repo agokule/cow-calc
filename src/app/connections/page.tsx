@@ -11,8 +11,9 @@ import { stringToNumber } from '@/utils/stringToNumber';
 import { getUnitData } from '@/utils/getUnitData';
 import { IUnitType } from '@/types';
 import { getUnitStack } from '@/utils/getUnitStack';
-import { IUnitStack } from '@/types/combat';
+import { IUnitStack, StackId } from '@/types/combat';
 import { ArmyInfoDialog } from '@/components/ArmyInfoDialog';
+import StepNavigator from '@/components/StepNavigator';
 
 const nodeTypes = { unitList: UnitListNode } as const;
 const edgeTypes = { action: ActionEdge } as const;
@@ -21,7 +22,7 @@ interface NodeDataConnections {
   id: string;
   type: string;
   position: { x: number; y: number; };
-  data: { label: string; stack: IUnitStack, openArmyInfo: (x: IUnitStack) => void };
+  data: { label: string; stack: IUnitStack, openArmyInfo: (id: string) => void };
 }
 
 const ConnectionsPage = () => {
@@ -29,11 +30,17 @@ const ConnectionsPage = () => {
   const [nodes, setNodes] = useState<NodeDataConnections[]>([]);
   const [edges, setEdges] = useState<Edge<ActionEdgeData>[]>([]);
   const [isArmyInfoOpen, setIsArmyInfoOpen] = useState(false)
-  const [selectedUnitStack, setSelectedUnitStack] = useState<IUnitStack | null>(null)
+  const [selectedUnitStackId, setSelectedUnitStackId] = useState('')
 
-  function selectArmyGroup(stack: IUnitStack) {
+  function selectArmyGroup(id: string) {
     setIsArmyInfoOpen(true)
-    setSelectedUnitStack(stack)
+    setSelectedUnitStackId(id)
+  }
+
+  function getNodeFromId(id: string) {
+    for (const node of nodes)
+      if (node.id == id)
+        return node
   }
 
   useEffect(() => {
@@ -47,11 +54,12 @@ const ConnectionsPage = () => {
         if (typeof unit.hp === "string")
           unit.hp = stringToNumber(unit.hp as string, maxHP)
       }
+      const id: StackId = `your-${index}` as StackId;
       return {
-        id: `your-${index}`,
+        id: id,
         type: 'unitList',
         position: { x: 100, y: 100 + index * 200 },
-        data: { label: `Your Unit List ${index + 1}`, stack: getUnitStack(units, 0, false), openArmyInfo: selectArmyGroup },
+        data: { label: `Your Unit List ${index + 1}`, stack: getUnitStack(units, 0, false, id), openArmyInfo: selectArmyGroup },
       }
     });
 
@@ -64,11 +72,12 @@ const ConnectionsPage = () => {
         if (typeof unit.hp === "string")
           unit.hp = stringToNumber(unit.hp as string, maxHP)
       }
+      const id: StackId = `enemy-${index}` as StackId;
       return {
-        id: `enemy-${index}`,
+        id: id,
         type: 'unitList',
         position: { x: 500, y: 100 + index * 200 },
-        data: { label: `Enemy Unit List ${index + 1}`, stack: getUnitStack(units, 0, false), openArmyInfo: selectArmyGroup },
+        data: { label: `Enemy Unit List ${index + 1}`, stack: getUnitStack(units, 0, false, id), openArmyInfo: selectArmyGroup },
       }
     });
 
@@ -101,13 +110,15 @@ const ConnectionsPage = () => {
         <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
       </ReactFlow>
       {
-        isArmyInfoOpen && selectedUnitStack ? 
+        isArmyInfoOpen && selectedUnitStackId ? 
         <ArmyInfoDialog
           isOpen={isArmyInfoOpen}
-          unitStack={selectedUnitStack}
           onClose={() => {setIsArmyInfoOpen(false)}}
+          unitStack={(getNodeFromId(selectedUnitStackId) as NodeDataConnections).data.stack}
+          listId={selectedUnitStackId}
         /> : null
       }
+      <StepNavigator></StepNavigator>
     </div>
   );
 };

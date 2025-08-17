@@ -1,11 +1,11 @@
-import { IUnitStack, IDamagePotential, createZeroDamagePotentialAndEfficiancy } from "@/types/combat";
+import { IUnitStack, IDamagePotential, createZeroDamagePotentialAndEfficiancy, StackId } from "@/types/combat";
 import { Unit } from "./Unit";
 import { IUnitType, UNIT_CLASSES  } from "@/types";
 import { getUnitData } from "./getUnitData";
 import { calculateDamageEfficiencyPotential } from "./calculateDamageEfficiencyPotential";
 import { calculateDamageDistribution } from "./calculateDamageDistribution";
 
-export function getUnitStack(units: Unit[], protection: number, homeDefence: Boolean): IUnitStack {
+export function getUnitStack(units: Unit[], protection: number, homeDefence: Boolean, id: StackId): IUnitStack {
   let totalDmgPotUnprocessed: IDamagePotential =
     createZeroDamagePotentialAndEfficiancy(UNIT_CLASSES);
 
@@ -32,6 +32,7 @@ export function getUnitStack(units: Unit[], protection: number, homeDefence: Boo
   const dmgDistribution = calculateDamageDistribution(newUnitList)
 
   return {
+    id: id,
     units: newUnitList,
     dmgPotential: dmgPotential,
     dmgEfficiency: dmgEfficiency,
