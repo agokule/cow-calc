@@ -4,9 +4,9 @@ import { getUnitType } from '@/utils/getUnitType';
 import { UnitName, UnitType } from '@/types';
 import { toTitleCase } from '@/utils/toTitleCase';
 import HealthBar from './HealthPoints';
-import { IUnitStack } from "@/types/combat";
+import { IUnitStack, StackId } from "@/types/combat";
 
-const UnitListNode = ({ data, id }: { data: { label: string, stack: IUnitStack, openArmyInfo: (id: string) => void }, id: string }) => {
+const UnitListNode = ({ data, id }: { data: { label: string, stack: IUnitStack, openArmyInfo: (id: StackId) => void }, id: StackId }) => {
   const firstUnit = data.stack.units[0];
   const firstType = firstUnit ? getUnitType(firstUnit.genericName, firstUnit.mode) : undefined;
   const listTypeLabel =
