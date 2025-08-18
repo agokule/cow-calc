@@ -7,8 +7,6 @@ import { round } from "./rounding";
 export function calculateDamageDistribution(unitList: Unit[]) {
   let distribution: IDamageDistribution = createZeroDamageDistribution(UNIT_CLASSES)
   for (const unit of unitList) {
-    console.log(unit.category, unit.genericName)
-    
     const data = getUnitData(unit.genericName, unit.mode) as IUnitType
     const unitStats = data.doctrineVariants[unit.doctrine][unit.level - 1]
     distribution[unitStats.type] += 1
