@@ -16,8 +16,6 @@ export interface IStackCombat {
 export interface IBattleCycle {
   stacks: IUnitStack[];
   stackCombat: IStackCombat[];
-  // an index of stackCombat
-  nextCombatEvent: number;
 
   startTime: number; // in seconds
   endTime: number; // in seconds

@@ -11,19 +11,13 @@ import { stringToNumber } from '@/utils/stringToNumber';
 import { getUnitData } from '@/utils/getUnitData';
 import { IUnitType } from '@/types';
 import { getUnitStack } from '@/utils/getUnitStack';
-import { IUnitStack, StackId } from '@/types/combat';
+import { StackId } from '@/types/combat';
 import { ArmyInfoDialog } from '@/components/ArmyInfoDialog';
 import StepNavigator from '@/components/StepNavigator';
+import { createInitialBattleCycle, NodeDataConnections } from '@/utils/createInitialBattleCycle';
 
 const nodeTypes = { unitList: UnitListNode } as const;
 const edgeTypes = { action: ActionEdge } as const;
-
-interface NodeDataConnections {
-  id: string;
-  type: string;
-  position: { x: number; y: number; };
-  data: { label: string; stack: IUnitStack, openArmyInfo: (id: string) => void };
-}
 
 const ConnectionsPage = () => {
   const { yourUnitLists, enemyUnitLists } = useContext(UnitListsContext)!;
@@ -31,6 +25,8 @@ const ConnectionsPage = () => {
   const [edges, setEdges] = useState<Edge<ActionEdgeData>[]>([]);
   const [isArmyInfoOpen, setIsArmyInfoOpen] = useState(false)
   const [selectedUnitStackId, setSelectedUnitStackId] = useState('')
+  
+  console.log(createInitialBattleCycle(nodes, edges))
 
   function selectArmyGroup(id: string) {
     setIsArmyInfoOpen(true)
