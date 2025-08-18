@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { Handle, Position } from 'reactflow';
 import { getUnitType } from '@/utils/getUnitType';
-import { UnitType } from '@/types';
+import { UnitName, UnitType } from '@/types';
 import { toTitleCase } from '@/utils/toTitleCase';
 import HealthBar from './HealthPoints';
 import { IUnitStack } from "@/types/combat";
@@ -11,6 +11,7 @@ const UnitListNode = ({ data, id }: { data: { label: string, stack: IUnitStack, 
   const firstType = firstUnit ? getUnitType(firstUnit.genericName, firstUnit.mode) : undefined;
   const listTypeLabel =
     !firstUnit ? 'Empty' : firstType !== undefined ? toTitleCase(UnitType[firstType]) : 'Unknown';
+  let unitsShown: Set<UnitName> = new Set()
 
   return (
     <div className="react-flow__node-default" style={{ padding: 10, minWidth: 150 }}>
@@ -20,15 +21,20 @@ const UnitListNode = ({ data, id }: { data: { label: string, stack: IUnitStack, 
         <strong>{data.label}</strong>
       </div>
       <div className="unit-list-compact">
-        {data.stack.units.map((unit, index) => (
-          <div key={index} className="unit-item-compact">
-            <span>{unit.genericName} {unit.mode && `(${unit.mode})`}</span>
-            <div className="unit-details-compact">
-              <span>{unit.doctrine} · Lvl {unit.level} · Qty {unit.quantity}</span>
+        {data.stack.units.map((unit, index) => {
+          if (unitsShown.has(unit.genericName as UnitName))
+            return null
+          unitsShown.add(unit.genericName as UnitName)
+          return (
+            <div key={index} className="unit-item-compact">
+              <span>{unit.genericName} {unit.mode && `(${unit.mode})`}</span>
+              <div className="unit-details-compact">
+                <span>{unit.doctrine} · Lvl {unit.level} · Qty {unit.quantity}</span>
+              </div>
+              <HealthBar currentHP={unit.hp as number} maxHP={unit.maxHp as number}></HealthBar>
             </div>
-            <HealthBar currentHP={unit.hp as number} maxHP={unit.maxHp as number}></HealthBar>
-          </div>
-        ))}
+          )
+          })}
       </div>
       <Handle type="source" position={Position.Bottom} />
       <button onClick={() => data.openArmyInfo(id)}>
