@@ -10,8 +10,7 @@ import {
 } from "reactflow";
 import TrashIcon from "./TrashIcon";
 import TimeInput from "./TimeInput";
-
-type EdgeAction = "attack" | "defend" | "patrol" | "nothing" | "both";
+import { EdgeAction } from "@/types/battleCalculations";
 
 export type ActionEdgeData = {
   sourceAction?: EdgeAction;
