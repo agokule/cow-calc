@@ -12,6 +12,7 @@ import Submarine from '@/icons/submarine';
 import Buildings from '@/icons/buildings';
 import ProvinceMorale from '@/icons/provinceMorale';
 import Rocket from '@/icons/rocket';
+import { round } from '@/utils/rounding';
 
 
 interface ArmyInfoDialogProps {
@@ -131,10 +132,10 @@ export const ArmyInfoDialog: React.FC<ArmyInfoDialogProps> = ({
                 {/* Damage Potential Group */}
                 <div className="damage-potential-group">
                   <div className="value-cell attack-value">
-                    {unitStack.dmgPotential[unitClass].attack}
+                    {round(unitStack.dmgPotential[unitClass].attack, 1)}
                   </div>
                   <div className="value-cell defense-value">
-                    {unitStack.dmgPotential[unitClass].defense}
+                    {round(unitStack.dmgPotential[unitClass].defense, 1)}
                   </div>
                 </div>
 
