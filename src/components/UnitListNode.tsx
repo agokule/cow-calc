@@ -13,6 +13,9 @@ const UnitListNode = ({ data, id }: { data: { label: string, stack: IUnitStack, 
     !firstUnit ? 'Empty' : firstType !== undefined ? toTitleCase(UnitType[firstType]) : 'Unknown';
   let unitsShown: Set<UnitName> = new Set()
 
+  let overallMaxHealth = 0
+  let overallHealth = 0
+
   return (
     <div className="react-flow__node-default" style={{ padding: 10, minWidth: 150, backgroundColor: "#3f3f3f"}}>
       <Handle type="target" position={Position.Top} />
@@ -25,6 +28,9 @@ const UnitListNode = ({ data, id }: { data: { label: string, stack: IUnitStack, 
           if (unitsShown.has(unit.genericName as UnitName))
             return null
           unitsShown.add(unit.genericName as UnitName)
+
+          overallHealth += (unit.hp as number) * unit.quantity
+          overallMaxHealth += (unit.maxHp as number) * unit.quantity
           return (
             <div key={index} className="unit-item-compact">
               <span>{unit.genericName} {unit.mode && `(${unit.mode})`}</span>
@@ -35,6 +41,11 @@ const UnitListNode = ({ data, id }: { data: { label: string, stack: IUnitStack, 
             </div>
           )
           })}
+        <hr />
+        <div>
+          <span>Overall: {overallHealth}/{overallMaxHealth} hp</span>
+          <HealthBar currentHP={overallHealth} maxHP={overallMaxHealth}></HealthBar>
+        </div>
       </div>
       <Handle type="source" position={Position.Bottom} />
       <button onClick={() => data.openArmyInfo(id)}
