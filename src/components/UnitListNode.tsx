@@ -14,11 +14,11 @@ const UnitListNode = ({ data, id }: { data: { label: string, stack: IUnitStack, 
   let unitsShown: Set<UnitName> = new Set()
 
   return (
-    <div className="react-flow__node-default" style={{ padding: 10, minWidth: 150 }}>
+    <div className="react-flow__node-default" style={{ padding: 10, minWidth: 150, backgroundColor: "#3f3f3f"}}>
       <Handle type="target" position={Position.Top} />
-      <div style={{ fontSize: 12, color: '#666', marginBottom: 4 }}>{listTypeLabel}</div>
+      <div style={{ fontSize: 12, color: '#bbb', marginBottom: 4 }}>{listTypeLabel}</div>
       <div>
-        <strong>{data.label}</strong>
+        <strong style={{ color: "#d7d7d7" }}>{data.label}</strong>
       </div>
       <div className="unit-list-compact">
         {data.stack.units.map((unit, index) => {
@@ -37,7 +37,8 @@ const UnitListNode = ({ data, id }: { data: { label: string, stack: IUnitStack, 
           })}
       </div>
       <Handle type="source" position={Position.Bottom} />
-      <button onClick={() => data.openArmyInfo(id)}>
+      <button onClick={() => data.openArmyInfo(id)}
+        style={{ cursor: 'pointer', color: '#f9f9f9', background: '#2e2e2e', border: "2px solid #4b5563", marginTop: '4px'}}>
         View Army Info
       </button>
     </div>
