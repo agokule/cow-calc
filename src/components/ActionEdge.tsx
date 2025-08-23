@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useState, useId } from "react";
+import React, { useMemo, useState, useId, useEffect } from "react";
 import {
   BaseEdge,
   EdgeLabelRenderer,
@@ -152,7 +152,6 @@ export default function ActionEdge(props: EdgeProps<ActionEdgeData>) {
 
   const repeatMinutes = data?.repeatMinutes ?? defaultRepeatMinutes;
 
-
   const updateEdgeData = (updater: (d: Required<ActionEdgeData>) => Partial<ActionEdgeData>) => {
     setEdges((eds) =>
       eds.map((e) =>
@@ -171,6 +170,19 @@ export default function ActionEdge(props: EdgeProps<ActionEdgeData>) {
       )
     );
   };
+
+  useEffect(() => {
+    updateEdgeData(() => {
+      return {
+        sourceAction: sourceAction,
+        targetAction: targetAction,
+        hours: hours,
+        minutes: minutes,
+        repeatHours: repeatHours,
+        repeatMinutes: repeatMinutes
+      }
+    })
+  }, [sourceAction, targetAction, hours, minutes, repeatHours, repeatMinutes])
 
   const computeOther = (picked: EdgeAction, currentOther: EdgeAction): EdgeAction => {
     if (picked === "both") return "both";
