@@ -15,6 +15,7 @@ import { StackId } from '@/types/combat';
 import { ArmyInfoDialog } from '@/components/ArmyInfoDialog';
 import StepNavigator from '@/components/StepNavigator';
 import { createInitialBattleCycle, NodeDataConnections } from '@/utils/createInitialBattleCycle';
+import { getNextBattleCycle } from '@/utils/getNextBattleCycle';
 
 const nodeTypes = { unitList: UnitListNode } as const;
 const edgeTypes = { action: ActionEdge } as const;
@@ -26,7 +27,9 @@ const ConnectionsPage = () => {
   const [isArmyInfoOpen, setIsArmyInfoOpen] = useState(false)
   const [selectedUnitStackId, setSelectedUnitStackId] = useState('')
   
-  console.log(createInitialBattleCycle(nodes, edges))
+  let battleCycle = createInitialBattleCycle(nodes, edges)
+  console.log(battleCycle)
+  console.log(getNextBattleCycle(battleCycle))
 
   function selectArmyGroup(id: string) {
     setIsArmyInfoOpen(true)
