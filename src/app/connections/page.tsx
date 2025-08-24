@@ -101,10 +101,13 @@ const ConnectionsPage = () => {
       return
     }
     setBattleCycles((prev) => [...prev, next])
+    setCurrentCycle(next)
+  }
 
+  const setCurrentCycle = (current: IBattleCycle) => {
     let newYourList = []
     let newEnemyList = []
-    for (const stack of next.stacks) {
+    for (const stack of current.stacks) {
       if (stack.id.startsWith('your'))
         newYourList.push(stack.units)
       else
@@ -116,7 +119,7 @@ const ConnectionsPage = () => {
 
     let newNodes: NodeDataConnections[] = []
     for (const node of nodes) {
-      const updatedStack = next.stacks.find(s => s.id === node.id)
+      const updatedStack = current.stacks.find(s => s.id === node.id)
       if (updatedStack) {
         newNodes.push({
           ...node,
@@ -131,7 +134,7 @@ const ConnectionsPage = () => {
     }
 
     setNodes(newNodes)
-    setEdges(stackCombatsToActionEdges(next.stackCombat, edges))
+    setEdges(stackCombatsToActionEdges(current.stackCombat, edges))
   }
 
   return (
@@ -174,6 +177,15 @@ const ConnectionsPage = () => {
         }}
         onNext={(num) => {
           nextBattleCycle(battleCycles[num - 1] as IBattleCycle)
+        }}
+        onPrev={(num) => {
+          setCurrentCycle(battleCycles[num] as IBattleCycle)
+        }}
+        onFirst={() => {
+          setCurrentCycle(battleCycles[0] as IBattleCycle)
+        }}
+        onLast={(num) => {
+          setCurrentCycle(battleCycles[num - 1] as IBattleCycle)
         }}
       />
     </div>
