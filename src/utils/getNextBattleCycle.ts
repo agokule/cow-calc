@@ -28,26 +28,33 @@ export function getNextBattleCycle(battleCycle: IBattleCycle): IBattleCycle | vo
   if (nextCombat.toAction === 'defend')
     newFromArmyUnits = applyDamage(fromArmy, toArmy, 'defend', nextCombat.fromAction === 'attack' ? 1 : 0.5)
 
-  const newStackCombat = structuredClone(battleCycle.stackCombat)
+  const newStackCombat = [...battleCycle.stackCombat.filter((c) => c.from !== nextCombat.from && c.to !== nextCombat.to)]
   const timesToStart: number[] = []
   for (const combat of newStackCombat) {
-    if (combat.from === nextCombat.from && combat.to === nextCombat.to)
-      combat.timeToStart = combat.repeatTime
-    else
-      combat.timeToStart -= battleCycle.endTime - battleCycle.startTime
-
+    combat.timeToStart -= battleCycle.endTime - battleCycle.startTime
     timesToStart.push(combat.timeToStart)
   }
 
   const fromStack = getUnitStack(newFromArmyUnits, fromArmy.protectionValue, fromArmy.homeDefenceBonus, fromArmy.id)
   const toStack = getUnitStack(newToArmyUnits, toArmy.protectionValue, toArmy.homeDefenceBonus, toArmy.id)
 
+  let newStacks = [...battleCycle.stacks.filter((s) => s.id !== fromArmy.id && s.id !== toArmy.id)]
+
+  if (fromStack.units.length)
+    newStacks.push(fromStack)
+  if (toStack.units.length)
+    newStacks.push(toStack)
+
+  if (fromStack.units.length && toStack.units.length) {
+    newStackCombat.push({
+      ...nextCombat,
+      timeToStart: nextCombat.repeatTime
+    })
+    timesToStart.push(nextCombat.repeatTime)
+  }
+
   return {
-    stacks: [
-      ...battleCycle.stacks.filter((s) => s.id !== fromArmy.id && s.id !== toArmy.id),
-      fromStack,
-      toStack
-    ],
+    stacks: newStacks,
     stackCombat: newStackCombat,
     startTime: battleCycle.endTime,
     endTime: Math.min(...timesToStart) + battleCycle.endTime
