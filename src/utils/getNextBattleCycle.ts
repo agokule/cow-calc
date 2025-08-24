@@ -13,8 +13,6 @@ export function getNextBattleCycle(battleCycle: IBattleCycle): IBattleCycle | vo
     return
   }
 
-  console.log(nextCombat)
-
   const fromArmy = battleCycle.stacks.find((stack) => stack.id === nextCombat.from) as IUnitStack
   const toArmy = battleCycle.stacks.find((stack) => stack.id === nextCombat.to) as IUnitStack
 
@@ -40,7 +38,6 @@ export function getNextBattleCycle(battleCycle: IBattleCycle): IBattleCycle | vo
 
     timesToStart.push(combat.timeToStart)
   }
-  console.log(newStackCombat)
 
   const fromStack = getUnitStack(newFromArmyUnits, fromArmy.protectionValue, fromArmy.homeDefenceBonus, fromArmy.id)
   const toStack = getUnitStack(newToArmyUnits, toArmy.protectionValue, toArmy.homeDefenceBonus, toArmy.id)

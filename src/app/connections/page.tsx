@@ -29,6 +29,8 @@ const ConnectionsPage = () => {
   const [selectedUnitStackId, setSelectedUnitStackId] = useState('')
   const [battleCycles, setBattleCycles] = useState<IBattleCycle[]>([])
 
+  console.log("battle cycles", battleCycles)
+
   function selectArmyGroup(id: string) {
     setIsArmyInfoOpen(true)
     setSelectedUnitStackId(id)
