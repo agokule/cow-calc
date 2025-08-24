@@ -98,7 +98,7 @@ const ConnectionsPage = () => {
       console.warn("No more battle cycles")
       return
     }
-    setBattleCycles([...battleCycles, next])
+    setBattleCycles((prev) => [...prev, next])
 
     let newYourList = []
     let newEnemyList = []
@@ -169,6 +169,9 @@ const ConnectionsPage = () => {
           const initial = createInitialBattleCycle(nodes, edges)
           setBattleCycles([initial])
           nextBattleCycle(initial)
+        }}
+        onNext={(num) => {
+          nextBattleCycle(battleCycles[num - 1] as IBattleCycle)
         }}
       />
     </div>
