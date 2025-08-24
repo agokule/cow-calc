@@ -29,7 +29,5 @@ export function applyDamage(attacker: IUnitStack, defender: IUnitStack, toApply:
     }
   }
 
-  console.log(toApply, newUnits)
-
   return newUnits
 }
