@@ -26,9 +26,17 @@ export function applyDamage(attacker: IUnitStack, defender: IUnitStack, toApply:
     }))
 
     for (let unit of units) {
-      (unit.hp as number) *= unit.quantity;
-      (unit.hp as number) -= dmgToApply * (unit.quantity / numUnits);
-      (unit.hp as number) /= unit.quantity;
+      const dmgAppliedStack = dmgToApply * (unit.quantity / numUnits)
+      const dmgApplied = dmgAppliedStack / unit.quantity;
+
+      const unitsKillable = (unit.hp as number) <= ((unit.maxHp as number) / 2)
+      const unitsKilled = Math.floor(dmgAppliedStack / (unit.hp as number))
+
+      if (unitsKilled >= 1 && unitsKillable)
+        unit.quantity -= unitsKilled;
+
+      (unit.hp as number) -= dmgApplied;
+
       newUnits.push(unit)
     }
   }
