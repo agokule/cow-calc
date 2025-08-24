@@ -73,7 +73,7 @@ export default function StepNavigator({
   if (!hasStarted)
     label = current === 0 ? 'Start Battle Calculation' : `Step ${current}`;
   else
-    label = max !== undefined ? `Step ${current} of ${max + 1}` : `Step ${current}`;
+    label = max !== undefined ? `Step ${current} of ${max}` : `Step ${current}`;
 
   return (
     <div className={`step-nav ${className ?? ''}`} role="group" aria-label="Step navigation">
