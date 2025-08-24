@@ -50,6 +50,6 @@ export function getNextBattleCycle(battleCycle: IBattleCycle): IBattleCycle | vo
     ],
     stackCombat: newStackCombat,
     startTime: battleCycle.endTime,
-    endTime: Math.min(...timesToStart)
+    endTime: Math.min(...timesToStart) + battleCycle.endTime
   }
 }
