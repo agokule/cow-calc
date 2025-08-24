@@ -29,11 +29,8 @@ export function getNextBattleCycle(battleCycle: IBattleCycle): IBattleCycle | vo
     newFromArmyUnits = applyDamage(fromArmy, toArmy, 'defend', nextCombat.fromAction === 'attack' ? 1 : 0.5)
 
   const newStackCombat = [...battleCycle.stackCombat.filter((c) => c.from !== nextCombat.from && c.to !== nextCombat.to)]
-  const timesToStart: number[] = []
-  for (const combat of newStackCombat) {
+  for (let combat of newStackCombat)
     combat.timeToStart -= battleCycle.endTime - battleCycle.startTime
-    timesToStart.push(combat.timeToStart)
-  }
 
   const fromStack = getUnitStack(newFromArmyUnits, fromArmy.protectionValue, fromArmy.homeDefenceBonus, fromArmy.id)
   const toStack = getUnitStack(newToArmyUnits, toArmy.protectionValue, toArmy.homeDefenceBonus, toArmy.id)
@@ -45,18 +42,16 @@ export function getNextBattleCycle(battleCycle: IBattleCycle): IBattleCycle | vo
   if (toStack.units.length)
     newStacks.push(toStack)
 
-  if (fromStack.units.length && toStack.units.length) {
+  if (fromStack.units.length && toStack.units.length)
     newStackCombat.push({
       ...nextCombat,
       timeToStart: nextCombat.repeatTime
     })
-    timesToStart.push(nextCombat.repeatTime)
-  }
 
   return {
     stacks: newStacks,
     stackCombat: newStackCombat,
     startTime: battleCycle.endTime,
-    endTime: Math.min(...timesToStart) + battleCycle.endTime
+    endTime: Math.min(...newStackCombat.map((c) => c.timeToStart)) + battleCycle.endTime 
   }
 }
