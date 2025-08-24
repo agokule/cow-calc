@@ -29,6 +29,7 @@ const ConnectionsPage = () => {
   const [selectedUnitStackId, setSelectedUnitStackId] = useState('')
   const [battleCycles, setBattleCycles] = useState<IBattleCycle[]>([])
   const [maxCycles, setMaxCycles] = useState<number | undefined>(undefined)
+  const [autoNext, setAutoNext] = useState(false) // this is used for the finish button
 
   console.log("battle cycles", battleCycles)
 
@@ -111,6 +112,7 @@ const ConnectionsPage = () => {
       console.warn("No more battle cycles")
       setMaxCycles(numBattleCycles)
     }
+    return next.shouldContinue
   }
 
   const setCurrentCycle = (current: IBattleCycle) => {
@@ -145,6 +147,9 @@ const ConnectionsPage = () => {
     setNodes(newNodes)
     setEdges(stackCombatsToActionEdges(current.stackCombat, edges))
   }
+
+  if (autoNext)
+    setAutoNext(nextBattleCycle(battleCycles[battleCycles.length - 1]))
 
   return (
     <div style={{ width: '100vw', height: '100vh' }}>
@@ -197,7 +202,11 @@ const ConnectionsPage = () => {
           setCurrentCycle(battleCycles[0] as IBattleCycle)
         }}
         onLast={(curr) => {
-          setCurrentCycle(battleCycles[curr - 1] as IBattleCycle)
+          setCurrentCycle(battleCycles[curr] as IBattleCycle)
+        }}
+        onFinish={(curr) => {
+          setBattleCycles(battleCycles.slice(0, curr + 1))
+          setAutoNext(true)
         }}
         max={maxCycles}
         hasStarted={Boolean(battleCycles.length)}
