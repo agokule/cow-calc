@@ -3,6 +3,7 @@
 import React, { useMemo, useState, useId, useEffect } from "react";
 import {
   BaseEdge,
+  Edge,
   EdgeLabelRenderer,
   getBezierPath,
   useReactFlow,
@@ -10,7 +11,7 @@ import {
 } from "reactflow";
 import TrashIcon from "./TrashIcon";
 import TimeInput from "./TimeInput";
-import { EdgeAction } from "@/types/battleCalculations";
+import { EdgeAction, IStackCombat } from "@/types/battleCalculations";
 
 export type ActionEdgeData = {
   sourceAction?: EdgeAction;
@@ -20,6 +21,39 @@ export type ActionEdgeData = {
   repeatHours?: number;
   repeatMinutes?: number;
 };
+
+function stackCombatToActionEdge(combat: IStackCombat): Required<ActionEdgeData> {
+  return {
+    sourceAction: combat.fromAction,
+    targetAction: combat.toAction,
+    hours: Math.floor(combat.timeToStart / 3600),
+    minutes: Math.floor(combat.timeToStart / 60) % 60,
+    repeatHours: Math.floor(combat.repeatTime / 3600),
+    repeatMinutes: Math.floor(combat.repeatTime / 60) % 60,
+  }
+}
+
+export function stackCombatsToActionEdges(combats: IStackCombat[], edges: Edge<ActionEdgeData>[]) {
+  let newEdges: Edge<ActionEdgeData>[] = []
+
+  for (const combat of combats) {
+    // Generate edge ID in the same format as React Flow
+    const edgeId = `reactflow__edge-${combat.from}-${combat.to}`;
+    
+    // Find existing edge with the same source and target
+    const existingEdge = edges.find(e => e.source === combat.from && e.target === combat.to);
+    newEdges.push({
+      ...existingEdge,
+      id: edgeId,
+      source: combat.from,
+      target: combat.to,
+      data: stackCombatToActionEdge(combat),
+      // thx so much claude 3.7 sonnet (github copilot edition)
+      type: 'action',
+    });
+  }
+  return newEdges
+}
 
 // dropdown-based selection instead of cycling
 

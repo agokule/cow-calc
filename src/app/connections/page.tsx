@@ -6,7 +6,7 @@ import 'reactflow/dist/style.css';
 
 import { UnitListsContext } from '@/context/UnitListsContext';
 import UnitListNode from '@/components/UnitListNode';
-import ActionEdge, { type ActionEdgeData } from '@/components/ActionEdge';
+import ActionEdge, { stackCombatsToActionEdges, type ActionEdgeData } from '@/components/ActionEdge';
 import { stringToNumber } from '@/utils/stringToNumber';
 import { getUnitData } from '@/utils/getUnitData';
 import { IUnitType } from '@/types';
@@ -16,20 +16,18 @@ import { ArmyInfoDialog } from '@/components/ArmyInfoDialog';
 import StepNavigator from '@/components/StepNavigator';
 import { createInitialBattleCycle, NodeDataConnections } from '@/utils/createInitialBattleCycle';
 import { getNextBattleCycle } from '@/utils/getNextBattleCycle';
+import { IBattleCycle } from '@/types/battleCalculations';
 
 const nodeTypes = { unitList: UnitListNode } as const;
 const edgeTypes = { action: ActionEdge } as const;
 
 const ConnectionsPage = () => {
-  const { yourUnitLists, enemyUnitLists } = useContext(UnitListsContext)!;
+  const { yourUnitLists, setYourUnitLists, enemyUnitLists, setEnemyUnitLists } = useContext(UnitListsContext)!;
   const [nodes, setNodes] = useState<NodeDataConnections[]>([]);
   const [edges, setEdges] = useState<Edge<ActionEdgeData>[]>([]);
   const [isArmyInfoOpen, setIsArmyInfoOpen] = useState(false)
   const [selectedUnitStackId, setSelectedUnitStackId] = useState('')
-  
-  let battleCycle = createInitialBattleCycle(nodes, edges)
-  console.log(battleCycle)
-  console.log(getNextBattleCycle(battleCycle))
+  const [battleCycles, setBattleCycles] = useState<IBattleCycle[]>([])
 
   function selectArmyGroup(id: string) {
     setIsArmyInfoOpen(true)
@@ -81,7 +79,7 @@ const ConnectionsPage = () => {
     });
 
     setNodes([...yourNodes, ...enemyNodes]);
-  }, [yourUnitLists, enemyUnitLists]);
+  }, []);
 
   const onNodesChange = React.useCallback(
     (changes: NodeChange[]) => setNodes((nds) => applyNodeChanges(changes, nds) as NodeDataConnections[]),
@@ -92,6 +90,47 @@ const ConnectionsPage = () => {
     const defaultData: ActionEdgeData = { sourceAction: 'nothing', targetAction: 'nothing', hours: 0, minutes: 0 };
     setEdges((eds) => addEdge({ ...params, type: 'action', data: defaultData, animated: false }, eds));
   }, []);
+
+  const nextBattleCycle = (cycle: IBattleCycle) => {
+    const next = getNextBattleCycle(cycle)
+    if (!next) {
+      // TODO: set the maximum of the StepNavigator so the user can't go farther
+      console.warn("No more battle cycles")
+      return
+    }
+    setBattleCycles([...battleCycles, next])
+
+    let newYourList = []
+    let newEnemyList = []
+    for (const stack of next.stacks) {
+      if (stack.id.startsWith('your'))
+        newYourList.push(stack.units)
+      else
+        newEnemyList.push(stack.units)
+    }
+
+    setYourUnitLists(newYourList)
+    setEnemyUnitLists(newEnemyList)
+
+    let newNodes: NodeDataConnections[] = []
+    for (const node of nodes) {
+      const updatedStack = next.stacks.find(s => s.id === node.id)
+      if (updatedStack) {
+        newNodes.push({
+          ...node,
+          data: {
+            ...node.data,
+            stack: updatedStack
+          }
+        })
+      } else {
+        newNodes.push(node)
+      }
+    }
+
+    setNodes(newNodes)
+    setEdges(stackCombatsToActionEdges(next.stackCombat, edges))
+  }
 
   return (
     <div style={{ width: '100vw', height: '100vh' }}>
@@ -125,7 +164,13 @@ const ConnectionsPage = () => {
             }}
         /> : null
       }
-      <StepNavigator></StepNavigator>
+      <StepNavigator
+        onStart={() => {
+          const initial = createInitialBattleCycle(nodes, edges)
+          setBattleCycles([initial])
+          nextBattleCycle(initial)
+        }}
+      />
     </div>
   );
 };
