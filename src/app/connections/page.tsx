@@ -28,6 +28,7 @@ const ConnectionsPage = () => {
   const [isArmyInfoOpen, setIsArmyInfoOpen] = useState(false)
   const [selectedUnitStackId, setSelectedUnitStackId] = useState('')
   const [battleCycles, setBattleCycles] = useState<IBattleCycle[]>([])
+  const [maxCycles, setMaxCycles] = useState<number | undefined>(undefined)
 
   console.log("battle cycles", battleCycles)
 
@@ -95,13 +96,21 @@ const ConnectionsPage = () => {
 
   const nextBattleCycle = (cycle: IBattleCycle) => {
     const next = getNextBattleCycle(cycle)
-    if (!next) {
-      // TODO: set the maximum of the StepNavigator so the user can't go farther
-      console.warn("No more battle cycles")
-      return
+    let numBattleCycles = battleCycles.length
+
+    if (next.cycle) {
+      const cycle: IBattleCycle = next.cycle;
+      setBattleCycles((prev) => {
+        numBattleCycles = prev.length
+        return [...prev, cycle]
+      })
+      setCurrentCycle(cycle)
     }
-    setBattleCycles((prev) => [...prev, next])
-    setCurrentCycle(next)
+
+    if (!next.shouldContinue) {
+      console.warn("No more battle cycles")
+      setMaxCycles(numBattleCycles)
+    }
   }
 
   const setCurrentCycle = (current: IBattleCycle) => {
@@ -176,7 +185,10 @@ const ConnectionsPage = () => {
           nextBattleCycle(initial)
         }}
         onNext={(num) => {
-          nextBattleCycle(battleCycles[num - 1] as IBattleCycle)
+          if (typeof(maxCycles) !== 'number')
+            nextBattleCycle(battleCycles[num - 1] as IBattleCycle)
+          else
+            setCurrentCycle(battleCycles[num] as IBattleCycle)
         }}
         onPrev={(num) => {
           setCurrentCycle(battleCycles[num] as IBattleCycle)
@@ -187,6 +199,8 @@ const ConnectionsPage = () => {
         onLast={(num) => {
           setCurrentCycle(battleCycles[num - 1] as IBattleCycle)
         }}
+        max={maxCycles}
+        hasStarted={Boolean(battleCycles.length)}
       />
     </div>
   );

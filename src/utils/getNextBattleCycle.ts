@@ -5,12 +5,12 @@ import { applyDamage } from "./applyDamage";
 import { Unit } from "./Unit";
 import { getUnitStack } from "./getUnitStack";
 
-export function getNextBattleCycle(battleCycle: IBattleCycle): IBattleCycle | void {
+export function getNextBattleCycle(battleCycle: IBattleCycle): { cycle?: IBattleCycle, shouldContinue: boolean } {
   const nextCombat = getNextBattleCycleCombat(battleCycle)
 
   if (!nextCombat) {
     console.warn('no battle cycle combat, exiting function')
-    return
+    return { shouldContinue: false}
   }
 
   const fromArmy = battleCycle.stacks.find((stack) => stack.id === nextCombat.from) as IUnitStack
@@ -49,9 +49,12 @@ export function getNextBattleCycle(battleCycle: IBattleCycle): IBattleCycle | vo
     })
 
   return {
-    stacks: newStacks,
-    stackCombat: newStackCombat,
-    startTime: battleCycle.endTime,
-    endTime: Math.min(...newStackCombat.map((c) => c.timeToStart)) + battleCycle.endTime 
+    cycle: {
+      stacks: newStacks,
+      stackCombat: newStackCombat,
+      startTime: battleCycle.endTime,
+      endTime: Math.min(...newStackCombat.map((c) => c.timeToStart)) + battleCycle.endTime 
+    },
+    shouldContinue: Boolean(newStackCombat.length)
   }
 }
