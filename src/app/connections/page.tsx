@@ -184,20 +184,20 @@ const ConnectionsPage = () => {
           setBattleCycles([initial])
           nextBattleCycle(initial)
         }}
-        onNext={(num) => {
+        onNext={(curr) => {
           if (typeof(maxCycles) !== 'number')
-            nextBattleCycle(battleCycles[num - 1] as IBattleCycle)
+            nextBattleCycle(battleCycles[curr - 1] as IBattleCycle)
           else
-            setCurrentCycle(battleCycles[num] as IBattleCycle)
+            setCurrentCycle(battleCycles[curr] as IBattleCycle)
         }}
-        onPrev={(num) => {
-          setCurrentCycle(battleCycles[num] as IBattleCycle)
+        onPrev={(curr) => {
+          setCurrentCycle(battleCycles[curr] as IBattleCycle)
         }}
         onFirst={() => {
           setCurrentCycle(battleCycles[0] as IBattleCycle)
         }}
-        onLast={(num) => {
-          setCurrentCycle(battleCycles[num - 1] as IBattleCycle)
+        onLast={(curr) => {
+          setCurrentCycle(battleCycles[curr - 1] as IBattleCycle)
         }}
         max={maxCycles}
         hasStarted={Boolean(battleCycles.length)}
