@@ -2,6 +2,7 @@ import { IDamageEfficiency, createZeroDamagePotentialAndEfficiancy, IDamageClass
 import { UNIT_CLASSES, IUnitType } from "@/types"
 import { Unit } from "./Unit"
 import { getUnitData } from "./getUnitData"
+import { getUnitDamage } from "./getUnitDamage"
 
 export function calculateDamageEfficiencyPotential(unitList: Unit[]) {
   let dmgEfficiency: IDamageEfficiency =
@@ -14,19 +15,11 @@ export function calculateDamageEfficiencyPotential(unitList: Unit[]) {
     const combatStatisticsKey = `vs${key}` as const
 
     sortedByClass.sort((a: Unit, b: Unit) => {
-      const dataA = getUnitData(a.genericName, a.mode) as IUnitType
-      const unitStatsA = dataA.doctrineVariants[a.doctrine][a.level - 1]
+      const dmgA = getUnitDamage(a, combatStatisticsKey)
+      const avgA = (dmgA.attack + dmgA.defense) / 2
 
-      const attackA = unitStatsA.combatStatistics[combatStatisticsKey].attack
-      const defenseA = unitStatsA.combatStatistics[combatStatisticsKey].defense || 0
-      const avgA = (attackA + defenseA) / 2
-
-      const dataB = getUnitData(b.genericName, b.mode) as IUnitType
-      const unitStatsB = dataB.doctrineVariants[b.doctrine][b.level - 1]
-
-      const attackB = unitStatsB.combatStatistics[combatStatisticsKey].attack
-      const defenseB = unitStatsB.combatStatistics[combatStatisticsKey].defense || 0
-      const avgB = (attackB + defenseB) / 2
+      const dmgB = getUnitDamage(b, combatStatisticsKey)
+      const avgB = (dmgB.attack + dmgB.defense) / 2
 
       // we want descending order here
       return avgB - avgA
@@ -38,16 +31,15 @@ export function calculateDamageEfficiencyPotential(unitList: Unit[]) {
 
     let i = 0
     for (const unit of sortedByClass) {
-      const data = getUnitData(unit.genericName, unit.mode) as IUnitType
-      const unitStats = data.doctrineVariants[unit.doctrine][unit.level - 1]
+      const unitDmg = getUnitDamage(unit, combatStatisticsKey)
 
-      allStats.attack += unitStats.combatStatistics[combatStatisticsKey].attack
-      allStats.defense += unitStats.combatStatistics[combatStatisticsKey].defense || 0
+      allStats.attack += unitDmg.attack
+      allStats.defense += unitDmg.defense
 
       if (i > 9) continue
 
-      top10stats.attack += unitStats.combatStatistics[combatStatisticsKey].attack
-      top10stats.defense += unitStats.combatStatistics[combatStatisticsKey].defense || 0
+      top10stats.attack += unitDmg.attack
+      top10stats.defense += unitDmg.defense
 
       i++
     }
