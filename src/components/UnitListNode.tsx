@@ -5,6 +5,7 @@ import { UnitName, UnitType } from '@/types';
 import { toTitleCase } from '@/utils/toTitleCase';
 import HealthBar from './HealthPoints';
 import { IUnitStack, StackId } from "@/types/combat";
+import { round } from '@/utils/rounding';
 
 const UnitListNode = ({ data, id }: { data: { label: string, stack: IUnitStack, openArmyInfo: (id: StackId) => void }, id: StackId }) => {
   const firstUnit = data.stack.units[0];
@@ -43,7 +44,7 @@ const UnitListNode = ({ data, id }: { data: { label: string, stack: IUnitStack, 
           })}
         <hr />
         <div>
-          <span>Overall: {overallHealth}/{overallMaxHealth} hp</span>
+          <span>Overall: {round(overallHealth, 1)}/{overallMaxHealth} hp</span>
           <HealthBar currentHP={overallHealth} maxHP={overallMaxHealth}></HealthBar>
         </div>
       </div>
