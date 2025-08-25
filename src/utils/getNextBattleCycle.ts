@@ -16,8 +16,8 @@ export function getNextBattleCycle(battleCycle: IBattleCycle): { cycle?: IBattle
   const fromArmy = battleCycle.stacks.find((stack) => stack.id === nextCombat.from) as IUnitStack
   const toArmy = battleCycle.stacks.find((stack) => stack.id === nextCombat.to) as IUnitStack
 
-  let newFromArmyUnits: Unit[] = []
-  let newToArmyUnits: Unit[] = []
+  let newFromArmyUnits: Unit[] = fromArmy.units
+  let newToArmyUnits: Unit[] = toArmy.units
 
   if (nextCombat.fromAction === 'attack')
     newToArmyUnits = applyDamage(fromArmy, toArmy, 'attack')
@@ -28,6 +28,9 @@ export function getNextBattleCycle(battleCycle: IBattleCycle): { cycle?: IBattle
   if (nextCombat.toAction === 'defend')
     newFromArmyUnits = applyDamage(fromArmy, toArmy, 'defend', nextCombat.fromAction === 'attack' ? 1 : 0.5)
 
+  if (nextCombat.toAction === 'attack')
+    newFromArmyUnits = applyDamage(toArmy, fromArmy, 'attack')
+
   let newStackCombat = structuredClone(battleCycle.stackCombat.filter((c) => c.from !== nextCombat.from || c.to !== nextCombat.to))
   for (let combat of newStackCombat)
     combat.timeToStart -= battleCycle.endTime - battleCycle.startTime
@@ -35,7 +38,7 @@ export function getNextBattleCycle(battleCycle: IBattleCycle): { cycle?: IBattle
   const fromStack = getUnitStack(newFromArmyUnits, fromArmy.protectionValue, fromArmy.homeDefenceBonus, fromArmy.id, fromArmy.terrain)
   const toStack = getUnitStack(newToArmyUnits, toArmy.protectionValue, toArmy.homeDefenceBonus, toArmy.id, toArmy.terrain)
 
-  let newStacks = [...battleCycle.stacks.filter((s) => s.id !== fromArmy.id && s.id !== toArmy.id)]
+  let newStacks = structuredClone(battleCycle.stacks.filter((s) => s.id !== fromArmy.id && s.id !== toArmy.id))
 
   newStacks.push(fromStack)
   newStacks.push(toStack)

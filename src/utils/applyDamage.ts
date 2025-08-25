@@ -15,6 +15,14 @@ export function applyDamage(attacker: IUnitStack, defender: IUnitStack, toApply:
 
     let dmgToApply = dmgPotential * (damageReciever.dmgDistribution[unitClass] / 100) * dmgFactor
 
+    let dmgReduction = damageReciever.protectionValue
+    if (damageReciever.homeDefenceBonus)
+      dmgReduction += 15
+    dmgToApply -= dmgToApply * dmgReduction / 100
+    
+    // homeDefenceBonus for attack damage is
+    // already accounted in the getUnitDamage()
+
     let unitsFound = new Set<UnitName>()
     let numUnits = 0
     const units = structuredClone(damageReciever.units.filter((u) => {
