@@ -46,11 +46,18 @@ const ConnectionsPage = () => {
 
   function selectTerrain(terrain: Terrain, id: StackId) {
     setNodes((nodes) => {
-      for (const node of nodes)
+      for (const node of nodes) {
         if (node.id === id) {
-          node.data.stack.terrain = terrain
+          node.data.stack = getUnitStack(
+            node.data.stack.units,
+            node.data.stack.protectionValue,
+            node.data.stack.homeDefenceBonus,
+            node.data.stack.id,
+            terrain
+          )
           break
         }
+      }
       return nodes
     })
   }

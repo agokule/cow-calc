@@ -1,10 +1,9 @@
 import { IDamageEfficiency, createZeroDamagePotentialAndEfficiancy, IDamageClassStats, IDamagePotential } from "@/types/combat"
-import { UNIT_CLASSES, IUnitType } from "@/types"
+import { UNIT_CLASSES, Terrain } from "@/types"
 import { Unit } from "./Unit"
-import { getUnitData } from "./getUnitData"
 import { getUnitDamage } from "./getUnitDamage"
 
-export function calculateDamageEfficiencyPotential(unitList: Unit[]) {
+export function calculateDamageEfficiencyPotential(unitList: Unit[], homeDefense: Boolean, terrain: Terrain) {
   let dmgEfficiency: IDamageEfficiency =
     createZeroDamagePotentialAndEfficiancy(UNIT_CLASSES)
   let dmgPotential: IDamagePotential =
@@ -15,10 +14,10 @@ export function calculateDamageEfficiencyPotential(unitList: Unit[]) {
     const combatStatisticsKey = `vs${key}` as const
 
     sortedByClass.sort((a: Unit, b: Unit) => {
-      const dmgA = getUnitDamage(a, combatStatisticsKey)
+      const dmgA = getUnitDamage(a, combatStatisticsKey, homeDefense, terrain)
       const avgA = (dmgA.attack + dmgA.defense) / 2
 
-      const dmgB = getUnitDamage(b, combatStatisticsKey)
+      const dmgB = getUnitDamage(b, combatStatisticsKey, homeDefense, terrain)
       const avgB = (dmgB.attack + dmgB.defense) / 2
 
       // we want descending order here
@@ -31,7 +30,7 @@ export function calculateDamageEfficiencyPotential(unitList: Unit[]) {
 
     let i = 0
     for (const unit of sortedByClass) {
-      const unitDmg = getUnitDamage(unit, combatStatisticsKey)
+      const unitDmg = getUnitDamage(unit, combatStatisticsKey, homeDefense, terrain)
 
       allStats.attack += unitDmg.attack
       allStats.defense += unitDmg.defense
