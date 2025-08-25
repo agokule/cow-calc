@@ -1,13 +1,16 @@
-import { memo } from 'react';
+import { memo, useState } from 'react';
 import { Handle, Position } from 'reactflow';
 import { getUnitType } from '@/utils/getUnitType';
-import { UnitName, UnitType } from '@/types';
+import { Terrain, terrains, UnitName, UnitType } from '@/types';
 import { toTitleCase } from '@/utils/toTitleCase';
 import HealthBar from './HealthPoints';
-import { IUnitStack, StackId } from "@/types/combat";
+import { StackId } from "@/types/combat";
 import { round } from '@/utils/rounding';
+import { NodeData } from '@/utils/createInitialBattleCycle';
 
-const UnitListNode = ({ data, id }: { data: { label: string, stack: IUnitStack, openArmyInfo: (id: StackId) => void }, id: StackId }) => {
+const UnitListNode = ({ data, id }: { data: NodeData, id: StackId }) => {
+  const [terrain, setTerrain] = useState<Terrain>(data.stack.terrain)
+
   const firstUnit = data.stack.units[0];
   const firstType = firstUnit ? getUnitType(firstUnit.genericName, firstUnit.mode) : undefined;
   const listTypeLabel =
@@ -17,8 +20,13 @@ const UnitListNode = ({ data, id }: { data: { label: string, stack: IUnitStack, 
   let overallMaxHealth = 0
   let overallHealth = 0
 
+  const terrainChange = (t: Terrain) => {
+    setTerrain(t)
+    data.onTerrainChange(t, id)
+  }
+
   return (
-    <div className="react-flow__node-default" style={{ padding: 10, minWidth: 150, backgroundColor: "#3f3f3f"}}>
+    <div className="react-flow__node-default unit-list-node" style={{ padding: 10, minWidth: 150, backgroundColor: "#3f3f3f"}}>
       <Handle type="target" position={Position.Top} />
       <div style={{ fontSize: 12, color: '#bbb', marginBottom: 4 }}>{listTypeLabel}</div>
       <div>
@@ -53,6 +61,11 @@ const UnitListNode = ({ data, id }: { data: { label: string, stack: IUnitStack, 
         style={{ cursor: 'pointer', color: '#f9f9f9', background: '#2e2e2e', border: "2px solid #4b5563", marginTop: '4px'}}>
         View Army Info
       </button>
+      <select value={terrain} onChange={(e) => terrainChange(e.target.value as Terrain)}>
+        {terrains.map((terrain) => {
+          return <option key={terrain} value={terrain}>{terrain}</option>
+        })}
+      </select>
     </div>
   );
 };

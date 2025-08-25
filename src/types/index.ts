@@ -84,6 +84,18 @@ export interface ITerrainModifier {
   strengthModifier: number | null;
 }
 
+export const terrains = [
+  "Plains",
+  "Hills",
+  "Mountains",
+  "Forest",
+  "Urban",
+  "Sea",
+  "EnemyTerritory"
+] as const
+
+export type Terrain = typeof terrains[number]
+
 /**
  * A comprehensive list of a unit's performance across all terrain types.
  */

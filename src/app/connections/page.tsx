@@ -9,7 +9,7 @@ import UnitListNode from '@/components/UnitListNode';
 import ActionEdge, { stackCombatsToActionEdges, type ActionEdgeData } from '@/components/ActionEdge';
 import { stringToNumber } from '@/utils/stringToNumber';
 import { getUnitData } from '@/utils/getUnitData';
-import { IUnitType } from '@/types';
+import { IUnitType, Terrain } from '@/types';
 import { getUnitStack } from '@/utils/getUnitStack';
 import { StackId } from '@/types/combat';
 import { ArmyInfoDialog } from '@/components/ArmyInfoDialog';
@@ -44,6 +44,17 @@ const ConnectionsPage = () => {
         return node
   }
 
+  function selectTerrain(terrain: Terrain, id: StackId) {
+    setNodes((nodes) => {
+      for (const node of nodes)
+        if (node.id === id) {
+          node.data.stack.terrain = terrain
+          break
+        }
+      return nodes
+    })
+  }
+
   useEffect(() => {
     const yourNodes: NodeDataConnections[] = yourUnitLists.map((units, index) => {
       for (let unit of units) {
@@ -60,7 +71,12 @@ const ConnectionsPage = () => {
         id: id,
         type: 'unitList',
         position: { x: 100, y: 100 + index * 200 },
-        data: { label: `Your Unit List ${index + 1}`, stack: getUnitStack(units, 0, false, id), openArmyInfo: selectArmyGroup },
+        data: {
+          label: `Your Unit List ${index + 1}`,
+          stack: getUnitStack(units, 0, false, id, 'Plains'),
+          openArmyInfo: selectArmyGroup,
+          onTerrainChange: selectTerrain
+        },
       }
     });
 
@@ -78,7 +94,12 @@ const ConnectionsPage = () => {
         id: id,
         type: 'unitList',
         position: { x: 500, y: 100 + index * 200 },
-        data: { label: `Enemy Unit List ${index + 1}`, stack: getUnitStack(units, 0, false, id), openArmyInfo: selectArmyGroup },
+        data: {
+          label: `Enemy Unit List ${index + 1}`,
+          stack: getUnitStack(units, 0, false, id, 'Plains'),
+          openArmyInfo: selectArmyGroup,
+          onTerrainChange: selectTerrain
+        },
       }
     });
 

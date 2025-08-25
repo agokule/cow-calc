@@ -2,12 +2,20 @@ import { IUnitStack, StackId } from "@/types/combat";
 import { IStackCombat, IBattleCycle } from "@/types/battleCalculations";
 import { ActionEdgeData } from "@/components/ActionEdge";
 import { Edge } from "reactflow";
+import { Terrain } from "@/types";
+
+export interface NodeData {
+  label: string;
+  stack: IUnitStack;
+  openArmyInfo: (id: string) => void;
+  onTerrainChange: (terrain: Terrain, id: StackId) => void;
+}
 
 export interface NodeDataConnections {
   id: string;
   type: string;
   position: { x: number; y: number; };
-  data: { label: string; stack: IUnitStack, openArmyInfo: (id: string) => void };
+  data: NodeData;
 }
 
 export function createInitialBattleCycle(nodes: NodeDataConnections[], connections: Edge<ActionEdgeData>[]): IBattleCycle {

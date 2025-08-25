@@ -446,13 +446,19 @@ tbody tr:nth-child(even) {
 }
 
 .unit-controls select,
-.unit-controls input {
+.unit-controls input,
+.unit-list-node select {
   background-color: #4f4f4f;
   color: white;
   border: 1px solid #777;
   border-radius: 4px;
   padding: 0.3rem;
   width: 60px; /* Adjust width as needed */
+}
+
+.unit-list-node select {
+  width: 100px;
+  padding: 0.1rem;
 }
 
 .unit-controls p {
