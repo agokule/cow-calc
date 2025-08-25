@@ -12,7 +12,7 @@ export function getUnitStack(units: Unit[], protection: number, homeDefence: Boo
       newUnitList.push(unit)
   }
 
-  const [dmgEfficiency, dmgPotential] = calculateDamageEfficiencyPotential(newUnitList)
+  const [dmgEfficiency, dmgPotential] = calculateDamageEfficiencyPotential(newUnitList, homeDefence, terrain)
   const dmgDistribution = calculateDamageDistribution(newUnitList)
 
   return {
