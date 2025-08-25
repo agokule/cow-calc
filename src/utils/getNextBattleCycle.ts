@@ -37,10 +37,8 @@ export function getNextBattleCycle(battleCycle: IBattleCycle): { cycle?: IBattle
 
   let newStacks = [...battleCycle.stacks.filter((s) => s.id !== fromArmy.id && s.id !== toArmy.id)]
 
-  if (fromStack.units.length)
-    newStacks.push(fromStack)
-  if (toStack.units.length)
-    newStacks.push(toStack)
+  newStacks.push(fromStack)
+  newStacks.push(toStack)
 
   if (fromStack.units.length && toStack.units.length)
     newStackCombat.push({
