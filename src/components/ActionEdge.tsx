@@ -398,7 +398,7 @@ export default function ActionEdge(props: EdgeProps<ActionEdgeData>) {
             onMouseDown={(e) => e.stopPropagation()}
             onClick={(e) => e.stopPropagation()}
           >
-            {(["attack", "nothing", "both"] as EdgeAction[]).map((opt) => (
+            {(["attack", "patrol", "nothing", "both"] as EdgeAction[]).map((opt) => (
               <button
                 key={opt}
                 type="button"
