@@ -206,6 +206,7 @@ export default function ActionEdge(props: EdgeProps<ActionEdgeData>) {
   };
 
   useEffect(() => {
+    console.log("updating action edge data")
     updateEdgeData(() => {
       return {
         sourceAction: sourceAction,
