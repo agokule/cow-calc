@@ -17,6 +17,7 @@ import StepNavigator from '@/components/StepNavigator';
 import { createInitialBattleCycle, NodeDataConnections } from '@/utils/createInitialBattleCycle';
 import { getNextBattleCycle } from '@/utils/getNextBattleCycle';
 import { IBattleCycle } from '@/types/battleCalculations';
+import { secondsToDuration } from '@/utils/secondsToDuration';
 
 const nodeTypes = { unitList: UnitListNode } as const;
 const edgeTypes = { action: ActionEdge } as const;
@@ -30,6 +31,7 @@ const ConnectionsPage = () => {
   const [battleCycles, setBattleCycles] = useState<IBattleCycle[]>([])
   const [maxCycles, setMaxCycles] = useState<number | undefined>(undefined)
   const [autoNext, setAutoNext] = useState(false) // this is used for the finish button
+  const [currentCycleIndex, setCurrentCycleIndex] = useState(0)
 
   console.log("battle cycles", battleCycles)
 
@@ -222,20 +224,29 @@ const ConnectionsPage = () => {
             nextBattleCycle(battleCycles[curr - 1] as IBattleCycle)
           else
             setCurrentCycle(battleCycles[curr] as IBattleCycle)
+          setCurrentCycleIndex(curr)
         }}
         onPrev={(curr) => {
           setCurrentCycle(battleCycles[curr] as IBattleCycle)
+          setCurrentCycleIndex(curr)
         }}
         onFirst={() => {
           setCurrentCycle(battleCycles[0] as IBattleCycle)
+          setCurrentCycleIndex(0)
         }}
         onLast={(curr) => {
           setCurrentCycle(battleCycles[curr] as IBattleCycle)
+          setCurrentCycleIndex(curr)
         }}
         onFinish={(curr) => {
           setBattleCycles(battleCycles.slice(0, curr + 1))
           setAutoNext(true)
+          setCurrentCycleIndex(curr)
         }}
+        // says something like "1h30m"
+        smallText={
+          battleCycles.length === 0 ? '' : `${secondsToDuration(battleCycles[currentCycleIndex].startTime)}-${secondsToDuration(battleCycles[currentCycleIndex].endTime)}`
+        }
         max={maxCycles}
         hasStarted={Boolean(battleCycles.length)}
       />

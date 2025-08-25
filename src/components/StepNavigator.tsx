@@ -6,6 +6,7 @@ type StepNavigatorProps = {
   max?: number;
   className?: string;
   hasStarted?: boolean;
+  smallText?: string;
   onStart?: () => void;
   onPrev?: (current: number) => void;
   onNext?: (current: number) => void;
@@ -19,6 +20,7 @@ export default function StepNavigator({
   max,
   className,
   hasStarted = false,
+  smallText = "",
   onStart,
   onPrev,
   onNext,
@@ -30,6 +32,8 @@ export default function StepNavigator({
     Math.max(0, max !== undefined ? Math.min(val, max) : val);
 
   const [current, setCurrent] = useState<number>(clamp(initial));
+
+  console.log(smallText)
 
   const atMin = current === 0;
   const atMax = max !== undefined && current >= max;
@@ -110,8 +114,12 @@ export default function StepNavigator({
             ‹ Prev
           </button>
 
-          <div className="step-nav__label" aria-live="polite">
-            {label}
+          <div className="step-nav__label" aria-live="polite" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <span>{label}</span>
+            {/* Small text shown underneath the step label */}
+            {smallText && (
+              <span className="step-nav__small-text">{smallText}</span>
+            )}
           </div>
 
           <button
