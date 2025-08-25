@@ -190,7 +190,7 @@ const ConnectionsPage = () => {
           nextBattleCycle(initial)
         }}
         onNext={(curr) => {
-          if (typeof(maxCycles) !== 'number')
+          if (!battleCycles[curr])
             nextBattleCycle(battleCycles[curr - 1] as IBattleCycle)
           else
             setCurrentCycle(battleCycles[curr] as IBattleCycle)
