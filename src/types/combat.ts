@@ -2,7 +2,7 @@
 // https://wiki.callofwar.com/wiki/COMBAT
 
 import { Unit } from "@/utils/Unit";
-import { UnitClass } from ".";
+import { Terrain, UnitClass } from ".";
 
 export interface IDamageClassStats {
   attack: number;
@@ -54,5 +54,6 @@ export interface IUnitStack {
   // if this is true the stack should get a
   // 15% bonus to its protection and attack values
   homeDefenceBonus: Boolean;
+  terrain: Terrain;
 }
 

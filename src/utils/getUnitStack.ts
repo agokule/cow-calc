@@ -2,8 +2,9 @@ import { IUnitStack, StackId } from "@/types/combat";
 import { Unit } from "./Unit";
 import { calculateDamageEfficiencyPotential } from "./calculateDamageEfficiencyPotential";
 import { calculateDamageDistribution } from "./calculateDamageDistribution";
+import { Terrain } from "@/types";
 
-export function getUnitStack(units: Unit[], protection: number, homeDefence: Boolean, id: StackId): IUnitStack {
+export function getUnitStack(units: Unit[], protection: number, homeDefence: Boolean, id: StackId, terrain: Terrain): IUnitStack {
   let newUnitList: Unit[] = []
   
   for (const unit of units) {
@@ -21,7 +22,8 @@ export function getUnitStack(units: Unit[], protection: number, homeDefence: Boo
     dmgEfficiency: dmgEfficiency,
     dmgDistribution: dmgDistribution,
     protectionValue: protection,
-    homeDefenceBonus: homeDefence
+    homeDefenceBonus: homeDefence,
+    terrain: terrain
   }
 }
 
