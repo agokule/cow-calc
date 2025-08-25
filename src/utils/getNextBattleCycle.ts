@@ -28,7 +28,7 @@ export function getNextBattleCycle(battleCycle: IBattleCycle): { cycle?: IBattle
   if (nextCombat.toAction === 'defend')
     newFromArmyUnits = applyDamage(fromArmy, toArmy, 'defend', nextCombat.fromAction === 'attack' ? 1 : 0.5)
 
-  let newStackCombat = [...battleCycle.stackCombat.filter((c) => c.from !== nextCombat.from || c.to !== nextCombat.to)]
+  let newStackCombat = structuredClone(battleCycle.stackCombat.filter((c) => c.from !== nextCombat.from || c.to !== nextCombat.to))
   for (let combat of newStackCombat)
     combat.timeToStart -= battleCycle.endTime - battleCycle.startTime
 
