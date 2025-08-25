@@ -12,6 +12,7 @@ import {
 import TrashIcon from "./TrashIcon";
 import TimeInput from "./TimeInput";
 import { EdgeAction, IStackCombat } from "@/types/battleCalculations";
+import MinimalProgressBar from "./MinimalProgressBar";
 
 export type ActionEdgeData = {
   sourceAction?: EdgeAction;
@@ -186,6 +187,9 @@ export default function ActionEdge(props: EdgeProps<ActionEdgeData>) {
 
   const repeatMinutes = data?.repeatMinutes ?? defaultRepeatMinutes;
 
+  const seconds = hours * 3600 + minutes * 60
+  const repeatSeconds = repeatHours * 3600 + repeatMinutes * 60
+
   const updateEdgeData = (updater: (d: Required<ActionEdgeData>) => Partial<ActionEdgeData>) => {
     setEdges((eds) =>
       eds.map((e) =>
@@ -347,6 +351,7 @@ export default function ActionEdge(props: EdgeProps<ActionEdgeData>) {
               <TrashIcon />
             </span>
           </button>
+          <MinimalProgressBar progress={seconds / repeatSeconds}/>
           <br />
         </div>
 
