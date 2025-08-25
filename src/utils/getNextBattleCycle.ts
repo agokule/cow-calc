@@ -28,7 +28,7 @@ export function getNextBattleCycle(battleCycle: IBattleCycle): { cycle?: IBattle
   if (nextCombat.toAction === 'defend')
     newFromArmyUnits = applyDamage(fromArmy, toArmy, 'defend', nextCombat.fromAction === 'attack' ? 1 : 0.5)
 
-  const newStackCombat = [...battleCycle.stackCombat.filter((c) => c.from !== nextCombat.from && c.to !== nextCombat.to)]
+  let newStackCombat = [...battleCycle.stackCombat.filter((c) => c.from !== nextCombat.from || c.to !== nextCombat.to)]
   for (let combat of newStackCombat)
     combat.timeToStart -= battleCycle.endTime - battleCycle.startTime
 
@@ -45,6 +45,10 @@ export function getNextBattleCycle(battleCycle: IBattleCycle): { cycle?: IBattle
       ...nextCombat,
       timeToStart: nextCombat.repeatTime
     })
+  else if (!fromStack.units.length)
+    newStackCombat = newStackCombat.filter((c) => c.from !== nextCombat.from)
+  else if (!toStack.units.length)
+    newStackCombat = newStackCombat.filter((c) => c.to !== nextCombat.to)
 
   return {
     cycle: {
