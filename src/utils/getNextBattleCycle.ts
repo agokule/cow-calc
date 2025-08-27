@@ -31,6 +31,19 @@ export function getNextBattleCycle(battleCycle: IBattleCycle): { cycle?: IBattle
   if (nextCombat.toAction === 'attack')
     newFromArmyUnits = applyDamage(toArmy, fromArmy, 'attack')
 
+  if (nextCombat.fromAction === 'both' && nextCombat.toAction === 'both') {
+    newToArmyUnits = applyDamage(fromArmy, toArmy, 'attack')
+    newFromArmyUnits = applyDamage(fromArmy, toArmy, 'defend')
+
+    if (newToArmyUnits.length > 0 && newFromArmyUnits.length > 0) {
+      const fromStack = getUnitStack(newFromArmyUnits, fromArmy.protectionValue, fromArmy.homeDefenceBonus, fromArmy.id, fromArmy.terrain)
+      const toStack = getUnitStack(newToArmyUnits, toArmy.protectionValue, toArmy.homeDefenceBonus, toArmy.id, toArmy.terrain)
+
+      newFromArmyUnits = applyDamage(toStack, fromStack, 'attack')
+      newToArmyUnits = applyDamage(toStack, fromStack, 'defend')
+    }
+  }
+
   let newStackCombat = structuredClone(battleCycle.stackCombat.filter((c) => c.from !== nextCombat.from || c.to !== nextCombat.to))
   for (let combat of newStackCombat)
     combat.timeToStart -= battleCycle.endTime - battleCycle.startTime
