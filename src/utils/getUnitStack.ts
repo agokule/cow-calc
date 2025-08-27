@@ -7,6 +7,8 @@ import { Terrain } from "@/types";
 export function getUnitStack(units: Unit[], protection: number, homeDefence: Boolean, id: StackId, terrain: Terrain): IUnitStack {
   let newUnitList: Unit[] = []
   
+  // this makes it easier to calculate
+  // damage potential and damage efficiency
   for (const unit of units) {
     for (let i = 0; i < unit.quantity; i++)
       newUnitList.push(unit)

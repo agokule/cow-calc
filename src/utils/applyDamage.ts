@@ -26,6 +26,8 @@ export function applyDamage(attacker: IUnitStack, defender: IUnitStack, toApply:
     // homeDefenceBonus for attack damage is
     // already accounted in the getUnitDamage()
 
+    // the unitsFound set is required since getUnitStack()
+    // will insert duplicate units
     let unitsFound = new Set<UnitName>()
     let numUnits = 0
     const units = structuredClone(damageReciever.units.filter((u) => {
