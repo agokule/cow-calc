@@ -15,6 +15,9 @@ export function applyDamage(attacker: IUnitStack, defender: IUnitStack, toApply:
 
     let dmgToApply = dmgPotential * (damageReciever.dmgDistribution[unitClass] / 100) * dmgFactor
 
+    if (dmgToApply === 0)
+      continue
+
     let dmgReduction = damageReciever.protectionValue
     if (damageReciever.homeDefenceBonus)
       dmgReduction += 15
