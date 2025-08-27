@@ -33,8 +33,6 @@ export default function StepNavigator({
 
   const [current, setCurrent] = useState<number>(clamp(initial));
 
-  console.log(smallText)
-
   const atMin = current === 0;
   const atMax = max !== undefined && current >= max;
 
