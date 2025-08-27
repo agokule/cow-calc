@@ -31,9 +31,11 @@ export function applyDamage(attacker: IUnitStack, defender: IUnitStack, toApply:
     const units = structuredClone(damageReciever.units.filter((u) => {
       if (unitsFound.has(u.genericName as UnitName))
         return false
+      if (!(getUnitData(u.genericName, u.mode)?.doctrineVariants.Allies[0].type === unitClass))
+        return false
       unitsFound.add(u.genericName as UnitName)
       numUnits += u.quantity
-      return getUnitData(u.genericName, u.mode)?.doctrineVariants.Allies[0].type === unitClass
+      return true
     }))
 
     for (let unit of units) {
