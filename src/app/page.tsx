@@ -59,6 +59,25 @@ export default function Home() {
     };
   }, [isSidebarOpen]);
 
+  // so that when we move from the connections page
+  // back here, it doesn't show duplicated items
+  useEffect(() => {
+    const mappingFunc = (list: Unit[]) => {
+      const unitsFound = new Set<string>()
+
+      return list.filter((unit) => {
+        if (unitsFound.has(unit.genericName))
+          return false
+        unitsFound.add(unit.genericName)
+        return true
+      })
+    }
+    const newYourUnitLists = yourUnitLists.map(mappingFunc)
+    const newEnemyUnitLists = enemyUnitLists.map(mappingFunc)
+    setEnemyUnitLists(newEnemyUnitLists)
+    setYourUnitLists(newYourUnitLists)
+  }, [])
+
   const handleDragStart = (e: DragEvent<HTMLAnchorElement>, unit: Omit<Unit, 'doctrine' | 'level'>) => {
     e.dataTransfer.setData("application/json", JSON.stringify(unit));
   };
