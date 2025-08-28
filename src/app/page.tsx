@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, DragEvent, useContext } from "react";
 import { UnitListsContext } from "@/context/UnitListsContext";
 import TrashIcon from '@/components/TrashIcon';
+import Tutorial from '@/components/Tutorial/Tutorial';
 import { Doctrine, IUnitStats, IUnitType, UnitType, possibleUnitNames } from "@/types";
 import { unitDataCategorized } from "@/data/units";
 import Link from 'next/link';
@@ -205,6 +206,7 @@ export default function Home() {
           </button>
         </Link>
       </div>
+      <Tutorial />
       <div className="main-layout">
         <button
           className="sidebar-toggle"
