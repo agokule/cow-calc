@@ -4,6 +4,7 @@ import { IUnitStack } from "@/types/combat";
 import { applyDamage } from "./applyDamage";
 import { Unit } from "./Unit";
 import { getUnitStack } from "./getUnitStack";
+import { getUnitData } from "./getUnitData";
 
 export function getNextBattleCycle(battleCycle: IBattleCycle): { cycle?: IBattleCycle, shouldContinue: boolean } {
   const nextCombat = getNextBattleCycleCombat(battleCycle)
@@ -19,11 +20,11 @@ export function getNextBattleCycle(battleCycle: IBattleCycle): { cycle?: IBattle
   let newFromArmyUnits: Unit[] = fromArmy.units
   let newToArmyUnits: Unit[] = toArmy.units
 
-  if (nextCombat.fromAction === 'attack')
-    newToArmyUnits = applyDamage(fromArmy, toArmy, 'attack')
+  const fromArmyType = getUnitData(fromArmy.units[0].genericName, fromArmy.units[0].mode)?.doctrineVariants.Allies[0].type
 
-  if (nextCombat.fromAction === 'patrol')
-    newToArmyUnits = applyDamage(fromArmy, toArmy, 'attack', 0.5)
+  // for airplanes, the defending units deal damage first
+  if (nextCombat.fromAction === 'attack' && fromArmyType != 'Airplane')
+    newToArmyUnits = applyDamage(fromArmy, toArmy, 'attack')
 
   if (nextCombat.toAction === 'defend')
     newFromArmyUnits = applyDamage(fromArmy, toArmy, 'defend', nextCombat.fromAction === 'attack' ? 1 : 0.5)
@@ -42,6 +43,15 @@ export function getNextBattleCycle(battleCycle: IBattleCycle): { cycle?: IBattle
       newFromArmyUnits = applyDamage(toStack, fromStack, 'attack')
       newToArmyUnits = applyDamage(toStack, fromStack, 'defend')
     }
+  }
+
+  if (fromArmyType === 'Airplane' && newFromArmyUnits.length > 0) {
+    const fromStack = getUnitStack(newFromArmyUnits, fromArmy.protectionValue, fromArmy.homeDefenceBonus, fromArmy.id, fromArmy.terrain)
+
+    if (nextCombat.fromAction === 'attack')
+      newToArmyUnits = applyDamage(fromStack, toArmy, 'attack')
+    if (nextCombat.fromAction === 'patrol')
+      newToArmyUnits = applyDamage(fromStack, toArmy, 'attack', 0.5)
   }
 
   let newStackCombat = structuredClone(battleCycle.stackCombat.filter((c) => c.from !== nextCombat.from || c.to !== nextCombat.to))
