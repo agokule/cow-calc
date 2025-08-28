@@ -57,7 +57,8 @@ export function applyDamage(attacker: IUnitStack, defender: IUnitStack, toApply:
 
       (unit.hp as number) -= dmgApplied;
 
-      newUnits.push(unit)
+      if ((unit.hp as number) > 0)
+        newUnits.push(unit)
     }
   }
 
