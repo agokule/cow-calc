@@ -8,6 +8,11 @@ export function applyDamage(attacker: IUnitStack, defender: IUnitStack, toApply:
   const damageDealer = toApply === 'attack' ? attacker : defender
   const damageReciever = toApply === 'attack' ? defender : attacker
 
+  if (damageDealer.units.length === 0)
+    return damageReciever.units
+  if (damageReciever.units.length === 0)
+    return damageReciever.units
+
   for (const unitClass of UNIT_CLASSES) {
     const dmgPotential = toApply === 'attack'
       ? damageDealer.dmgPotential[unitClass].attack 
