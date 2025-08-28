@@ -48,11 +48,24 @@ export function getNextBattleCycle(battleCycle: IBattleCycle): { cycle?: IBattle
   if (fromArmyType === 'Airplane' && newFromArmyUnits.length > 0) {
     const fromStack = getUnitStack(newFromArmyUnits, fromArmy.protectionValue, fromArmy.homeDefenceBonus, fromArmy.id, fromArmy.terrain)
 
-    if (nextCombat.fromAction === 'attack')
+    if (nextCombat.fromAction === 'attack') {
       newToArmyUnits = applyDamage(fromStack, toArmy, 'attack')
-    if (nextCombat.fromAction === 'patrol')
+      newFromArmyUnits = newFromArmyUnits.filter((unit) => { 
+        const specialProperties = getUnitData(unit.genericName, unit.mode)?.doctrineVariants.Allies[0].specialProperties as string[]
+
+        return !(
+             specialProperties.includes("Single use")
+          || specialProperties.includes("Rocket")
+          || specialProperties.includes("Supersonic")
+        )
+      })
+    } else if (nextCombat.fromAction === 'patrol') {
       newToArmyUnits = applyDamage(fromStack, toArmy, 'attack', 0.5)
+    }
   }
+
+  if (fromArmyType === 'Rocket' && nextCombat.fromAction === 'attack')
+    newFromArmyUnits = []
 
   let newStackCombat = structuredClone(battleCycle.stackCombat.filter((c) => c.from !== nextCombat.from || c.to !== nextCombat.to))
   for (let combat of newStackCombat)
