@@ -1,3 +1,9 @@
+// This file was used to estimate the statistics of
+// doctrines other than Allies. It uses the specific
+// unit and overall bonusses described in the wiki
+// page below to do this
+//
+// https://wiki.callofwar.com/wiki/DOCTRINES
 import { UnitClass, Doctrine, UnitName, IUnitType, IUnitStats, IDamageModifier, ICombatStatistics, ITerrainEffects, ITerrainModifier } from "@/types";
 import { combineStats } from "@/utils/combineStats";
 import { getUnitData } from "@/utils/getUnitData";
