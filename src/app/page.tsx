@@ -4,30 +4,14 @@ import { useState, useEffect, useRef, DragEvent, useContext } from "react";
 import { UnitListsContext } from "@/context/UnitListsContext";
 import TrashIcon from '@/components/TrashIcon';
 import Tutorial from '@/components/Tutorial/Tutorial';
-import { Doctrine, IUnitStats, IUnitType, UnitType, possibleUnitNames } from "@/types";
+import { Doctrine, IUnitType, UnitType } from "@/types";
 import { unitDataCategorized } from "@/data/units";
 import Link from 'next/link';
 import UnitList from '@/components/UnitList';
 import { Unit } from "@/utils/Unit";
 import { getUnitType } from "@/utils/getUnitType";
-import { convert, normalize } from "@/data/units/synthesiser";
 
 export default function Home() {
-  for (const unit of possibleUnitNames) {
-    if (unit == "Paratroopers" || unit == "Atomic Bomb")
-      continue
-    const n = normalize("Allies", unit) as IUnitStats[]
-
-    let data: any = {}
-
-    for (const doctrine of ["Axis", "Comintern", "Pan-Asian"] as const)
-      data[doctrine] = convert(n, doctrine, unit)
-
-    console.log(unit, "data", data)
-  }
-
-  console.log('done')
-
   const [selectedUnitData, setSelectedUnitData] = useState<IUnitType | IUnitType[]>(
     unitDataCategorized.Infantry[0]
   );
