@@ -1,7 +1,6 @@
 import { UnitClass, Doctrine, UnitName, IUnitType, IUnitStats, IDamageModifier, ICombatStatistics, ITerrainEffects, ITerrainModifier } from "@/types";
 import { combineStats } from "@/utils/combineStats";
 import { getUnitData } from "@/utils/getUnitData";
-import { getUnitModes } from "@/utils/getUnitModes";
 import { round } from "@/utils/rounding";
 
 /**
@@ -282,17 +281,15 @@ export function diff(doctrine: Doctrine, unitName: UnitName) {
   return finalBuffs
 }
 
-export function normalize(doctrine: Doctrine, unit: UnitName) {
+export function normalize(doctrine: Doctrine, unit: UnitName, mode?: string) {
   let normalized: IUnitStats[] = []
 
   const overall = unitBuffs[doctrine].overall
-  if (getUnitModes(unit).length > 0)
-    return
   if (unit == "Atomic Bomb")
     return
 
   const buffs = diff(doctrine, unit)
-  const data = structuredClone(getUnitData(unit)) as IUnitType
+  const data = structuredClone(getUnitData(unit, mode)) as IUnitType
 
   for (const unitStats of data.doctrineVariants[doctrine]) {
     let newStats: IUnitStats = unitStats;
@@ -354,7 +351,7 @@ export function normalize(doctrine: Doctrine, unit: UnitName) {
   return normalized
 } 
 
-export function convert(normalizedStats: IUnitStats[], doctrine: Doctrine, unit: UnitName) {
+export function convert(normalizedStats: IUnitStats[], doctrine: Doctrine, unit: UnitName, mode?: string) {
   const converted: IUnitStats[] = []
   const overall = unitBuffs[doctrine].overall
   const buffs = diff(doctrine, unit)
@@ -406,7 +403,7 @@ export function convert(normalizedStats: IUnitStats[], doctrine: Doctrine, unit:
     }
 
     newStats.doctrine = doctrine
-    newStats.unitName = `${doctrine} ${unit} (Estimated Stats)`;
+    newStats.unitName = `${doctrine} ${unit} (${mode ? `${mode}, ` : ''}Estimated Stats)`;
 
     converted.push(newStats)
   }
