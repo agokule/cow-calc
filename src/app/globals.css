@@ -545,3 +545,38 @@ tbody tr:nth-child(even) {
   grid-row: 2;
 }
 
+/* Firefox */
+@supports (scrollbar-width: thin) {
+  body, .sidebar {
+    scrollbar-width: thin;
+    scrollbar-color: #454A4D #202324;
+  }
+}
+
+/* WebKit browsers (Chrome, Safari, Edge) */
+@supports selector(::-webkit-scrollbar) {
+  *::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+  }
+  *::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: #202324;
+  }
+  *::-webkit-scrollbar-track:hover {
+    background-color: #202324;
+  }
+  *::-webkit-scrollbar-track:active {
+    background-color: #202324;
+  }
+  *::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #454A4D;
+  }
+  *::-webkit-scrollbar-thumb:hover {
+    background-color: #858585;
+  }
+  *::-webkit-scrollbar-thumb:active {
+    background-color: #858585;
+  }
+}
