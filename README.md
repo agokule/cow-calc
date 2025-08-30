@@ -19,3 +19,5 @@ This is why I made Cow Calc, an app that does all of the math for you and displa
 <img width="804" height="884" alt="image" src="https://github.com/user-attachments/assets/2c8a2f69-1f2b-4a6e-9bdf-b3fcebce056c" />
 
 https://github.com/user-attachments/assets/64372848-1097-4f1a-861d-ab27fb448b64
+
+<img width="429" height="503" alt="Screenshot 2025-08-16 204959" src="https://github.com/user-attachments/assets/4dae0da5-58d8-4f15-9d8b-660950ce52ec" />
