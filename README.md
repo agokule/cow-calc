@@ -1,16 +1,29 @@
 # cow-calc
 
-If you don't know, Call of War is a game in which you try to conquer the world using the best possible strategy.
+Cow Calc is a companion tool for the game Call of War. (hence the name)
 
-There has been one thing about it that has annoyed me though, which are battles. It seems like you have to keep track of lots of variables like:
+If you don't know, Call of War is a realtime strategy game in which you try to conquer the world.
+
+It is a cool and unique game, but one thing that trips people up are battles.
+
+In order to win one you have to keep track of lots of variables like:
 - How much damage does this stack do?
-- What is the composition of the stack?
-- etc
+- What is the composition of the stack? (ie: 50% unarmored, 30% light armor, 20% heavy armor)
+- Are there hidden multipliers and terrain bonuses affecting the outcome?
 
-And then, after keeping track of all of this and doing all the math, this happens:
-- Oh no, that stack is in its core territory, so every calculation I did is wrong now...
+And then, after crunching the numbers, this might happen:
+- Wait why am I losing?? Oh, it's because the enemy stack is in its **core territory**, so every calculation I did was off 😭
+or
+- Wait artillery gets a **50% bonus** in hills and mountains?? So that's why my army got shredded 😭
 
-This is why I made Cow Calc, an app that does all of the math for you and displays it in a nice UI!
+This is why I made Cow Calc, a website that does all of the math for you so that you can focus on the game rather than your calculator!
+
+## Features
+
+- Displays the result in a beautiful UI
+- Accounts for damage modifiers like terrain, home defense, protection, and doctrines
+- Easy to use
+- Can handle multiple stacks fighting each other well
 
 ## Screenshots and videos
 
