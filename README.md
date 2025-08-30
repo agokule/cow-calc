@@ -34,3 +34,7 @@ This is why I made Cow Calc, a website that does all of the math for you so that
 https://github.com/user-attachments/assets/64372848-1097-4f1a-861d-ab27fb448b64
 
 <img width="429" height="503" alt="Screenshot 2025-08-16 204959" src="https://github.com/user-attachments/assets/4dae0da5-58d8-4f15-9d8b-660950ce52ec" />
+
+## Try it
+
+So what are you waiting for? Try it out [here](https://cow-calc.vercel.app/)
