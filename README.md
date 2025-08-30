@@ -4,7 +4,7 @@ Cow Calc is a companion tool for the game Call of War. (hence the name)
 
 If you don't know, Call of War is a realtime strategy game in which you try to conquer the world.
 
-It is a cool and unique game, but one thing that trips people up are battles.
+It is a cool and unique game, but there are many things that trip people up, like battles.
 
 In order to win one you have to keep track of lots of variables like:
 - How much damage does this stack do?
@@ -38,3 +38,5 @@ https://github.com/user-attachments/assets/64372848-1097-4f1a-861d-ab27fb448b64
 ## Try it
 
 So what are you waiting for? Try it out [here](https://cow-calc.vercel.app/)
+
+PS: Shout out to dxter for making [the original CoW battle calculator](https://dxcalc.com/cow)
