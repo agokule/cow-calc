@@ -4,7 +4,7 @@ Cow Calc is a companion tool for the game Call of War. (hence the name)
 
 If you don't know, Call of War is a realtime strategy game in which you try to conquer the world.
 
-It is a cool and unique game, but one thing that trips people up are battles.
+It is a cool and unique game, but there are many things that trip people up, like battles.
 
 In order to win one you have to keep track of lots of variables like:
 - How much damage does this stack do?
@@ -35,6 +35,20 @@ https://github.com/user-attachments/assets/64372848-1097-4f1a-861d-ab27fb448b64
 
 <img width="429" height="503" alt="Screenshot 2025-08-16 204959" src="https://github.com/user-attachments/assets/4dae0da5-58d8-4f15-9d8b-660950ce52ec" />
 
+## How to run locally
+
+1. Install Node.js
+2. Run the following commands:
+```bash
+git clone https://github.com/agokule/cow-calc.git
+cd cow-calc
+npm install
+npm run dev
+```
+3. Open `http://localhost:3000` in your web browser
+
 ## Try it
 
 So what are you waiting for? Try it out [here](https://cow-calc.vercel.app/)
+
+PS: Shout out to dxter for making [the original CoW battle calculator](https://dxcalc.com/cow)
