@@ -46,7 +46,7 @@ export default function Tutorial() {
         </p>
         <p>You can check for these by clicking on a unit in the sidebar</p>
         <p>If you notice something that's wrong, and you know how to code, feel free to make a <a href="https://github.com/agokule/cow-calc/pulls">pull request </a></p>
-        <p>If you notice any bugs, feel fre to report them <a href="https://github.com/agokule/cow-calc/issues">here</a></p>
+        <p>If you notice any bugs, feel free to report them <a href="https://github.com/agokule/cow-calc/issues">here</a></p>
         <button className="tutorial-button" onClick={handleClose}>
           Got it, don't show this again.
         </button>
