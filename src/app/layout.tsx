@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Cow Calc",
-  description: "A new Call of War battle calculator",
+  description: "A new Call of War battle calculator, alternative to dxcalc",
 };
 
 export default function RootLayout({
@@ -25,6 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <meta name="google-site-verification" content="WUSYAGml9ozuLxtQ4Avy0qtgvabeIJAc9B9HcSE24lM" />
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
