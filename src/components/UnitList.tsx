@@ -4,6 +4,7 @@ import { getAvailableDoctrines } from "@/utils/getUnitDoctrines";
 import { Doctrine, IUnitType, UnitType } from "@/types";
 import { Unit } from "@/utils/Unit";
 import { getUnitType } from "@/utils/getUnitType";
+import { useIsMobile } from "@/utils/isOnMobile";
 
 interface UnitListProps {
   units: Unit[];
@@ -19,6 +20,7 @@ interface UnitListProps {
 }
 
 const UnitList = ({ units, onDrop, onDragOver, onDelete, onDoctrineChange, onLevelChange, onQuantityChange, onHpChange, toggleAddMode, addModeState }: UnitListProps) => {
+  const isOnMobile = useIsMobile();
   return (
     <div className="unit-list-container" onDrop={onDrop} onDragOver={onDragOver}>
       {units.length > 0 && (
@@ -35,7 +37,17 @@ const UnitList = ({ units, onDrop, onDragOver, onDelete, onDoctrineChange, onLev
 
             return (
               <li key={index}>
-                <span>{unit.genericName} {unit.mode && `(${unit.mode})`} ({unit.category})</span>
+                <div className="unit-card-header">
+                  <div>
+                    <span className="unit-name">{unit.genericName}{unit.mode && ` (${unit.mode})`}</span>
+                    <span className="unit-meta"> ({unit.category})</span>
+                  </div>
+                  {
+                    isOnMobile ?
+                    <button onClick={() => onDelete(index)} className="delete-btn" aria-label="Delete unit">&times;</button>
+                    : null
+                  }
+                </div>
                 <div className="unit-controls">
                   <select value={unit.doctrine} onChange={(e) => onDoctrineChange(index, e.target.value as Doctrine)}>
                     {availableDoctrines.map(d => <option key={d} value={d}>{d}</option>)}
@@ -48,17 +60,19 @@ const UnitList = ({ units, onDrop, onDragOver, onDelete, onDoctrineChange, onLev
                   <input type="number" value={unit.quantity} onChange={(e) => onQuantityChange(index, parseInt(e.target.value))} min="1" />
                   <p>HP: </p>
                   <input type="text" value={unit.hp} onChange={(e) => onHpChange(index, e.target.value)} />
-                  <button onClick={() => onDelete(index)} className="delete-btn">&times;</button>
+                  {
+                    !isOnMobile ?
+                    <button onClick={() => onDelete(index)} className="delete-btn" aria-label="Delete unit">&times;</button>
+                    : null
+                  }
                 </div>
               </li>
             );
           })}
         </ul>
-        {
-          <button onClick={toggleAddMode}>
-            {addModeState ? "Stop Adding" : "Add to this Stack"}
-          </button>
-        }
+        <button className="add-stack-btn" onClick={toggleAddMode}>
+          {addModeState ? "Stop Adding" : "Add to this Stack"}
+        </button>
       </div>
     </div>
   );
