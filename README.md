@@ -33,6 +33,8 @@ This is why I made Cow Calc, a website that does all of the math for you so that
 
 https://github.com/user-attachments/assets/64372848-1097-4f1a-861d-ab27fb448b64
 
+https://github.com/user-attachments/assets/475fbf11-c612-4062-894c-94193bfa4b01
+
 <img width="429" height="503" alt="Screenshot 2025-08-16 204959" src="https://github.com/user-attachments/assets/4dae0da5-58d8-4f15-9d8b-660950ce52ec" />
 
 ## How to run locally
