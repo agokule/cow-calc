@@ -14,9 +14,11 @@ interface UnitListProps {
   onLevelChange: (unitIndex: number, level: number) => void;
   onQuantityChange: (unitIndex: number, quantity: number) => void;
   onHpChange: (unitIndex: number, hp: string) => void;
+  toggleAddMode: () => void;
+  addModeState: boolean;
 }
 
-const UnitList = ({ units, onDrop, onDragOver, onDelete, onDoctrineChange, onLevelChange, onQuantityChange, onHpChange }: UnitListProps) => {
+const UnitList = ({ units, onDrop, onDragOver, onDelete, onDoctrineChange, onLevelChange, onQuantityChange, onHpChange, toggleAddMode, addModeState }: UnitListProps) => {
   return (
     <div className="unit-list-container" onDrop={onDrop} onDragOver={onDragOver}>
       {units.length > 0 && (
@@ -52,6 +54,12 @@ const UnitList = ({ units, onDrop, onDragOver, onDelete, onDoctrineChange, onLev
             );
           })}
         </ul>
+        {
+          addModeState ?
+            <button onClick={toggleAddMode}>Stop Adding</button>
+            :
+          <button onClick={toggleAddMode}>Add to this Stack</button>
+        }
       </div>
     </div>
   );

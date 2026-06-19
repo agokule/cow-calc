@@ -281,6 +281,7 @@ tbody tr:nth-child(even) {
   position: sticky;
   top: 0;
   max-height: 100vh;
+  max-width: 65%;
   overflow-y: auto;
 }
 
@@ -309,7 +310,7 @@ tbody tr:nth-child(even) {
   margin: 0.5rem 0 0 0;
 }
 
-.sidebar a {
+.sidebar :is(a, button) {
   display: block;
   width: 100%;
   text-align: left;
@@ -324,12 +325,10 @@ tbody tr:nth-child(even) {
   text-decoration: none;
 }
 
-.sidebar a:hover {
+.sidebar :is(a:hover, button:hover) {
   background-color: #4f4f4f;
   color: white;
 }
-
-
 
 .content {
   flex: 1;

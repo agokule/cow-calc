@@ -10,16 +10,25 @@ import Link from 'next/link';
 import UnitList from '@/components/UnitList';
 import { Unit } from "@/utils/Unit";
 import { getUnitType } from "@/utils/getUnitType";
+import { useIsMobile } from "@/utils/isOnMobile";
 
 type UnitListType = "you" | "enemy"
+
+interface AddModeData {
+  listIndex: number;
+  listType: UnitListType;
+};
 
 export default function Home() {
   const [selectedUnitData, setSelectedUnitData] = useState<IUnitType | IUnitType[]>(
     unitDataCategorized.Infantry[0]
   );
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [addMode, setAddMode] = useState<AddModeData | null>(null);
   const sidebarRef = useRef<HTMLElement>(null);
   const sidebarToggleRef = useRef<HTMLButtonElement>(null);
+
+  const isOnMobile = useIsMobile();
 
   const { yourUnitLists, setYourUnitLists, enemyUnitLists, setEnemyUnitLists } = useContext(UnitListsContext)!;
 
@@ -45,6 +54,20 @@ export default function Home() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isSidebarOpen]);
+
+  useEffect(() => {
+    console.log("sidebar", addMode, isSidebarOpen)
+
+    if (addMode && !isSidebarOpen && isOnMobile)
+      setAddMode(null);
+  }, [isSidebarOpen])
+
+  useEffect(() => {
+    console.log("addmode", addMode, isSidebarOpen)
+
+    if (addMode && !isSidebarOpen && isOnMobile)
+      setIsSidebarOpen(true);
+  }, [addMode])
 
   // so that when we move from the connections page
   // back here, it doesn't show duplicated items
@@ -73,10 +96,7 @@ export default function Home() {
     e.preventDefault();
   };
 
-  const handleDrop = (e: DragEvent<HTMLDivElement>, listType: UnitListType, listIndex: number) => {
-    e.preventDefault();
-    const newUnit: Unit = JSON.parse(e.dataTransfer.getData("application/json"));
-
+  const addUnit = (listType: UnitListType, listIndex: number, newUnit: Unit) => {
     const lists = listType === "you" ? yourUnitLists : enemyUnitLists;
     const setLists = listType === "you" ? setYourUnitLists : setEnemyUnitLists;
 
@@ -95,6 +115,12 @@ export default function Home() {
     const newLists = [...lists];
     newLists[listIndex] = [...currentList, newUnit];
     setLists(newLists);
+  };
+
+  const handleDrop = (e: DragEvent<HTMLDivElement>, listType: UnitListType, listIndex: number) => {
+    e.preventDefault();
+    const newUnit: Unit = JSON.parse(e.dataTransfer.getData("application/json"));
+    addUnit(listType, listIndex, newUnit);
   };
 
   const handleDelete = (listIndex: number, unitIndex: number, listType: UnitListType) => {
@@ -202,6 +228,15 @@ export default function Home() {
         </button>
         <nav className={`sidebar ${isSidebarOpen ? 'open' : ''}`} ref={sidebarRef}>
           <h2>Unit Browser</h2>
+          {
+            addMode ?
+            (
+              <p style={{display : 'inline'}}>
+              Add Mode enabled, click on units here to add them to the stack/list.
+              To exit add mode, simply close the sidebar, or click on one of the "Stop Adding" buttons
+              </p>
+            ) : null
+          }
           {Object.entries(unitDataCategorized).map(([category, units]) => (
             <div key={category} className="sidebar-category">
               <h3>{category}</h3>
@@ -213,14 +248,23 @@ export default function Home() {
                   const modeSlug = mode ? `?mode=${mode.toLowerCase().replace(/ /g, '-')}` : '';
                   const currentUnitName = Array.isArray(selectedUnitData) ? selectedUnitData[0].genericName : selectedUnitData.genericName;
 
+                  const newUnit: Unit = { category, genericName: unitName, quantity: 1, mode, hp: "100%", doctrine: "Allies", level: 1 };
+
                   return (
                     <li key={unitName + (mode || '')}>
-                      <Link href={`/unit/${slug}${modeSlug}`} passHref target="_blank" className={unitName === currentUnitName ? 'active' : ''}
-                        onClick={() => setSelectedUnitData(unitData)}
-                        draggable
-                        onDragStart={(e) => handleDragStart(e, { category, genericName: unitName, quantity: 1, mode, hp: "100%", doctrine: "Allies", level: 1 })}>
-                          {unitName} {mode && `(${mode})`}
-                      </Link>
+                      {
+                        addMode ?
+                          (<button onClick={() => addUnit(addMode.listType, addMode.listIndex, newUnit)} className={unitName === currentUnitName ? 'active' : ''}>
+                            {unitName} {mode && `(${mode})`}
+                          </button>)
+                          :
+                        (<Link href={`/unit/${slug}${modeSlug}`} passHref target="_blank" className={unitName === currentUnitName ? 'active' : ''}
+                          onClick={() => setSelectedUnitData(unitData)}
+                          draggable
+                          onDragStart={(e) => handleDragStart(e, newUnit)}>
+                            {unitName} {mode && `(${mode})`}
+                        </Link>)
+                      }
                     </li>
                   );
                 })}
@@ -244,6 +288,13 @@ export default function Home() {
                     onLevelChange={(unitIndex, level) => handleLevelChange(index, unitIndex, level, id)}
                     onQuantityChange={(unitIndex, quantity) => handleQuantityChange(index, unitIndex, quantity, id)}
                     onHpChange={(unitIndex, hp) => handleHpChange(index, unitIndex, hp, id)}
+                    toggleAddMode={() => {
+                      if (addMode)
+                        setAddMode(null);
+                      else
+                        setAddMode({listType: id, listIndex: index});
+                    }}
+                    addModeState={addMode ? true : false}
                   />
                   <button onClick={() => deleteUnitList(index, id)} className="delete-list-btn">
                     <TrashIcon />
