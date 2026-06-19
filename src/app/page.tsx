@@ -11,6 +11,8 @@ import UnitList from '@/components/UnitList';
 import { Unit } from "@/utils/Unit";
 import { getUnitType } from "@/utils/getUnitType";
 
+type UnitListType = "you" | "enemy"
+
 export default function Home() {
   const [selectedUnitData, setSelectedUnitData] = useState<IUnitType | IUnitType[]>(
     unitDataCategorized.Infantry[0]
@@ -71,7 +73,7 @@ export default function Home() {
     e.preventDefault();
   };
 
-  const handleDrop = (e: DragEvent<HTMLDivElement>, listType: "you" | "enemy", listIndex: number) => {
+  const handleDrop = (e: DragEvent<HTMLDivElement>, listType: UnitListType, listIndex: number) => {
     e.preventDefault();
     const newUnit: Unit = JSON.parse(e.dataTransfer.getData("application/json"));
 
@@ -95,7 +97,7 @@ export default function Home() {
     setLists(newLists);
   };
 
-  const handleDelete = (listIndex: number, unitIndex: number, listType: "you" | "enemy") => {
+  const handleDelete = (listIndex: number, unitIndex: number, listType: UnitListType) => {
     if (listType === "you") {
       const newLists = [...yourUnitLists];
       newLists[listIndex].splice(unitIndex, 1);
@@ -107,7 +109,7 @@ export default function Home() {
     }
   };
 
-  const addUnitList = (listType: "you" | "enemy") => {
+  const addUnitList = (listType: UnitListType) => {
     if (listType === "you") {
       setYourUnitLists([...yourUnitLists, []]);
     } else {
@@ -115,7 +117,7 @@ export default function Home() {
     }
   };
 
-  const deleteUnitList = (listIndex: number, listType: "you" | "enemy") => {
+  const deleteUnitList = (listIndex: number, listType: UnitListType) => {
     if (listType === "you") {
       const newLists = [...yourUnitLists];
       newLists.splice(listIndex, 1);
@@ -128,7 +130,7 @@ export default function Home() {
   };
 
   type UnitKey = (keyof Unit)
-  const editUnitProperty = <K extends UnitKey>(listIndex: number, unitIndex: number, listType: "you" | "enemy", property: K, newValue: Unit[K]) => {
+  const editUnitProperty = <K extends UnitKey>(listIndex: number, unitIndex: number, listType: UnitListType, property: K, newValue: Unit[K]) => {
     if (listType === "you") {
       const newLists = [...yourUnitLists];
       newLists[listIndex][unitIndex][property] = newValue;
@@ -140,7 +142,7 @@ export default function Home() {
     }
   }
 
-  const handleDoctrineChange = (listIndex: number, unitIndex: number, doctrine: Doctrine, listType: "you" | "enemy") => {
+  const handleDoctrineChange = (listIndex: number, unitIndex: number, doctrine: Doctrine, listType: UnitListType) => {
      if (listType === "you") {
       const newLists = [...yourUnitLists];
       newLists[listIndex][unitIndex].doctrine = doctrine;
@@ -152,7 +154,7 @@ export default function Home() {
     }
   };
 
-  const handleLevelChange = (listIndex: number, unitIndex: number, level: number, listType: "you" | "enemy") => {
+  const handleLevelChange = (listIndex: number, unitIndex: number, level: number, listType: UnitListType) => {
     if (listType === "you") {
       const newLists = [...yourUnitLists];
       newLists[listIndex][unitIndex].level = level;
@@ -164,7 +166,7 @@ export default function Home() {
     }
   };
 
-  const handleQuantityChange = (listIndex: number, unitIndex: number, quantity: number, listType: "you" | "enemy") => {
+  const handleQuantityChange = (listIndex: number, unitIndex: number, quantity: number, listType: UnitListType) => {
     if (listType === "you") {
       const newLists = [...yourUnitLists];
       newLists[listIndex][unitIndex].quantity = quantity;
@@ -176,7 +178,7 @@ export default function Home() {
     }
   };
 
-  const handleHpChange = (listIndex: number, unitIndex: number, hp: string, listType: "you" | "enemy") => {
+  const handleHpChange = (listIndex: number, unitIndex: number, hp: string, listType: UnitListType) => {
     editUnitProperty(listIndex, unitIndex, listType, "hp", hp)
   }
 
@@ -228,48 +230,29 @@ export default function Home() {
         </nav>
 
         <div className="content">
-          <div className="unit-list-wrapper">
-            <h2>You</h2>
-            {yourUnitLists.map((units, index) => (
-              <div key={index} className="unit-list-item">
-                <UnitList
-                  units={units}
-                  onDrop={(e) => handleDrop(e, "you", index)}
-                  onDragOver={handleDragOver}
-                  onDelete={(unitIndex) => handleDelete(index, unitIndex, "you")}
-                  onDoctrineChange={(unitIndex, doctrine) => handleDoctrineChange(index, unitIndex, doctrine, "you")}
-                  onLevelChange={(unitIndex, level) => handleLevelChange(index, unitIndex, level, "you")}
-                  onQuantityChange={(unitIndex, quantity) => handleQuantityChange(index, unitIndex, quantity, "you")}
-                  onHpChange={(unitIndex, hp) => handleHpChange(index, unitIndex, hp, "you")}
-                />
-                <button onClick={() => deleteUnitList(index, "you")} className="delete-list-btn">
-                  <TrashIcon />
-                </button>
-              </div>
-            ))}
-            <button onClick={() => addUnitList("you")} className="add-list-btn">+ Add Unit List</button>
-          </div>
-          <div className="unit-list-wrapper">
-            <h2>Enemy</h2>
-            {enemyUnitLists.map((units, index) => (
-              <div key={index} className="unit-list-item">
-                <UnitList
-                  units={units}
-                  onDrop={(e) => handleDrop(e, "enemy", index)}
-                  onDragOver={handleDragOver}
-                  onDelete={(unitIndex) => handleDelete(index, unitIndex, "enemy")}
-                  onDoctrineChange={(unitIndex, doctrine) => handleDoctrineChange(index, unitIndex, doctrine, "enemy")}
-                  onLevelChange={(unitIndex, level) => handleLevelChange(index, unitIndex, level, "enemy")}
-                  onQuantityChange={(unitIndex, quantity) => handleQuantityChange(index, unitIndex, quantity, "enemy")}
-                  onHpChange={(unitIndex, hp) => handleHpChange(index, unitIndex, hp, "enemy")}
-                />
-                <button onClick={() => deleteUnitList(index, "enemy")} className="delete-list-btn">
-                  <TrashIcon />
-                </button>
-              </div>
-            ))}
-            <button onClick={() => addUnitList("enemy")} className="add-list-btn">+ Add Unit List</button>
-          </div>
+          {(['you', 'enemy'] as const).map((id: UnitListType) => (
+            <div className="unit-list-wrapper">
+              <h2>{id.replace(/\b\w/g, char => char.toUpperCase())}</h2>
+              {(id == "you" ? yourUnitLists : enemyUnitLists).map((units, index) => (
+                <div key={index} className="unit-list-item">
+                  <UnitList
+                    units={units}
+                    onDrop={(e) => handleDrop(e, id, index)}
+                    onDragOver={handleDragOver}
+                    onDelete={(unitIndex) => handleDelete(index, unitIndex, id)}
+                    onDoctrineChange={(unitIndex, doctrine) => handleDoctrineChange(index, unitIndex, doctrine, id)}
+                    onLevelChange={(unitIndex, level) => handleLevelChange(index, unitIndex, level, id)}
+                    onQuantityChange={(unitIndex, quantity) => handleQuantityChange(index, unitIndex, quantity, id)}
+                    onHpChange={(unitIndex, hp) => handleHpChange(index, unitIndex, hp, id)}
+                  />
+                  <button onClick={() => deleteUnitList(index, id)} className="delete-list-btn">
+                    <TrashIcon />
+                  </button>
+                </div>
+              ))}
+              <button onClick={() => addUnitList(id)} className="add-list-btn">+ Add Unit List</button>
+            </div>
+          ))}
         </div>
       </div>
     </main>
