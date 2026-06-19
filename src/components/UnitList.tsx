@@ -55,10 +55,9 @@ const UnitList = ({ units, onDrop, onDragOver, onDelete, onDoctrineChange, onLev
           })}
         </ul>
         {
-          addModeState ?
-            <button onClick={toggleAddMode}>Stop Adding</button>
-            :
-          <button onClick={toggleAddMode}>Add to this Stack</button>
+          <button onClick={toggleAddMode}>
+            {addModeState ? "Stop Adding" : "Add to this Stack"}
+          </button>
         }
       </div>
     </div>
