@@ -63,7 +63,7 @@ export default function Home() {
     setYourUnitLists(newYourUnitLists)
   }, [])
 
-  const handleDragStart = (e: DragEvent<HTMLAnchorElement>, unit: Omit<Unit, 'doctrine' | 'level'>) => {
+  const handleDragStart = (e: DragEvent<HTMLAnchorElement>, unit: Unit) => {
     e.dataTransfer.setData("application/json", JSON.stringify(unit));
   };
 
@@ -73,8 +73,7 @@ export default function Home() {
 
   const handleDrop = (e: DragEvent<HTMLDivElement>, listType: "you" | "enemy", listIndex: number) => {
     e.preventDefault();
-    const unit = JSON.parse(e.dataTransfer.getData("application/json"));
-    const newUnit: Unit = { ...unit, doctrine: "Allies", level: 1, quantity: 1, hp: "100%" };
+    const newUnit: Unit = JSON.parse(e.dataTransfer.getData("application/json"));
 
     const lists = listType === "you" ? yourUnitLists : enemyUnitLists;
     const setLists = listType === "you" ? setYourUnitLists : setEnemyUnitLists;
@@ -217,7 +216,7 @@ export default function Home() {
                       <Link href={`/unit/${slug}${modeSlug}`} passHref target="_blank" className={unitName === currentUnitName ? 'active' : ''}
                         onClick={() => setSelectedUnitData(unitData)}
                         draggable
-                        onDragStart={(e) => handleDragStart(e, { category, genericName: unitName, quantity: 1, mode, hp: "100%" })}>
+                        onDragStart={(e) => handleDragStart(e, { category, genericName: unitName, quantity: 1, mode, hp: "100%", doctrine: "Allies", level: 1 })}>
                           {unitName} {mode && `(${mode})`}
                       </Link>
                     </li>
