@@ -33,8 +33,14 @@ export default function Tutorial() {
         <h2>Welcome to Cow Calc!</h2>
         <p>This is a tutorial to help you get started:</p>
         <ol>
-          <li>Use the sidebar to browse units</li>
-          <li>Drag and drop them to the blank sections</li>
+          <li>Add units to the unit stacks by either:
+            <ul>
+
+              <li>Drag and drop units from the sidebar to the blank sections</li>
+
+              <li>Click one of the "Add to this Stack" buttons click on units in the sidebar.</li>
+            </ul>
+          </li>
           <li>Adjust unit properties using the dropdowns</li>
           <li>Click "Connections" to set which units battle each other</li>
           <li>Finally, press "Start Battle Calculation" and "Finish" to see if you will win!</li>
