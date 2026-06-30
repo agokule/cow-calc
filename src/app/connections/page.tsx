@@ -18,6 +18,8 @@ import { createInitialBattleCycle, NodeDataConnections } from '@/utils/createIni
 import { getNextBattleCycle } from '@/utils/getNextBattleCycle';
 import { IBattleCycle } from '@/types/battleCalculations';
 import { secondsToDuration } from '@/utils/secondsToDuration';
+import { Unit } from '@/utils/Unit';
+import { toTitleCase } from '@/utils/toTitleCase';
 
 const nodeTypes = { unitList: UnitListNode } as const;
 const edgeTypes = { action: ActionEdge } as const;
@@ -65,52 +67,41 @@ const ConnectionsPage = () => {
   }
 
   useEffect(() => {
-    const yourNodes: NodeDataConnections[] = yourUnitLists.map((units, index) => {
-      for (let unit of units) {
-        const data = getUnitData(unit.genericName, unit.mode) as IUnitType
+    // Helper function to process unit lists and generate node data
+    const createNodes = (
+      unitLists: Unit[][],
+      prefix: 'your' | 'enemy',
+      xPosition: number
+    ): NodeDataConnections[] => {
+      return unitLists.map((units, index) => {
+        for (let unit of units) {
+          const data = getUnitData(unit.genericName, unit.mode) as IUnitType;
+          const maxHP = data.doctrineVariants[unit.doctrine][unit.level - 1].hitpoints;
+          unit.maxHp = maxHP;
 
-        const maxHP = data.doctrineVariants[unit.doctrine][unit.level - 1].hitpoints
-        unit.maxHp = maxHP
+          if (typeof unit.hp === "string") {
+            unit.hp = stringToNumber(unit.hp, maxHP);
+          }
+        }
 
-        if (typeof unit.hp === "string")
-          unit.hp = stringToNumber(unit.hp as string, maxHP)
-      }
-      const id: StackId = `your-${index}` as StackId;
-      return {
-        id: id,
-        type: 'unitList',
-        position: { x: 100, y: 100 + index * 200 },
-        data: {
-          label: `Your Unit List ${index + 1}`,
-          stack: getUnitStack(units, 0, false, id, 'Plains'),
-          openArmyInfo: selectArmyGroup,
-          onTerrainChange: selectTerrain
-        },
-      }
-    });
+        const id: StackId = `${prefix}-${index}` as StackId;
 
-    const enemyNodes: NodeDataConnections[] = enemyUnitLists.map((units, index) => {
-      for (let unit of units) {
-        const data = getUnitData(unit.genericName, unit.mode) as IUnitType
-        const maxHP = data.doctrineVariants[unit.doctrine][unit.level - 1].hitpoints
-        unit.maxHp = maxHP
+        return {
+          id,
+          type: 'unitList',
+          position: { x: xPosition, y: 100 + index * 200 },
+          data: {
+            label: `${toTitleCase(prefix)} Unit List ${index + 1}`,
+            stack: getUnitStack(units, 0, false, id, 'Plains'),
+            openArmyInfo: selectArmyGroup,
+            onTerrainChange: selectTerrain
+          },
+        };
+      });
+    };
 
-        if (typeof unit.hp === "string")
-          unit.hp = stringToNumber(unit.hp as string, maxHP)
-      }
-      const id: StackId = `enemy-${index}` as StackId;
-      return {
-        id: id,
-        type: 'unitList',
-        position: { x: 500, y: 100 + index * 200 },
-        data: {
-          label: `Enemy Unit List ${index + 1}`,
-          stack: getUnitStack(units, 0, false, id, 'Plains'),
-          openArmyInfo: selectArmyGroup,
-          onTerrainChange: selectTerrain
-        },
-      }
-    });
+    const yourNodes = createNodes(yourUnitLists, 'your', 100);
+    const enemyNodes = createNodes(enemyUnitLists, 'enemy', 500);
 
     setNodes([...yourNodes, ...enemyNodes]);
   }, []);
