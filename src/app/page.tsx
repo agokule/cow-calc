@@ -281,7 +281,7 @@ export default function Home() {
 
         <div className="content">
           {(['you', 'enemy'] as const).map((id: UnitListType) => (
-            <div className="unit-list-wrapper">
+            <div key={id} className="unit-list-wrapper">
               <h2>{id.replace(/\b\w/g, char => char.toUpperCase())}</h2>
               {(id == "you" ? yourUnitLists : enemyUnitLists).map((units, index) => (
                 <div key={index} className="unit-list-item">
