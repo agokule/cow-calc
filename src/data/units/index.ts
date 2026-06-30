@@ -4,6 +4,7 @@ import { motorizedInfantryData } from './infantry/motorizedInfantry';
 import { mechanizedInfantryData } from './infantry/mechanizedInfantry';
 import { commandosData } from './infantry/commandos';
 import { paratrooperData } from './infantry/paratroopers';
+import { sniperData } from './infantry/sniper';
 
 import { antiTankData } from './ordnance/antiTank';
 import { artilleryData } from './ordnance/artillery';
@@ -16,6 +17,8 @@ import { lightTankData } from './tanks/lightTank';
 import { mediumTankData } from './tanks/mediumTank';
 import { heavyTankData } from './tanks/heavyTank';
 import { tankDestroyerData } from './tanks/tankDestroyer';
+import { flameTankData } from './tanks/flameTank';
+import { amphibiousTankData } from './tanks/amphibiousTank';
 
 import { interceptorData } from './air/interceptor';
 import { tacticalBomberData } from './air/tacticalBomber';
@@ -48,6 +51,7 @@ export const unitDataCategorized = {
     mechanizedInfantryData,
     commandosData,
     ...paratrooperData,
+    sniperData
   ],
   Ordnance: [
     antiTankData,
@@ -62,6 +66,8 @@ export const unitDataCategorized = {
     mediumTankData,
     heavyTankData,
     tankDestroyerData,
+    flameTankData,
+    amphibiousTankData
   ],
   Air: [
     interceptorData,

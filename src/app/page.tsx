@@ -4,13 +4,14 @@ import { useState, useEffect, useRef, DragEvent, useContext } from "react";
 import { UnitListsContext } from "@/context/UnitListsContext";
 import TrashIcon from '@/components/TrashIcon';
 import Tutorial from '@/components/Tutorial/Tutorial';
-import { Doctrine, IUnitType, UnitType } from "@/types";
+import { Doctrine, IUnitType, UnitName, UnitType } from "@/types";
 import { unitDataCategorized } from "@/data/units";
 import Link from 'next/link';
 import UnitList from '@/components/UnitList';
 import { Unit } from "@/utils/Unit";
 import { getUnitType } from "@/utils/getUnitType";
 import { useIsMobile } from "@/utils/isOnMobile";
+import { NewBadge } from "@/components/NewBadge";
 
 type UnitListType = "you" | "enemy"
 
@@ -20,6 +21,8 @@ interface AddModeData {
 };
 
 export default function Home() {
+  const newUnits: UnitName[] = ['Sniper', 'Flame Tank', 'Amphibious Tank'] as const
+
   const [selectedUnitData, setSelectedUnitData] = useState<IUnitType | IUnitType[]>(
     unitDataCategorized.Infantry[0]
   );
@@ -251,7 +254,7 @@ export default function Home() {
                   const newUnit: Unit = { category, genericName: unitName, quantity: 1, mode, hp: "100%", doctrine: "Allies", level: 1 };
 
                   return (
-                    <li key={unitName + (mode || '')}>
+                    <li key={unitName + (mode || '')} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                       {
                         addMode ?
                           (<button onClick={() => addUnit(addMode.listType, addMode.listIndex, newUnit)} className={unitName === currentUnitName ? 'active' : ''}>
@@ -264,6 +267,9 @@ export default function Home() {
                           onDragStart={(e) => handleDragStart(e, newUnit)}>
                             {unitName} {mode && `(${mode})`}
                         </Link>)
+                      }
+                      {
+                        (newUnits.includes(unitName)) && <NewBadge/>
                       }
                     </li>
                   );

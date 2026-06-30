@@ -125,7 +125,10 @@ export interface IUnitStats {
   terrainEffects: ITerrainEffects;
 }
 
+// HELP NEEDED, Marines are missing, if someone could add data for it,
+// that would be nice
 export const possibleUnitNames = [
+  "Sniper", // booster only
   "Militia",
   "Infantry",
   "Motorized Infantry",
@@ -142,6 +145,8 @@ export const possibleUnitNames = [
   "Medium Tank",
   "Heavy Tank",
   "Tank Destroyer",
+  "Flame Tank", // booster only
+  "Amphibious Tank", // booster only
   "Interceptor",
   "Tactical Bomber",
   "Attack Bomber",
