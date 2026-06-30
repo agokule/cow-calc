@@ -9,7 +9,7 @@ import UnitListNode from '@/components/UnitListNode';
 import ActionEdge, { stackCombatsToActionEdges, type ActionEdgeData } from '@/components/ActionEdge';
 import { stringToNumber } from '@/utils/stringToNumber';
 import { getUnitData } from '@/utils/getUnitData';
-import { IUnitType, Terrain } from '@/types';
+import { IUnitType, Terrain, UnitListType } from '@/types';
 import { getUnitStack } from '@/utils/getUnitStack';
 import { StackId } from '@/types/combat';
 import { ArmyInfoDialog } from '@/components/ArmyInfoDialog';

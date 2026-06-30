@@ -1,7 +1,7 @@
 import { memo, useState } from 'react';
 import { Handle, Position } from 'reactflow';
 import { getUnitType } from '@/utils/getUnitType';
-import { Terrain, terrains, UnitName, UnitType } from '@/types';
+import { Terrain, terrains, UnitListType, UnitName, UnitType } from '@/types';
 import { toTitleCase } from '@/utils/toTitleCase';
 import HealthBar from './HealthPoints';
 import { StackId } from "@/types/combat";
@@ -12,6 +12,7 @@ const UnitListNode = ({ data, id }: { data: NodeData, id: StackId }) => {
   const [terrain, setTerrain] = useState<Terrain>(data.stack.terrain)
 
   const firstUnit = data.stack.units[0];
+  const listType: UnitListType = data.label.includes("Your") ? "you" : "enemy";
   const firstType = firstUnit ? getUnitType(firstUnit.genericName, firstUnit.mode) : undefined;
   const listTypeLabel =
     !firstUnit ? 'Empty' : firstType !== undefined ? toTitleCase(UnitType[firstType]) : 'Unknown';
@@ -26,7 +27,7 @@ const UnitListNode = ({ data, id }: { data: NodeData, id: StackId }) => {
   }
 
   return (
-    <div className="react-flow__node-default unit-list-node" style={{ padding: 10, minWidth: 150, backgroundColor: "#3f3f3f"}}>
+    <div className={`react-flow__node-default unit-list-node ${listType}`} style={{ padding: 10, minWidth: 150 }}>
       <Handle type="target" position={Position.Top} />
       <div style={{ fontSize: 12, color: '#bbb', marginBottom: 4 }}>{listTypeLabel}</div>
       <div>

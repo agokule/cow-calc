@@ -192,3 +192,6 @@ export interface IUnitType {
   /** An optional descriptor for multi-mode units (ie: Paratroopers, they can be in the air and on the ground) */
   mode?: string;
 }
+
+export type UnitListType = "you" | "enemy"
+

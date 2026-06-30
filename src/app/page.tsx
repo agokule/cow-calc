@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, DragEvent, useContext } from "react";
 import { UnitListsContext } from "@/context/UnitListsContext";
 import TrashIcon from '@/components/TrashIcon';
 import Tutorial from '@/components/Tutorial/Tutorial';
-import { Doctrine, IUnitType, UnitName, UnitType } from "@/types";
+import { UnitListType, Doctrine, IUnitType, UnitName, UnitType } from "@/types";
 import { unitDataCategorized } from "@/data/units";
 import Link from 'next/link';
 import UnitList from '@/components/UnitList';
@@ -12,8 +12,6 @@ import { Unit } from "@/utils/Unit";
 import { getUnitType } from "@/utils/getUnitType";
 import { useIsMobile } from "@/utils/isOnMobile";
 import { NewBadge } from "@/components/NewBadge";
-
-type UnitListType = "you" | "enemy"
 
 interface AddModeData {
   listIndex: number;

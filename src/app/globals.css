@@ -556,6 +556,14 @@ tbody tr:nth-child(even) {
   color: black;
 }
 
+.you.you {
+  background-color: #2c5ea3;
+}
+
+.enemy.enemy {
+  background-color: #a33c2c;
+}
+
 .edge-time-options {
   grid-row: 1;
 }
