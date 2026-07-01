@@ -14,7 +14,9 @@ export function stringToNumber(str: string, total: number): number {
   }
 
   let x = Number(str)
-  if (x > total)
-    throw new Error("Inputted number greater than maximum")
+  if (x > total) {
+    console.warn("Inputted number greater than maximum, inputted", str, total)
+    x = total
+  }
   return x
 }

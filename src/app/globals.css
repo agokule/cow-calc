@@ -485,6 +485,11 @@ tbody tr:nth-child(even) {
   color: #ccc;
 }
 
+.unit-controls .short-input {
+  width: 6ch;
+  padding: .3rem .1rem;
+}
+
 .unit-list-category {
   text-align: center;
   font-size: 1.2rem;

@@ -5,6 +5,7 @@ import { Doctrine, IUnitType, UnitType } from "@/types";
 import { Unit } from "@/utils/Unit";
 import { getUnitType } from "@/utils/getUnitType";
 import { useIsMobile } from "@/utils/isOnMobile";
+import { stringToNumber } from "@/utils/stringToNumber";
 
 interface UnitListProps {
   units: Unit[];
@@ -35,6 +36,17 @@ const UnitList = ({ units, onDrop, onDragOver, onDelete, onDoctrineChange, onLev
             const availableDoctrines = getAvailableDoctrines(unitData as IUnitType);
             const availableLevels = unitData ? unitData.doctrineVariants[unit.doctrine].map(l => l.level) : [];
 
+            const deleteBtn = () => {
+              return <button onClick={() => onDelete(index)} className="delete-btn" aria-label="Delete unit">&times;</button>;
+            }
+
+            const maxHpPerUnit = unitData?.doctrineVariants[unit.doctrine][unit.level - 1].hitpoints as number
+
+            if (typeof unit.hp === "number") {
+              unit.hp = `${unit.hp / maxHpPerUnit * 100}%`
+            }
+            const hpValuePerUnit: number = stringToNumber(unit.hp as string, maxHpPerUnit) 
+
             return (
               <li key={index}>
                 <div className="unit-card-header">
@@ -42,11 +54,7 @@ const UnitList = ({ units, onDrop, onDragOver, onDelete, onDoctrineChange, onLev
                     <span className="unit-name">{unit.genericName}{unit.mode && ` (${unit.mode})`}</span>
                     <span className="unit-meta"> ({unit.category})</span>
                   </div>
-                  {
-                    isOnMobile ?
-                    <button onClick={() => onDelete(index)} className="delete-btn" aria-label="Delete unit">&times;</button>
-                    : null
-                  }
+                  { isOnMobile && deleteBtn() }
                 </div>
                 <div className="unit-controls">
                   <select value={unit.doctrine} onChange={(e) => onDoctrineChange(index, e.target.value as Doctrine)}>
@@ -58,13 +66,21 @@ const UnitList = ({ units, onDrop, onDragOver, onDelete, onDoctrineChange, onLev
                   </select>
                   <p>Quantity: </p>
                   <input type="number" value={unit.quantity} onChange={(e) => onQuantityChange(index, parseInt(e.target.value))} min="1" />
-                  <p>HP: </p>
-                  <input type="text" value={unit.hp} onChange={(e) => onHpChange(index, e.target.value)} />
-                  {
-                    !isOnMobile ?
-                    <button onClick={() => onDelete(index)} className="delete-btn" aria-label="Delete unit">&times;</button>
-                    : null
-                  }
+                  <p>
+                    HP ({Math.round(100 * hpValuePerUnit / maxHpPerUnit)}%,
+                    <input type="number" className="short-input"
+                           value={Math.round(hpValuePerUnit * unit.quantity * 10) / 10}
+                           min="0.1" max={maxHpPerUnit * unit.quantity}
+                           step="0.1"
+                           onChange={(e) => {
+                             const value = parseFloat(e.target.value)
+                             const maxPossibleValue = maxHpPerUnit * unit.quantity
+                             return onHpChange(index, `${100 * value / maxPossibleValue}%`)
+                           }}/>
+                    /{maxHpPerUnit * unit.quantity}):
+                  </p>
+                  <input type="range" min="0" max="100" value={hpValuePerUnit/maxHpPerUnit * 100} onChange={(e) => onHpChange(index, `${e.target.value}%`)} />
+                  { !isOnMobile && deleteBtn() }
                 </div>
               </li>
             );

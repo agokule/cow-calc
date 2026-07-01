@@ -7,6 +7,6 @@ export interface Unit {
   doctrine: Doctrine;
   level: number;
   quantity: number;
-  hp: number | string;
+  hp: string | number;
   maxHp?: number;
 }
