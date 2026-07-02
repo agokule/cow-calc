@@ -18,10 +18,16 @@ export const UNIT_CLASSES = [
  */
 export type UnitClass = typeof UNIT_CLASSES[number];
 
+export const POSSIBLE_DOCTRINES = [
+  "Allies",
+  "Axis",
+  "Comintern",
+  "Pan-Asian"
+] as const
 /**
  * Represents the four playable doctrines in the game.
  */
-export type Doctrine = "Allies" | "Axis" | "Comintern" | "Pan-Asian";
+export type Doctrine = typeof POSSIBLE_DOCTRINES[number];
 
 /**
  * Represents the damage modifier a unit has when attacking or defending

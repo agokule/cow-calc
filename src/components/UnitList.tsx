@@ -1,7 +1,7 @@
-import { DragEvent } from "react";
+import { DragEvent, useState } from "react";
 import { getUnitData } from "@/utils/getUnitData";
 import { getAvailableDoctrines } from "@/utils/getUnitDoctrines";
-import { Doctrine, IUnitType, UnitType } from "@/types";
+import { Doctrine, IUnitType, POSSIBLE_DOCTRINES, UnitType } from "@/types";
 import { Unit } from "@/utils/Unit";
 import { getUnitType } from "@/utils/getUnitType";
 import { useIsMobile } from "@/utils/isOnMobile";
@@ -22,6 +22,8 @@ interface UnitListProps {
 
 const UnitList = ({ units, onDrop, onDragOver, onDelete, onDoctrineChange, onLevelChange, onQuantityChange, onHpChange, toggleAddMode, addModeState }: UnitListProps) => {
   const isOnMobile = useIsMobile();
+  const [allUnitsDropdown, setAllUnitsDropdown] = useState<Doctrine>("Allies")
+
   return (
     <div className="unit-list-container" onDrop={onDrop} onDragOver={onDragOver}>
       {units.length > 0 && (
@@ -61,13 +63,13 @@ const UnitList = ({ units, onDrop, onDragOver, onDelete, onDoctrineChange, onLev
                     {availableDoctrines.map(d => <option key={d} value={d}>{d}</option>)}
                   </select>
                   <p>Level: </p>
-                  <select value={unit.level} onChange={(e) => onLevelChange(index, parseInt(e.target.value))}>
+                  <select className={!isOnMobile ? "short-input" : ""} value={unit.level} onChange={(e) => onLevelChange(index, parseInt(e.target.value))}>
                     {availableLevels?.map(l => <option key={l} value={l}>{l}</option>)}
                   </select>
                   <p>Quantity: </p>
-                  <input type="number" value={unit.quantity} onChange={(e) => onQuantityChange(index, parseInt(e.target.value))} min="1" />
+                  <input className={!isOnMobile ? "short-input" : ""} type="number" value={unit.quantity} onChange={(e) => onQuantityChange(index, parseInt(e.target.value))} min="1" />
                   <p>
-                    HP ({Math.round(100 * hpValuePerUnit / maxHpPerUnit)}%,
+                    HP({Math.round(100 * hpValuePerUnit / maxHpPerUnit)}%,
                     <input type="number" className="short-input"
                            value={Math.round(hpValuePerUnit * unit.quantity * 10) / 10}
                            min="0.1" max={maxHpPerUnit * unit.quantity}
@@ -86,6 +88,16 @@ const UnitList = ({ units, onDrop, onDragOver, onDelete, onDoctrineChange, onLev
             );
           })}
         </ul>
+        <p className="full-doctrine-selection">
+          Set all unit doctrines to:
+          <select value={allUnitsDropdown} onChange={(e) => {
+            setAllUnitsDropdown(e.target.value as Doctrine)
+            for (let index = 0; index < units.length; index++)
+              onDoctrineChange(index, e.target.value as Doctrine)
+          }}>
+            {POSSIBLE_DOCTRINES.map(d => <option key={d} value={d}>{d}</option>)}
+          </select>
+        </p>
         <button className="add-stack-btn" onClick={toggleAddMode}>
           {addModeState ? "Stop Adding" : "Add to this Stack"}
         </button>

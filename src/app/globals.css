@@ -458,21 +458,27 @@ tbody tr:nth-child(even) {
   transition: color 0.2s;
 }
 
-.unit-controls {
+.unit-controls,
+.full-doctrine-selection {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
+.full-doctrine-selection {
+  gap: 1rem;
+}
+  
 .unit-controls select,
 .unit-controls input,
-.unit-list-node select {
+.unit-list-node select,
+.full-doctrine-selection select {
   background-color: #4f4f4f;
   color: white;
   border: 1px solid #777;
   border-radius: 4px;
   padding: 0.3rem;
-  width: 60px; /* Adjust width as needed */
+  width: 90px; /* Adjust width as needed */
 }
 
 .unit-list-node select {
@@ -682,5 +688,9 @@ tbody tr:nth-child(even) {
 
   .content {
     padding: 0 5%;
+  }
+
+  .full-doctrine-selection {
+    align-items: space-between;
   }
 }
