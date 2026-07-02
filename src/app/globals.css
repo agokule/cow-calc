@@ -637,14 +637,12 @@ tbody tr:nth-child(even) {
   }
 
   .unit-name {
-    display: block;
     font-size: 0.95rem;
     font-weight: bold;
     color: #f0f0f0;
   }
 
   .unit-meta {
-    display: block;
     font-size: 0.8rem;
     color: #aaa;
     margin-top: 2px;

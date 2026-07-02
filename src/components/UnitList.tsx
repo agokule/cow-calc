@@ -1,11 +1,12 @@
 import { DragEvent, useState } from "react";
 import { getUnitData } from "@/utils/getUnitData";
 import { getAvailableDoctrines } from "@/utils/getUnitDoctrines";
-import { Doctrine, IUnitType, POSSIBLE_DOCTRINES, UnitType } from "@/types";
+import { Doctrine, IUnitType, POSSIBLE_DOCTRINES, UnitClass, UnitType } from "@/types";
 import { Unit } from "@/utils/Unit";
 import { getUnitType } from "@/utils/getUnitType";
 import { useIsMobile } from "@/utils/isOnMobile";
 import { stringToNumber } from "@/utils/stringToNumber";
+import { UnitIcon } from "./UnitIcon";
 
 interface UnitListProps {
   units: Unit[];
@@ -53,8 +54,8 @@ const UnitList = ({ units, onDrop, onDragOver, onDelete, onDoctrineChange, onLev
               <li key={index}>
                 <div className="unit-card-header">
                   <div>
-                    <span className="unit-name">{unit.genericName}{unit.mode && ` (${unit.mode})`}</span>
-                    <span className="unit-meta"> ({unit.category})</span>
+                    <span className="unit-meta"><UnitIcon unitClass={unitData?.doctrineVariants.Allies[0].type as UnitClass} size="1.7ch"/></span>
+                    <span className="unit-name"> {unit.genericName}{unit.mode && ` (${unit.mode})`}</span>
                   </div>
                   { isOnMobile && deleteBtn() }
                 </div>

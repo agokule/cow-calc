@@ -1,12 +1,14 @@
 import { memo, useState } from 'react';
 import { Handle, Position } from 'reactflow';
 import { getUnitType } from '@/utils/getUnitType';
-import { Terrain, terrains, UnitListType, UnitName, UnitType } from '@/types';
+import { IUnitType, Terrain, terrains, UnitListType, UnitName, UnitType } from '@/types';
 import { toTitleCase } from '@/utils/toTitleCase';
 import HealthBar from './HealthPoints';
 import { StackId } from "@/types/combat";
 import { round } from '@/utils/rounding';
 import { NodeData } from '@/utils/createInitialBattleCycle';
+import { UnitIcon } from './UnitIcon';
+import { getUnitData } from '@/utils/getUnitData';
 
 const UnitListNode = ({ data, id }: { data: NodeData, id: StackId }) => {
   const [terrain, setTerrain] = useState<Terrain>(data.stack.terrain)
@@ -39,11 +41,14 @@ const UnitListNode = ({ data, id }: { data: NodeData, id: StackId }) => {
             return null
           unitsShown.add(unit.genericName as UnitName)
 
+          const data = getUnitData(unit.genericName, unit.mode) as IUnitType
+          const unitClass = data.doctrineVariants.Allies[0].type
+
           overallHealth += (unit.hp as number) * unit.quantity
           overallMaxHealth += (unit.maxHp as number) * unit.quantity
           return (
             <div key={index} className="unit-item-compact">
-              <span>{unit.genericName} {unit.mode && `(${unit.mode})`}</span>
+              <span><UnitIcon unitClass={unitClass} size="1.7ch"/> {unit.genericName} {unit.mode && `(${unit.mode})`}</span>
               <div className="unit-details-compact">
                 <span>{unit.doctrine} · Lvl {unit.level} · Qty {unit.quantity}</span>
               </div>

@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, DragEvent, useContext } from "react";
 import { UnitListsContext } from "@/context/UnitListsContext";
 import TrashIcon from '@/components/TrashIcon';
 import Tutorial from '@/components/Tutorial/Tutorial';
-import { UnitListType, Doctrine, IUnitType, UnitName, UnitType } from "@/types";
+import { UnitListType, Doctrine, IUnitType, UnitName, UnitType, UnitClass } from "@/types";
 import { unitDataCategorized } from "@/data/units";
 import Link from 'next/link';
 import UnitList from '@/components/UnitList';
@@ -12,6 +12,7 @@ import { Unit } from "@/utils/Unit";
 import { getUnitType } from "@/utils/getUnitType";
 import { useIsMobile } from "@/utils/isOnMobile";
 import { NewBadge } from "@/components/NewBadge";
+import { UnitIcon } from "@/components/UnitIcon";
 
 interface AddModeData {
   listIndex: number;
@@ -250,9 +251,11 @@ export default function Home() {
                   const currentUnitName = Array.isArray(selectedUnitData) ? selectedUnitData[0].genericName : selectedUnitData.genericName;
 
                   const newUnit: Unit = { category, genericName: unitName, quantity: 1, mode, hp: "100%", doctrine: "Allies", level: 1 };
+                  const unitType: UnitClass = unitData.doctrineVariants.Allies[0].type;
 
                   return (
                     <li key={unitName + (mode || '')} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <UnitIcon unitClass={unitType} size="1.8ch"/>
                       {
                         addMode ?
                           (<button onClick={() => addUnit(addMode.listType, addMode.listIndex, newUnit)} className={unitName === currentUnitName ? 'active' : ''}>
