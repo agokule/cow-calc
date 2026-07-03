@@ -135,6 +135,7 @@ export interface IUnitStats {
 // that would be nice
 export const possibleUnitNames = [
   "Sniper", // booster only
+  "Marines", // booster only
   "Militia",
   "Infantry",
   "Motorized Infantry",

@@ -5,6 +5,7 @@ import { mechanizedInfantryData } from './infantry/mechanizedInfantry';
 import { commandosData } from './infantry/commandos';
 import { paratrooperData } from './infantry/paratroopers';
 import { sniperData } from './infantry/sniper';
+import { marinesData } from './infantry/marines';
 
 import { antiTankData } from './ordnance/antiTank';
 import { artilleryData } from './ordnance/artillery';
@@ -51,7 +52,8 @@ export const unitDataCategorized = {
     mechanizedInfantryData,
     commandosData,
     ...paratrooperData,
-    sniperData
+    sniperData,
+    marinesData
   ],
   Ordnance: [
     antiTankData,

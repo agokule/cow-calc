@@ -20,7 +20,7 @@ interface AddModeData {
 };
 
 export default function Home() {
-  const newUnits: UnitName[] = ['Sniper', 'Flame Tank', 'Amphibious Tank'] as const
+  const newUnits: UnitName[] = ['Sniper', 'Flame Tank', 'Amphibious Tank', 'Marines'] as const
 
   const [selectedUnitData, setSelectedUnitData] = useState<IUnitType | IUnitType[]>(
     unitDataCategorized.Infantry[0]
