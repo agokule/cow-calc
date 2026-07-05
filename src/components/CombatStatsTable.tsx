@@ -21,8 +21,8 @@ const CombatStatsTable = ({ stats }: { stats: ICombatStatistics }) => {
           {Object.entries(stats).map(([key, value]) => (
             <tr key={key}>
               <td>{formatStatName(key)}</td>
-              <td>{value.attack}</td>
-              <td>{value.defense ?? '-'}</td>
+              <td>{Math.round(value.attack * 10) / 10}</td>
+              <td>{value.defense ? (Math.round(value.defense * 10) / 10) : '-'}</td>
             </tr>
           ))}
         </tbody>
