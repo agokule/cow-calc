@@ -20,6 +20,7 @@ interface AddModeData {
 };
 
 export default function Home() {
+  // any units put in the array below will get a "NEW" badge in the sidebar
   const newUnits: UnitName[] = ['Sniper', 'Flame Tank', 'Amphibious Tank', 'Marines'] as const
 
   const [selectedUnitData, setSelectedUnitData] = useState<IUnitType | IUnitType[]>(
