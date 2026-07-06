@@ -3,7 +3,9 @@
 import { useState, useEffect, useRef, DragEvent, useContext } from "react";
 import { UnitListsContext } from "@/context/UnitListsContext";
 import TrashIcon from '@/components/TrashIcon';
-import Tutorial from '@/components/Tutorial/Tutorial';
+import GuidedTour, { TourLaunchButton } from '@/components/GuidedTour/GuidedTour';
+import { useTourState } from '@/components/GuidedTour/useTourState';
+import { getMainTourSteps } from '@/components/GuidedTour/mainTourSteps';
 import { UnitListType, Doctrine, IUnitType, UnitName, UnitType, UnitClass } from "@/types";
 import { unitDataCategorized } from "@/data/units";
 import Link from 'next/link';
@@ -32,6 +34,9 @@ export default function Home() {
   const sidebarToggleRef = useRef<HTMLButtonElement>(null);
 
   const isOnMobile = useIsMobile();
+  const mainTourSteps = getMainTourSteps(isOnMobile);
+  const tour = useTourState("cow-calc-tour-main-v1");
+  const highlightSidebar = tour.isOpen && !!mainTourSteps[tour.stepIndex]?.highlightSidebar;
 
   const { yourUnitLists, setYourUnitLists, enemyUnitLists, setEnemyUnitLists } = useContext(UnitListsContext)!;
 
@@ -118,6 +123,15 @@ export default function Home() {
     const newLists = [...lists];
     newLists[listIndex] = [...currentList, newUnit];
     setLists(newLists);
+
+    if (listIndex === 0) {
+      tour.advanceIfStepIs(mainTourSteps, listType === "you" ? "add-first-unit" : "enemy-side");
+      if (isOnMobile && tour.isOpen && isSidebarOpen) {
+        setIsSidebarOpen(false);
+      }
+      if (tour.isOpen && addMode && !isOnMobile)
+        setAddMode(null)
+    }
   };
 
   const handleDrop = (e: DragEvent<HTMLDivElement>, listType: UnitListType, listIndex: number) => {
@@ -141,6 +155,7 @@ export default function Home() {
   const addUnitList = (listType: UnitListType) => {
     if (listType === "you") {
       setYourUnitLists([...yourUnitLists, []]);
+      tour.advanceIfStepIs(mainTourSteps, "add-another-stack");
     } else {
       setEnemyUnitLists([...enemyUnitLists, []]);
     }
@@ -214,22 +229,38 @@ export default function Home() {
   return (
     <main>
       <div className="connections-button-container">
-        <Link href="/connections">
-          <button className="connections-button">
+        <Link href="/connections" onClick={() => tour.close()}>
+          <button className="connections-button" data-tour="connections-button">
             Connections
           </button>
         </Link>
       </div>
-      <Tutorial />
+      <GuidedTour
+        steps={mainTourSteps}
+        isOpen={tour.isOpen}
+        stepIndex={tour.stepIndex}
+        onStepChange={tour.setStepIndex}
+        onClose={tour.close}
+      />
+      {!tour.isOpen && <TourLaunchButton onClick={tour.restart} />}
       <div className="main-layout">
         <button
           className="sidebar-toggle"
-          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+          data-tour="sidebar-toggle"
+          onClick={() => {
+            const opening = !isSidebarOpen;
+            setIsSidebarOpen(opening);
+            if (opening) tour.advanceIfStepIs(mainTourSteps, "open-sidebar");
+          }}
           ref={sidebarToggleRef}
         >
           &#9776;
         </button>
-        <nav className={`sidebar ${isSidebarOpen ? 'open' : ''}`} ref={sidebarRef}>
+        <nav
+          className={`sidebar ${isSidebarOpen ? 'open' : ''} ${highlightSidebar ? 'tour-highlight-group' : ''}`}
+          data-tour="sidebar"
+          ref={sidebarRef}
+        >
           <h2>Unit Browser</h2>
           {
             addMode ?
@@ -303,13 +334,20 @@ export default function Home() {
                         setAddMode({listType: id, listIndex: index});
                     }}
                     addModeState={addMode ? true : false}
+                    tourTag={index === 0 ? (id === "you" ? "your-first-stack" : "enemy-first-stack") : undefined}
                   />
                   <button onClick={() => deleteUnitList(index, id)} className="delete-list-btn">
                     <TrashIcon />
                   </button>
                 </div>
               ))}
-              <button onClick={() => addUnitList(id)} className="add-list-btn">+ Add Unit List</button>
+              <button
+                onClick={() => addUnitList(id)}
+                className="add-list-btn"
+                data-tour={id === "you" ? "add-list-you" : "add-list-enemy"}
+              >
+                + Add Unit List
+              </button>
             </div>
           ))}
         </div>

@@ -94,6 +94,7 @@ export default function StepNavigator({
         <button
           type="button"
           className="step-nav__button step-nav__start"
+          data-tour="tour-step-nav-start"
           onClick={handleStart}
           aria-label="Start"
           disabled={max !== undefined && max === 0}
@@ -123,6 +124,7 @@ export default function StepNavigator({
           <button
             type="button"
             className="step-nav__button"
+            data-tour="tour-step-nav-next"
             onClick={handleNext}
             aria-label="Next step"
             disabled={atMax}
@@ -147,6 +149,7 @@ export default function StepNavigator({
         <button
           type="button"
           className="step-nav__button"
+          data-tour="tour-step-nav-finish"
           onClick={handleFinish}
           aria-label="Finish"
         >
