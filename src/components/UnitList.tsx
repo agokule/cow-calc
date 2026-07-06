@@ -19,14 +19,16 @@ interface UnitListProps {
   onHpChange: (unitIndex: number, hp: string) => void;
   toggleAddMode: () => void;
   addModeState: boolean;
+  /** When set, tags this stack's container (and its first unit's controls) for the guided tour to find. */
+  tourTag?: string;
 }
 
-const UnitList = ({ units, onDrop, onDragOver, onDelete, onDoctrineChange, onLevelChange, onQuantityChange, onHpChange, toggleAddMode, addModeState }: UnitListProps) => {
+const UnitList = ({ units, onDrop, onDragOver, onDelete, onDoctrineChange, onLevelChange, onQuantityChange, onHpChange, toggleAddMode, addModeState, tourTag }: UnitListProps) => {
   const isOnMobile = useIsMobile();
   const [allUnitsDropdown, setAllUnitsDropdown] = useState<Doctrine>("Allies")
 
   return (
-    <div className="unit-list-container" onDrop={onDrop} onDragOver={onDragOver}>
+    <div className="unit-list-container" onDrop={onDrop} onDragOver={onDragOver} data-tour={tourTag}>
       {units.length > 0 && (
         <div className="unit-list-category">
           {UnitType[getUnitType(units[0].genericName, units[0].mode) as UnitType]} Units
@@ -59,7 +61,7 @@ const UnitList = ({ units, onDrop, onDragOver, onDelete, onDoctrineChange, onLev
                   </div>
                   { isOnMobile && deleteBtn() }
                 </div>
-                <div className="unit-controls">
+                <div className="unit-controls" data-tour={index === 0 && tourTag ? `${tourTag}-controls` : undefined}>
                   <select value={unit.doctrine} onChange={(e) => onDoctrineChange(index, e.target.value as Doctrine)}>
                     {availableDoctrines.map(d => <option key={d} value={d}>{d}</option>)}
                   </select>
@@ -99,7 +101,7 @@ const UnitList = ({ units, onDrop, onDragOver, onDelete, onDoctrineChange, onLev
             {POSSIBLE_DOCTRINES.map(d => <option key={d} value={d}>{d}</option>)}
           </select>
         </p>
-        <button className="add-stack-btn" onClick={toggleAddMode}>
+        <button className="add-stack-btn" data-tour={tourTag ? `${tourTag}-add-btn` : undefined} onClick={toggleAddMode}>
           {addModeState ? "Stop Adding" : "Add to this Stack"}
         </button>
       </div>

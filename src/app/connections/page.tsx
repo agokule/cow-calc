@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useContext, useEffect, useState, useCallback } from 'react';
+import React, { useContext, useEffect, useRef, useState, useCallback } from 'react';
 import ReactFlow, { Controls, Background, applyEdgeChanges, applyNodeChanges, addEdge, BackgroundVariant, NodeChange, Edge, EdgeChange, Connection } from 'reactflow';
 import 'reactflow/dist/style.css';
 
@@ -20,6 +20,9 @@ import { IBattleCycle } from '@/types/battleCalculations';
 import { secondsToDuration } from '@/utils/secondsToDuration';
 import { Unit } from '@/utils/Unit';
 import { toTitleCase } from '@/utils/toTitleCase';
+import GuidedTour, { TourLaunchButton } from '@/components/GuidedTour/GuidedTour';
+import { useTourState } from '@/components/GuidedTour/useTourState';
+import { connectionsTourSteps } from '@/components/GuidedTour/connectionsTourSteps';
 
 const nodeTypes = { unitList: UnitListNode } as const;
 const edgeTypes = { action: ActionEdge } as const;
@@ -34,13 +37,25 @@ const ConnectionsPage = () => {
   const [maxCycles, setMaxCycles] = useState<number | undefined>(undefined)
   const [autoNext, setAutoNext] = useState(false) // this is used for the finish button
   const [currentCycleIndex, setCurrentCycleIndex] = useState(0)
+  const tour = useTourState("cow-calc-tour-connections-v1");
+  const wasArmyInfoOpen = useRef(false);
 
   console.log("battle cycles", battleCycles)
 
   function selectArmyGroup(id: string) {
     setIsArmyInfoOpen(true)
     setSelectedUnitStackId(id)
+    tour.advanceIfStepIs(connectionsTourSteps, "view-army-info");
   }
+
+  // The tour's "protection / home defense" step targets fields inside this
+  // dialog, so move on once the person actually closes it.
+  useEffect(() => {
+    if (wasArmyInfoOpen.current && !isArmyInfoOpen) {
+      tour.advanceIfStepIs(connectionsTourSteps, "army-info-dialog");
+    }
+    wasArmyInfoOpen.current = isArmyInfoOpen;
+  }, [isArmyInfoOpen, tour.advanceIfStepIs]);
 
   function getNodeFromId(id: string) {
     for (const node of nodes)
@@ -114,7 +129,8 @@ const ConnectionsPage = () => {
   const onConnect = useCallback((params: Connection) => {
     const defaultData: ActionEdgeData = { sourceAction: 'nothing', targetAction: 'nothing', hours: 0, minutes: 0 };
     setEdges((eds) => addEdge({ ...params, type: 'action', data: defaultData, animated: false }, eds));
-  }, []);
+    tour.advanceIfStepIs(connectionsTourSteps, "connect-stacks");
+  }, [tour.advanceIfStepIs]);
 
   const nextBattleCycle = (cycle: IBattleCycle) => {
     const next = getNextBattleCycle(cycle)
@@ -174,6 +190,14 @@ const ConnectionsPage = () => {
 
   return (
     <div style={{ width: '100vw', height: '100vh' }}>
+      <GuidedTour
+        steps={connectionsTourSteps}
+        isOpen={tour.isOpen}
+        stepIndex={tour.stepIndex}
+        onStepChange={tour.setStepIndex}
+        onClose={tour.close}
+      />
+      {!tour.isOpen && <TourLaunchButton onClick={tour.restart} />}
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -209,6 +233,7 @@ const ConnectionsPage = () => {
           const initial = createInitialBattleCycle(nodes, edges)
           setBattleCycles([initial])
           nextBattleCycle(initial)
+          tour.advanceIfStepIs(connectionsTourSteps, "start-battle");
         }}
         onNext={(curr) => {
           if (!battleCycles[curr])

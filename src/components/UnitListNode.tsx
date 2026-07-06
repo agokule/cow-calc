@@ -30,7 +30,11 @@ const UnitListNode = ({ data, id }: { data: NodeData, id: StackId }) => {
 
   return (
     <div className={`react-flow__node-default unit-list-node ${listType}`} style={{ padding: 10, minWidth: 150 }}>
-      <Handle type="target" position={Position.Top} />
+      <Handle
+        type="target"
+        position={Position.Top}
+        data-tour={id === "enemy-0" ? "tour-target-handle" : undefined}
+      />
       <div style={{ fontSize: 12, color: '#bbb', marginBottom: 4 }}>{listTypeLabel}</div>
       <div>
         <strong style={{ color: "#d7d7d7" }}>{data.label}</strong>
@@ -62,12 +66,21 @@ const UnitListNode = ({ data, id }: { data: NodeData, id: StackId }) => {
           <HealthBar currentHP={overallHealth} maxHP={overallMaxHealth}></HealthBar>
         </div>
       </div>
-      <Handle type="source" position={Position.Bottom} />
+      <Handle
+        type="source"
+        position={Position.Bottom}
+        data-tour={id === "your-0" ? "tour-source-handle" : undefined}
+      />
       <button onClick={() => data.openArmyInfo(id)}
+        data-tour={id === "your-0" ? "tour-army-info-btn" : undefined}
         style={{ cursor: 'pointer', color: '#f9f9f9', background: '#2e2e2e', border: "2px solid #4b5563", marginTop: '4px'}}>
         View Army Info
       </button>
-      <select value={terrain} onChange={(e) => terrainChange(e.target.value as Terrain)}>
+      <select
+        value={terrain}
+        onChange={(e) => terrainChange(e.target.value as Terrain)}
+        data-tour={id === "your-0" ? "tour-terrain-select" : undefined}
+      >
         {terrains.map((terrain) => {
           return <option key={terrain} value={terrain}>{terrain}</option>
         })}

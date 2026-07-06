@@ -127,7 +127,7 @@ export const ArmyInfoDialog: React.FC<ArmyInfoDialogProps> = ({
             <div className="footer-text">
               Damage when ⚡ attacking / 🛡️ defending:
             </div>
-            <div className="footer-controls">
+            <div className="footer-controls" data-tour="tour-protection-section">
               <div className="protection-control">
                 <label htmlFor="protection-value">Protection Value:</label>
                 <input
