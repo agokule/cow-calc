@@ -123,6 +123,14 @@ export default function Home() {
     newLists[listIndex] = [...currentList, newUnit];
     setLists(newLists);
 
+    // While the tutorial is running on mobile, adding a unit from the sidebar
+    // means we can get out of the way: close the sidebar so the freshly-added
+    // stack (and the step pointing at it) is actually visible. Closing also
+    // clears add-mode via the effect above.
+    if (tour.isOpen && isOnMobile) {
+      setIsSidebarOpen(false);
+    }
+
     if (listIndex === 0) {
       tour.advanceIfStepIs(mainTourSteps, listType === "you" ? "add-first-unit" : "enemy-side");
     }
@@ -276,7 +284,7 @@ export default function Home() {
                   const unitType: UnitClass = unitData.doctrineVariants.Allies[0].type;
 
                   return (
-                    <li key={unitName + (mode || '')} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <li key={unitName + (mode || '')} data-tour="sidebar-unit" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                       <UnitIcon unitClass={unitType} size="1.8ch"/>
                       {
                         addMode ?

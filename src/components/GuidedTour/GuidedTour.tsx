@@ -1,6 +1,15 @@
 "use client";
 
-import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, ReactNode } from "react";
+import {
+  useCallback,
+  useEffect,
+  useId,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type ReactNode,
+  type PointerEvent as ReactPointerEvent,
+} from "react";
 import "./GuidedTour.css";
 
 export interface TourStep {
@@ -24,6 +33,24 @@ export interface TourStep {
   requiresAction?: boolean;
   /** Shown in place of the Next button when requiresAction is true. */
   actionHint?: ReactNode;
+  /**
+   * CSS selector for an element that only exists (or only becomes visible)
+   * once this step's action has actually been done. When it's on screen the
+   * step counts as already complete: the Next button un-disables and the hint
+   * hides, even for a `requiresAction` step. This is what makes going *back*
+   * to an already-completed action step not force the person to redo it —
+   * while still re-locking the step if they undo the action (the element
+   * disappears again). Checked live every frame.
+   */
+  actionComplete?: string;
+  /**
+   * CSS selector matched with querySelectorAll — every visible match gets its
+   * own spotlight ring/hole (in addition to `target`, if set). Used to hand-
+   * hold multi-choice steps, e.g. ringing every unit in the sidebar that can
+   * be dragged/tapped in. Occluded or off-screen matches are skipped, so a
+   * long scrolling list only lights up whatever is actually on screen.
+   */
+  spotlightSelector?: string;
 }
 
 interface Rect {
@@ -56,15 +83,62 @@ function rectsEqual(a: Rect, b: Rect) {
   return a.top === b.top && a.left === b.left && a.width === b.width && a.height === b.height;
 }
 
+function rectListsEqual(a: Rect[], b: Rect[]) {
+  if (a.length !== b.length) return false;
+  for (let i = 0; i < a.length; i++) if (!rectsEqual(a[i], b[i])) return false;
+  return true;
+}
+
+function unionRect(rects: Rect[]): Rect {
+  let top = Infinity;
+  let left = Infinity;
+  let right = -Infinity;
+  let bottom = -Infinity;
+  for (const r of rects) {
+    top = Math.min(top, r.top);
+    left = Math.min(left, r.left);
+    right = Math.max(right, r.left + r.width);
+    bottom = Math.max(bottom, r.top + r.height);
+  }
+  return { top, left, width: right - left, height: bottom - top };
+}
+
+/**
+ * Is `el` actually the thing you'd hit at its own centre point? Used to drop
+ * spotlight candidates that are covered by something else (e.g. a unit-list
+ * button sitting behind the open mobile sidebar) or scrolled out of a
+ * clipping container. The tour overlay itself is pointer-events:none, so
+ * elementFromPoint looks straight through it.
+ */
+function isOnTop(el: Element, r: Rect): boolean {
+  const cx = r.left + r.width / 2;
+  const cy = r.top + r.height / 2;
+  if (cx < 0 || cy < 0 || cx > window.innerWidth || cy > window.innerHeight) {
+    // Centre is off-screen — can't hit-test it; treat as not visible.
+    return false;
+  }
+  const hit = document.elementFromPoint(cx, cy);
+  if (!hit) return false;
+  return el === hit || el.contains(hit);
+}
+
 export default function GuidedTour({ steps, isOpen, stepIndex, onStepChange, onClose }: GuidedTourProps) {
   const step = steps[stepIndex];
-  const [rect, setRect] = useState<Rect | null>(null);
+  const [rects, setRects] = useState<Rect[]>([]);
+  const [anchorRect, setAnchorRect] = useState<Rect | null>(null);
   const [targetMissing, setTargetMissing] = useState(false);
+  const [actionDone, setActionDone] = useState(false);
   const [pos, setPos] = useState({ top: 0, left: 0 });
+  // A person-chosen position (from dragging the tooltip). Overrides the
+  // automatic placement until the step changes. See issue: the auto position
+  // can cover the very thing a step is describing on a small screen.
+  const [manualPos, setManualPos] = useState<{ top: number; left: number } | null>(null);
+  const [dragging, setDragging] = useState(false);
   const tooltipRef = useRef<HTMLDivElement>(null);
+  const dragRef = useRef<{ startX: number; startY: number; top: number; left: number } | null>(null);
   const maskId = useId();
 
-  // Continuously track the target element for the current step via rAF
+  // Continuously track the target element(s) for the current step via rAF
   // rather than scroll/resize listeners. This is what lets the spotlight
   // follow a ReactFlow node while it's being dragged, or the canvas while
   // it's being panned/zoomed — none of those fire a window scroll/resize
@@ -74,9 +148,12 @@ export default function GuidedTour({ steps, isOpen, stepIndex, onStepChange, onC
   useEffect(() => {
     if (!isOpen || !step) return;
     setTargetMissing(false);
+    setActionDone(false);
 
-    if (!step.target) {
-      setRect(null);
+    const hasHighlight = !!(step.target || step.spotlightSelector);
+    if (!hasHighlight && !step.actionComplete) {
+      setRects([]);
+      setAnchorRect(null);
       return;
     }
 
@@ -85,25 +162,68 @@ export default function GuidedTour({ steps, isOpen, stepIndex, onStepChange, onC
     let hasScrolledTo = false;
     const startedAt = performance.now();
 
+    const collect = (): { holes: Rect[]; anchor: Rect | null; anchorEl: Element | null } => {
+      const candidates: { el: Element; occlude: boolean }[] = [];
+      let targetEl: Element | null = null;
+      if (step.target) {
+        targetEl = document.querySelector(step.target);
+        if (targetEl) candidates.push({ el: targetEl, occlude: false });
+      }
+      if (step.spotlightSelector) {
+        document.querySelectorAll(step.spotlightSelector).forEach((el) => candidates.push({ el, occlude: true }));
+      }
+
+      const usable = candidates
+        .map(({ el, occlude }) => ({ el, occlude, r: measure(el) }))
+        .filter(({ r }) => r.width > 0 || r.height > 0)
+        .filter(({ el, occlude, r }) => !occlude || isOnTop(el, r));
+
+      const holes = usable.map(({ r }) => r);
+
+      let anchor: Rect | null = null;
+      let anchorEl: Element | null = null;
+      const targetHit = targetEl ? usable.find(({ el }) => el === targetEl) : undefined;
+      if (targetHit) {
+        anchor = targetHit.r;
+        anchorEl = targetHit.el;
+      } else if (usable.length) {
+        anchor = unionRect(holes);
+        anchorEl = usable[0].el;
+      }
+      return { holes, anchor, anchorEl };
+    };
+
     const loop = () => {
       if (cancelled) return;
-      const el = step.target ? document.querySelector(step.target) : null;
-      const r = el ? measure(el) : null;
-      const usable = !!(el && r && (r.width > 0 || r.height > 0));
 
-      if (usable && r) {
-        setTargetMissing(false);
-        setRect((prev) => (prev && rectsEqual(prev, r) ? prev : r));
-        if (!hasScrolledTo) {
-          hasScrolledTo = true;
-          el!.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
-        }
-      } else {
-        setRect(null);
-        if (performance.now() - startedAt > MISSING_TIMEOUT_MS) {
-          setTargetMissing(true);
+      // Issue #1: a requiresAction step is "already done" the moment the
+      // element it unlocks is on screen. Live check so undoing it re-locks.
+      if (step.actionComplete) {
+        const ce = document.querySelector(step.actionComplete);
+        const cr = ce ? measure(ce) : null;
+        const done = !!(ce && cr && (cr.width > 0 || cr.height > 0));
+        setActionDone((prev) => (prev === done ? prev : done));
+      }
+
+      if (step.target || step.spotlightSelector) {
+        const { holes, anchor, anchorEl } = collect();
+        if (holes.length) {
+          setTargetMissing(false);
+          setRects((prev) => (rectListsEqual(prev, holes) ? prev : holes));
+          setAnchorRect((prev) => (prev && anchor && rectsEqual(prev, anchor) ? prev : anchor));
+          if (!hasScrolledTo && anchorEl) {
+            hasScrolledTo = true;
+            anchorEl.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
+          }
+        } else {
+          setRects((prev) => (prev.length ? [] : prev));
+          setAnchorRect(null);
+          if (performance.now() - startedAt > MISSING_TIMEOUT_MS) {
+            setTargetMissing(true);
+          }
         }
       }
+
       rafId = requestAnimationFrame(loop);
     };
 
@@ -116,13 +236,20 @@ export default function GuidedTour({ steps, isOpen, stepIndex, onStepChange, onC
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen, stepIndex]);
 
-  // Position the tooltip. This is a pure function of (rect, the tooltip's own
-  // measured size, viewport size) — it never reads its own previous output,
+  // A fresh step always starts from the automatic position, discarding any
+  // drag the person did on the previous step.
+  useEffect(() => {
+    setManualPos(null);
+  }, [isOpen, stepIndex]);
+
+  // Position the tooltip. This is a pure function of (anchorRect, the tooltip's
+  // own measured size, viewport size) — it never reads its own previous output,
   // so it can't oscillate the way a "subtract the overflow" correction can
   // when a step's content is simply too tall to satisfy both a top and a
   // bottom constraint at once. It settles in at most two passes: once with
   // whatever size the tooltip currently has (possibly last step's), and once
-  // more when `rect`/`stepIndex` change and the new content has been measured.
+  // more when `anchorRect`/`stepIndex` change and the new content has been
+  // measured.
   useLayoutEffect(() => {
     if (!isOpen || !step) return;
     const vw = window.innerWidth;
@@ -131,6 +258,7 @@ export default function GuidedTour({ steps, isOpen, stepIndex, onStepChange, onC
     const tw = tooltipEl ? tooltipEl.offsetWidth : Math.min(TOOLTIP_WIDTH, vw - MARGIN * 2);
     const th = tooltipEl ? tooltipEl.offsetHeight : ESTIMATED_HEIGHT;
 
+    const rect = anchorRect;
     let top: number;
     let left: number;
 
@@ -179,13 +307,17 @@ export default function GuidedTour({ steps, isOpen, stepIndex, onStepChange, onC
     left = Math.min(Math.max(left, MARGIN), maxLeft);
 
     setPos((prev) => (prev.top === top && prev.left === left ? prev : { top, left }));
-  }, [rect, isOpen, stepIndex]);
+  }, [anchorRect, isOpen, stepIndex]);
+
+  // A requiresAction step stops blocking the moment its action is detected as
+  // already done (issue #1) — that's the whole point of actionComplete.
+  const requiresActionNow = !!step?.requiresAction && !actionDone;
 
   const advance = useCallback(() => {
-    if (step?.requiresAction) return;
+    if (requiresActionNow) return;
     if (stepIndex >= steps.length - 1) onClose();
     else onStepChange(stepIndex + 1);
-  }, [step, stepIndex, steps.length, onStepChange, onClose]);
+  }, [requiresActionNow, stepIndex, steps.length, onStepChange, onClose]);
 
   const goBack = useCallback(() => {
     if (stepIndex > 0) onStepChange(stepIndex - 1);
@@ -202,10 +334,54 @@ export default function GuidedTour({ steps, isOpen, stepIndex, onStepChange, onC
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [isOpen, onClose, advance, goBack]);
 
+  // --- Draggable tooltip (issue #4) -----------------------------------------
+  const onDragPointerDown = (e: ReactPointerEvent<HTMLDivElement>) => {
+    // Don't hijack a tap on the close button.
+    if ((e.target as HTMLElement).closest(".tour-close")) return;
+    const el = tooltipRef.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    dragRef.current = { startX: e.clientX, startY: e.clientY, top: r.top, left: r.left };
+    setDragging(true);
+    try {
+      (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+    } catch {
+      // setPointerCapture can throw for stale pointer ids; harmless.
+    }
+    e.preventDefault();
+  };
+
+  const onDragPointerMove = (e: ReactPointerEvent<HTMLDivElement>) => {
+    const d = dragRef.current;
+    if (!d) return;
+    const el = tooltipRef.current;
+    const tw = el ? el.offsetWidth : TOOLTIP_WIDTH;
+    const th = el ? el.offsetHeight : ESTIMATED_HEIGHT;
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    let top = d.top + (e.clientY - d.startY);
+    let left = d.left + (e.clientX - d.startX);
+    top = Math.min(Math.max(top, MARGIN), Math.max(MARGIN, vh - th - MARGIN));
+    left = Math.min(Math.max(left, MARGIN), Math.max(MARGIN, vw - tw - MARGIN));
+    setManualPos({ top, left });
+  };
+
+  const endDrag = (e: ReactPointerEvent<HTMLDivElement>) => {
+    if (!dragRef.current) return;
+    dragRef.current = null;
+    setDragging(false);
+    try {
+      (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
+    } catch {
+      // ignore
+    }
+  };
+
   if (!isOpen || !step) return null;
 
   const showDim = step.dimBackground !== false;
   const tw = typeof window !== "undefined" ? Math.min(TOOLTIP_WIDTH, window.innerWidth - MARGIN * 2) : TOOLTIP_WIDTH;
+  const place = manualPos ?? pos;
 
   return (
     <div className="tour-root" aria-live="polite">
@@ -214,37 +390,51 @@ export default function GuidedTour({ steps, isOpen, stepIndex, onStepChange, onC
           <defs>
             <mask id={maskId}>
               <rect x="0" y="0" width="100%" height="100%" fill="white" />
-              {rect && (
+              {rects.map((r, i) => (
                 <rect
-                  x={rect.left - PAD}
-                  y={rect.top - PAD}
-                  width={rect.width + PAD * 2}
-                  height={rect.height + PAD * 2}
+                  key={i}
+                  x={r.left - PAD}
+                  y={r.top - PAD}
+                  width={r.width + PAD * 2}
+                  height={r.height + PAD * 2}
                   rx={10}
                   fill="black"
                 />
-              )}
+              ))}
             </mask>
           </defs>
           <rect x="0" y="0" width="100%" height="100%" fill="rgba(0,0,0,0.45)" mask={`url(#${maskId})`} />
         </svg>
       )}
 
-      {rect && (
+      {rects.map((r, i) => (
         <div
+          key={i}
           className="tour-ring"
           style={{
-            top: rect.top - PAD,
-            left: rect.left - PAD,
-            width: rect.width + PAD * 2,
-            height: rect.height + PAD * 2,
+            top: r.top - PAD,
+            left: r.left - PAD,
+            width: r.width + PAD * 2,
+            height: r.height + PAD * 2,
           }}
         />
-      )}
+      ))}
 
-      <div className="tour-tooltip" ref={tooltipRef} style={{ top: pos.top, left: pos.left, width: tw }}>
-        <div className="tour-tooltip-top">
+      <div
+        className={`tour-tooltip${dragging ? " tour-tooltip-dragging" : ""}`}
+        ref={tooltipRef}
+        style={{ top: place.top, left: place.left, width: tw }}
+      >
+        <div
+          className="tour-tooltip-top"
+          onPointerDown={onDragPointerDown}
+          onPointerMove={onDragPointerMove}
+          onPointerUp={endDrag}
+          onPointerCancel={endDrag}
+          title="Drag to move"
+        >
           <span className="tour-progress">
+            <span className="tour-drag-grip" aria-hidden="true">⠿</span>
             Step {stepIndex + 1} of {steps.length}
           </span>
           <button className="tour-close" onClick={onClose} aria-label="Close tutorial">
@@ -253,7 +443,7 @@ export default function GuidedTour({ steps, isOpen, stepIndex, onStepChange, onC
         </div>
         <h3 className="tour-title">{step.title}</h3>
         <div className="tour-body">{step.body}</div>
-        {step.requiresAction ? (
+        {requiresActionNow ? (
           <p className="tour-hint">{step.actionHint ?? "Do that to continue."}</p>
         ) : (
           targetMissing && (
@@ -275,8 +465,8 @@ export default function GuidedTour({ steps, isOpen, stepIndex, onStepChange, onC
             <button
               className="tour-btn tour-btn-primary"
               onClick={advance}
-              disabled={step.requiresAction}
-              title={step.requiresAction ? "Complete the step above to continue" : undefined}
+              disabled={requiresActionNow}
+              title={requiresActionNow ? "Complete the step above to continue" : undefined}
             >
               {stepIndex === steps.length - 1 ? "Done" : "Next"}
             </button>

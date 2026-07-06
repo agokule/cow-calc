@@ -47,19 +47,42 @@
   overflow-y: auto;
 }
 
+.tour-tooltip.tour-tooltip-dragging {
+  transition: none;
+  user-select: none;
+}
+
 .tour-tooltip-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 6px;
+  /* Acts as a drag handle so the card can be moved out of the way on small
+     screens. touch-action:none lets a finger drag it instead of scrolling. */
+  cursor: grab;
+  touch-action: none;
+}
+
+.tour-tooltip-dragging .tour-tooltip-top {
+  cursor: grabbing;
 }
 
 .tour-progress {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.03em;
   text-transform: uppercase;
   color: #8fbc8f;
+}
+
+.tour-drag-grip {
+  color: #6b7280;
+  font-size: 0.95rem;
+  line-height: 1;
+  letter-spacing: 0;
 }
 
 .tour-close {

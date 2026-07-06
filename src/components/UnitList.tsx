@@ -101,7 +101,11 @@ const UnitList = ({ units, onDrop, onDragOver, onDelete, onDoctrineChange, onLev
             {POSSIBLE_DOCTRINES.map(d => <option key={d} value={d}>{d}</option>)}
           </select>
         </p>
-        <button className="add-stack-btn" onClick={toggleAddMode}>
+        <button
+          className="add-stack-btn"
+          onClick={toggleAddMode}
+          data-tour={tourTag ? `${tourTag}-add-btn` : undefined}
+        >
           {addModeState ? "Stop Adding" : "Add to this Stack"}
         </button>
       </div>

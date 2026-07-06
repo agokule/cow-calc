@@ -19,6 +19,9 @@ export function getMainTourSteps(isMobile: boolean): TourStep[] {
       placement: "bottom",
       requiresAction: true,
       actionHint: "Tap the menu button above to continue.",
+      // The sidebar is display:none until it's open, so its mere presence on
+      // screen means the action is done (and going back here won't re-ask).
+      actionComplete: '[data-tour="sidebar"]',
     });
   }
 
@@ -37,17 +40,20 @@ export function getMainTourSteps(isMobile: boolean): TourStep[] {
     },
     {
       id: "add-first-unit",
-      target: '[data-tour="your-first-stack"]',
+      // On mobile the drop box sits behind the open sidebar, so there's no
+      // point anchoring to it — let the highlighted sidebar entries be the
+      // focus instead. On desktop the box is the drop target for drag-drop.
+      target: isMobile ? null : '[data-tour="your-first-stack"]',
       title: "Add your first unit",
       body: isMobile ? (
         <>
-          Click <strong>&quot;Add to this Stack&quot;</strong> below, then tap units in the sidebar to add them here.
-          (Drag-and-drop only works with a mouse, not on touchscreens.)
+          Click <strong>&quot;Add to this Stack&quot;</strong> (highlighted), then tap any highlighted unit in the
+          sidebar to add it here. (Drag-and-drop only works with a mouse, not on touchscreens.)
         </>
       ) : (
         <>
-          Add units two ways: drag one straight from the sidebar into this box, or click{" "}
-          <strong>&quot;Add to this Stack&quot;</strong> below and then click units in the sidebar.
+          Add units two ways: drag any highlighted unit from the sidebar into this box, or click{" "}
+          <strong>&quot;Add to this Stack&quot;</strong> below and then click the highlighted units in the sidebar.
         </>
       ),
       placement: "right",
@@ -55,6 +61,14 @@ export function getMainTourSteps(isMobile: boolean): TourStep[] {
       actionHint: isMobile
         ? 'Click "Add to this Stack" below, then tap a unit in the sidebar, to continue.'
         : 'Drag a unit from the sidebar into this box, or use "Add to this Stack", to continue.',
+      // The unit's controls only render once a unit is actually in the stack.
+      actionComplete: '[data-tour="your-first-stack-controls"]',
+      // Ring every addable unit in the sidebar. On mobile also ring the
+      // "Add to this Stack" button (which is what the sidebar is hidden
+      // behind until add-mode opens it).
+      spotlightSelector: isMobile
+        ? '[data-tour="sidebar-unit"], [data-tour="your-first-stack-add-btn"]'
+        : '[data-tour="sidebar-unit"]',
     },
     {
       id: "unit-controls",
@@ -77,14 +91,18 @@ export function getMainTourSteps(isMobile: boolean): TourStep[] {
     },
     {
       id: "enemy-side",
-      target: '[data-tour="enemy-first-stack"]',
+      target: isMobile ? null : '[data-tour="enemy-first-stack"]',
       title: "Now set up the enemy",
-      body: "Do the same thing over here for the units you're fighting against.",
+      body: "Do the same thing over here for the units you're fighting against — drag or tap any highlighted unit in the sidebar.",
       placement: "left",
       requiresAction: true,
       actionHint: isMobile
         ? 'Click "Add to this Stack" below, then tap a unit in the sidebar, to continue.'
         : 'Drag a unit from the sidebar into this box, or use "Add to this Stack", to continue.',
+      actionComplete: '[data-tour="enemy-first-stack-controls"]',
+      spotlightSelector: isMobile
+        ? '[data-tour="sidebar-unit"], [data-tour="enemy-first-stack-add-btn"]'
+        : '[data-tour="sidebar-unit"]',
     },
     {
       id: "connections-button",

@@ -29,7 +29,11 @@ const UnitListNode = ({ data, id }: { data: NodeData, id: StackId }) => {
   }
 
   return (
-    <div className={`react-flow__node-default unit-list-node ${listType}`} style={{ padding: 10, minWidth: 150 }}>
+    <div
+      className={`react-flow__node-default unit-list-node ${listType}`}
+      data-tour={id === "your-0" ? "tour-your-node" : undefined}
+      style={{ padding: 10, minWidth: 150 }}
+    >
       <Handle
         type="target"
         position={Position.Top}
