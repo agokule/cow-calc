@@ -359,6 +359,7 @@ export default function ActionEdge(props: EdgeProps<ActionEdgeData>) {
         <button
           type="button"
           title="Source action"
+          data-tour="tour-edge-source-action"
           onClick={(e) => {
             e.stopPropagation();
             setShowSourceMenu((s) => !s);
@@ -431,6 +432,7 @@ export default function ActionEdge(props: EdgeProps<ActionEdgeData>) {
         <button
           type="button"
           title="Target action"
+          data-tour="tour-edge-target-action"
           onClick={(e) => {
             e.stopPropagation();
             setShowTargetMenu((s) => !s);

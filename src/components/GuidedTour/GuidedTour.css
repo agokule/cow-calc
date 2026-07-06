@@ -1,0 +1,206 @@
+.tour-root {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  pointer-events: none;
+}
+
+.tour-mask-svg {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+}
+
+.tour-ring {
+  position: fixed;
+  border: 2px solid #8fbc8f;
+  border-radius: 10px;
+  box-shadow: 0 0 0 3px rgba(143, 188, 143, 0.35), 0 0 18px 3px rgba(143, 188, 143, 0.55);
+  pointer-events: none;
+  transition: top 0.2s ease, left 0.2s ease, width 0.2s ease, height 0.2s ease;
+  animation: tour-pulse 2s ease-in-out infinite;
+}
+
+@keyframes tour-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 3px rgba(143, 188, 143, 0.35), 0 0 14px 2px rgba(143, 188, 143, 0.45);
+  }
+  50% {
+    box-shadow: 0 0 0 3px rgba(143, 188, 143, 0.55), 0 0 22px 5px rgba(143, 188, 143, 0.75);
+  }
+}
+
+.tour-tooltip {
+  position: fixed;
+  pointer-events: auto;
+  background-color: #1f2937;
+  border: 1px solid #4b5563;
+  border-radius: 12px;
+  padding: 16px 18px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+  color: #e5e7eb;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  transition: top 0.2s ease, left 0.2s ease;
+  max-height: calc(100vh - 28px);
+  overflow-y: auto;
+}
+
+.tour-tooltip-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.tour-progress {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #8fbc8f;
+}
+
+.tour-close {
+  background: none;
+  border: none;
+  color: #9ca3af;
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 2px;
+}
+
+.tour-close:hover {
+  color: #f0f0f0;
+}
+
+.tour-title {
+  margin: 0 0 6px 0;
+  font-size: 1.1rem;
+  color: #f9fafb;
+}
+
+.tour-body {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: #cbd5e1;
+}
+
+.tour-body :is(code) {
+  background-color: #374151;
+  border-radius: 4px;
+  padding: 0.1rem 0.35rem;
+  font-size: 0.85em;
+}
+
+.tour-missing-note {
+  margin: 8px 0 0 0;
+  font-size: 0.8rem;
+  color: #9ca3af;
+  font-style: italic;
+}
+
+.tour-hint {
+  margin: 8px 0 0 0;
+  font-size: 0.85rem;
+  color: #8fbc8f;
+  font-weight: 600;
+}
+
+.tour-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 14px;
+  gap: 10px;
+}
+
+.tour-skip {
+  background: none;
+  border: none;
+  color: #9ca3af;
+  font-size: 0.82rem;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.tour-skip:hover {
+  color: #d1d5db;
+}
+
+.tour-nav {
+  display: flex;
+  gap: 8px;
+}
+
+.tour-btn {
+  border: none;
+  border-radius: 6px;
+  padding: 7px 14px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.tour-btn-primary {
+  background-color: #4a6c4a;
+  color: white;
+}
+
+.tour-btn-primary:hover {
+  background-color: #5a8c5a;
+}
+
+.tour-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.tour-btn:disabled:hover {
+  background-color: #4a6c4a;
+}
+
+.tour-btn-secondary {
+  background-color: #374151;
+  color: #e5e7eb;
+  border: 1px solid #4b5563;
+}
+
+.tour-btn-secondary:hover {
+  background-color: #3f4a5a;
+}
+
+.tour-launch-btn {
+  position: fixed;
+  bottom: 16px;
+  left: 16px;
+  z-index: 900;
+  background-color: #4a6c4a;
+  color: white;
+  border: none;
+  border-radius: 999px;
+  padding: 0.55rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.tour-launch-btn:hover {
+  background-color: #5a8c5a;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .tour-launch-btn {
+    bottom: 12px;
+    left: 12px;
+    padding: 0.5rem 0.85rem;
+    font-size: 0.85rem;
+  }
+}
