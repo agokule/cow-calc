@@ -15,7 +15,7 @@ export function getMainTourSteps(isMobile: boolean): TourStep[] {
       id: "open-sidebar",
       target: '[data-tour="sidebar-toggle"]',
       title: "Open the Unit Browser",
-      body: "The unit list hides behind this menu button on small screens. Tap it to open the sidebar.",
+      body: "The unit list hides behind this menu button on mobile. Tap it to open the sidebar.",
       placement: "bottom",
       requiresAction: true,
       actionHint: "Tap the menu button above to continue.",
@@ -31,7 +31,7 @@ export function getMainTourSteps(isMobile: boolean): TourStep[] {
       body: (
         <>
           Every unit in the game lives here, grouped by category. Click a unit&apos;s name to open its full stats
-          page in a new tab — handy for double-checking doctrine numbers.
+          page in a new tab.
         </>
       ),
       placement: "right",
@@ -45,19 +45,19 @@ export function getMainTourSteps(isMobile: boolean): TourStep[] {
       body: isMobile ? (
         <>
           Click <strong>&quot;Add to this Stack&quot;</strong> below, then tap units in the sidebar to add them here.
-          (Drag-and-drop only works with a mouse, not on touchscreens.)
+          (on desktop, you can also use drag and drop, but not on touchscreens.)
         </>
       ) : (
         <>
-          Add units two ways: drag one straight from the sidebar into this box, or click{" "}
-          <strong>&quot;Add to this Stack&quot;</strong> below and then click units in the sidebar.
+          Add units two ways: drag and drop one straight from the sidebar into this box, or click the first {" "}
+          <strong>&quot;Add to this Stack&quot;</strong> button on screen and then click units in the sidebar.
         </>
       ),
       placement: "right",
       requiresAction: true,
       actionHint: isMobile
         ? 'Click "Add to this Stack" below, then tap a unit in the sidebar, to continue.'
-        : 'Drag a unit from the sidebar into this box, or use "Add to this Stack", to continue.',
+        : 'Drag a unit from the sidebar into this box, or use "Add to this Stack" and click a unit in the sidebar, to continue.',
       satisfiedWhen: '[data-tour="your-first-stack-controls"]',
       secondaryTarget: '[data-tour="sidebar"]',
     },
@@ -65,7 +65,7 @@ export function getMainTourSteps(isMobile: boolean): TourStep[] {
       id: "unit-controls",
       target: '[data-tour="your-first-stack-controls"]',
       title: "Fine-tune the unit",
-      body: "Set its doctrine, tech level, and quantity here. The slider (and the box next to it) control its current HP if it's already taken damage.",
+      body: "Set its doctrine, research level, and quantity here. The slider (and the box next to it) control its current HP if it's already taken damage.",
       placement: "top",
     },
     {
@@ -75,7 +75,8 @@ export function getMainTourSteps(isMobile: boolean): TourStep[] {
       body: (
         <>
           Click <strong>&quot;+ Add Unit List&quot;</strong> whenever you want a separate group of units — handy when
-          infantry and tanks attack together but you want to track them separately.
+          you have one stack engaging in melee combat, but then some artillery and/or planes attacking separately.
+          Leave it for this tutorial.
         </>
       ),
       placement: "top",
