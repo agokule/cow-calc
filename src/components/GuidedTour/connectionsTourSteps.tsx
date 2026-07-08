@@ -21,7 +21,7 @@ export const connectionsTourSteps: TourStep[] = [
     body: (
       <>
         Click <strong>&quot;View Army Info&quot;</strong> to see this stack&apos;s damage potential, efficiency, and
-        how damage gets distributed across unit types.
+        how damage gets distributed across unit types. You can compare it against the in game stats to make sure that you entered the information correctly.
       </>
     ),
     placement: "right",
@@ -33,11 +33,11 @@ export const connectionsTourSteps: TourStep[] = [
     id: "army-info-dialog",
     target: '[data-tour="tour-protection-section"]',
     title: "Protection & home turf",
-    body: "Set a Protection Value here if the stack gets a building bonus, and toggle Home Defense Bonus (+15%) if it's defending in its own territory.",
+    body: "Copy the Protection Value from the game here if the unit is in fortifications, and toggle Home Defense Bonus if it's defending in its core territory.",
     placement: "top",
     dimBackground: false,
     requiresAction: true,
-    actionHint: "Close this dialog to continue.",
+    actionHint: "Close the army info dialog to continue.",
     satisfiedWhenTargetGone: true,
   },
   {
@@ -51,17 +51,28 @@ export const connectionsTourSteps: TourStep[] = [
     id: "connect-stacks",
     target: '[data-tour="tour-source-handle"]',
     title: "Connect the stacks that fight",
-    body: "Click and drag from this dot at the bottom of a stack to the matching dot on the enemy stack (or the other way around) to connect them in battle.",
+    body: ("Click and drag from this dot at the bottom of a stack to the top dot on the enemy stack (NOT the other way around) to connect them in battle."),
     placement: "bottom",
     requiresAction: true,
-    actionHint: "Drag from the dot to a matching dot on the enemy stack to continue.",
+    actionHint: "Drag from the dot to a matching dot on the enemy stack to continue. (you can drag this off to the side if needed)",
     satisfiedWhen: '[data-tour="tour-edge-source-action"]',
   },
   {
     id: "edge-actions",
     target: '[data-tour="tour-edge-source-action"]',
-    title: "Choose attack, defend, or patrol",
-    body: "Once two stacks are connected, click the icons on the line to set what each side does — attack, defend, patrol, both, or nothing — plus when and how often it repeats.",
+    title: "Choose attack, both attack and defend, or patrol",
+    body: (
+      <>
+        Once two stacks are connected, click the icons on the line to set what each side does — attack, defend, patrol, both, or nothing — plus when it starts and how often it repeats.
+        <ul>
+          <li>Use attack and defend if it is standard melee combat</li>
+          <li>Use the "Both" option if the game shows an attack icon on both stacks</li>
+          <li>Use attack and nothing if it is an artillery stack attacking another unit with no deamage being delt back</li>
+          <li>Use patrol and defend if it is an air unit patrolling over another stack</li>
+          <li>Use attack on both sides if it is 2 artillery stacks attacking eachother</li>
+        </ul>
+      </>
+    ),
     placement: "top",
   },
   {
