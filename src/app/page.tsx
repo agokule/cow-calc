@@ -242,7 +242,6 @@ export default function Home() {
         onStepChange={tour.setStepIndex}
         onClose={tour.close}
       />
-      {!tour.isOpen && <TourLaunchButton onClick={tour.restart} />}
       <div className="main-layout">
         <button
           className="sidebar-toggle"
@@ -310,6 +309,10 @@ export default function Home() {
               </ul>
             </div>
           ))}
+          <div key="about" className="sidebar-category">
+            <h3>Cow Calc</h3>
+            {!tour.isOpen && <button onClick={tour.restart}>🎓 Run Tutorial Again</button>}
+          </div>
         </nav>
 
         <div className="content">

@@ -54,7 +54,7 @@ export const connectionsTourSteps: TourStep[] = [
     body: ("Click and drag from this dot at the bottom of a stack to the top dot on the enemy stack (NOT the other way around) to connect them in battle."),
     placement: "bottom",
     requiresAction: true,
-    actionHint: "Drag from the dot to a matching dot on the enemy stack to continue. (you can drag this off to the side if needed)",
+    actionHint: "Drag from the dot to the top dot on the enemy stack to continue. (you can drag this message off to the side if needed)",
     satisfiedWhen: '[data-tour="tour-edge-source-action"]',
   },
   {

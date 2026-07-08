@@ -199,7 +199,7 @@
 .tour-launch-btn {
   position: fixed;
   bottom: 16px;
-  left: 16px;
+  right: 16px;
   z-index: 900;
   background-color: #4a6c4a;
   color: white;
