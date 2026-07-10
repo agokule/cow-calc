@@ -129,6 +129,13 @@ tbody tr:nth-child(even) {
   }
 }
 
+@media (max-width: 768px) {
+  div .react-flow__handle {
+    width: 13px;
+    height: 13px;
+  }
+}
+
 .selector-group {
   background-color: #3e3e3e;
   padding: 1rem;
