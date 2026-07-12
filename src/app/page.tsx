@@ -312,6 +312,7 @@ export default function Home() {
           <div key="about" className="sidebar-category">
             <h3>Cow Calc</h3>
             {!tour.isOpen && <button onClick={tour.restart}>🎓 Run Tutorial Again</button>}
+            <Link href="/feedback" passHref target="_blank">🗣️ Feature Requests and Bug Reports</Link>
           </div>
         </nav>
 

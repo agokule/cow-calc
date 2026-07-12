@@ -31,7 +31,7 @@ export function getMainTourSteps(isMobile: boolean): TourStep[] {
       body: (
         <>
           Every unit in the game lives here, grouped by category. Click a unit&apos;s name to open its full stats
-          page in a new tab. You can also run this tutorial again through here.
+          page in a new tab. You can also run this tutorial again, and report bugs through here.
         </>
       ),
       placement: "right",

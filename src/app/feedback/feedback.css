@@ -1,0 +1,16 @@
+main {
+  padding-left: 1rem;
+}
+
+li {
+  line-height: 1.25;
+}
+
+a {
+  color: #0f0;
+}
+
+ul > li:has(ul, ol) + li {
+    margin-top: 20px; /* Adjust this value to change the blank space */
+}
+
