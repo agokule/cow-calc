@@ -23,6 +23,7 @@ import { toTitleCase } from '@/utils/toTitleCase';
 import GuidedTour, { TourLaunchButton } from '@/components/GuidedTour/GuidedTour';
 import { useTourState } from '@/components/GuidedTour/useTourState';
 import { connectionsTourSteps } from '@/components/GuidedTour/connectionsTourSteps';
+import Link from 'next/link';
 
 const nodeTypes = { unitList: UnitListNode } as const;
 const edgeTypes = { action: ActionEdge } as const;
@@ -190,6 +191,13 @@ const ConnectionsPage = () => {
 
   return (
     <div style={{ width: '100vw', height: '100vh' }}>
+      <div className="floating-button-container">
+        <Link href="/" onClick={() => tour.close()}>
+          <button className="floating-button" data-tour="connections-button">
+            Main Page
+          </button>
+        </Link>
+      </div>
       <GuidedTour
         steps={connectionsTourSteps}
         isOpen={tour.isOpen}

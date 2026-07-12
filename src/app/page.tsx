@@ -228,9 +228,9 @@ export default function Home() {
 
   return (
     <main>
-      <div className="connections-button-container">
+      <div className="floating-button-container">
         <Link href="/connections" onClick={() => tour.close()}>
-          <button className="connections-button" data-tour="connections-button">
+          <button className="floating-button" data-tour="connections-button">
             Connections
           </button>
         </Link>

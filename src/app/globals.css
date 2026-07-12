@@ -513,14 +513,14 @@ tbody tr:nth-child(even) {
   letter-spacing: 1px;
 }
 
-.connections-button-container {
+.floating-button-container {
   position: absolute;
   top: 1rem;
   right: 1rem;
   z-index: 10;
 }
 
-.connections-button {
+.floating-button {
   background-color: #4a6c4a;
   color: white;
   padding: 0.5rem 1rem;
@@ -533,7 +533,7 @@ tbody tr:nth-child(even) {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.connections-button:hover {
+.floating-button:hover {
   background-color: #5a8c5a;
   transform: translateY(-2px);
 }
