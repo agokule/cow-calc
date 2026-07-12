@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, DragEvent, useContext } from "react";
 import { UnitListsContext } from "@/context/UnitListsContext";
 import TrashIcon from '@/components/TrashIcon';
-import GuidedTour, { TourLaunchButton } from '@/components/GuidedTour/GuidedTour';
+import GuidedTour from '@/components/GuidedTour/GuidedTour';
 import { useTourState } from '@/components/GuidedTour/useTourState';
 import { getMainTourSteps } from '@/components/GuidedTour/mainTourSteps';
 import { UnitListType, Doctrine, IUnitType, UnitName, UnitType, UnitClass } from "@/types";
