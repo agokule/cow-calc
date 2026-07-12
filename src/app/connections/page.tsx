@@ -191,7 +191,7 @@ const ConnectionsPage = () => {
 
   return (
     <div style={{ width: '100vw', height: '100vh' }}>
-      <div className="floating-button-container">
+      <div className="floating-button-container" style={{right: "unset", left: "1rem"}}>
         <Link href="/" onClick={() => tour.close()}>
           <button className="floating-button" data-tour="connections-button">
             Main Page
