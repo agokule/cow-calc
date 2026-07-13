@@ -1,6 +1,6 @@
 import { Unit } from "./Unit";
 
-export function dedeplucateUnitList(units: Unit[]): Unit[] {
+export function dedeplicateUnitList(units: Unit[]): Unit[] {
   const unitsFound = new Set<string>()
   const newUnits: Unit[] = []
 
@@ -13,10 +13,10 @@ export function dedeplucateUnitList(units: Unit[]): Unit[] {
   return newUnits
 }
 
-export function dedeplucateUnitLists(lists: Unit[][]): Unit[][] {
+export function dedeplicateUnitLists(lists: Unit[][]): Unit[][] {
   const newUnitLists: Unit[][] = []
   lists.forEach((list) => {
-    newUnitLists.push(dedeplucateUnitList(list))
+    newUnitLists.push(dedeplicateUnitList(list))
   })
   return newUnitLists
 }

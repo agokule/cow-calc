@@ -15,7 +15,7 @@ import { getUnitType } from "@/utils/getUnitType";
 import { useIsMobile } from "@/utils/isOnMobile";
 import { NewBadge } from "@/components/NewBadge";
 import { UnitIcon } from "@/components/UnitIcon";
-import { dedeplucateUnitLists } from "@/utils/deduplicateUnitList";
+import { dedeplicateUnitLists } from "@/utils/deduplicateUnitList";
 
 interface AddModeData {
   listIndex: number;
@@ -81,8 +81,8 @@ export default function Home() {
   // so that when we move from the connections page
   // back here, it doesn't show duplicated items
   useEffect(() => {
-    const newYourUnitLists = dedeplucateUnitLists(yourUnitLists)
-    const newEnemyUnitLists = dedeplucateUnitLists(enemyUnitLists)
+    const newYourUnitLists = dedeplicateUnitLists(yourUnitLists)
+    const newEnemyUnitLists = dedeplicateUnitLists(enemyUnitLists)
     setEnemyUnitLists(newEnemyUnitLists)
     setYourUnitLists(newYourUnitLists)
   }, [])

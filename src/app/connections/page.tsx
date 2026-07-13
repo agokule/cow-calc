@@ -24,7 +24,7 @@ import GuidedTour, { TourLaunchButton } from '@/components/GuidedTour/GuidedTour
 import { useTourState } from '@/components/GuidedTour/useTourState';
 import { connectionsTourSteps } from '@/components/GuidedTour/connectionsTourSteps';
 import Link from 'next/link';
-import { dedeplucateUnitLists } from '@/utils/deduplicateUnitList';
+import { dedeplicateUnitLists } from '@/utils/deduplicateUnitList';
 
 const nodeTypes = { unitList: UnitListNode } as const;
 const edgeTypes = { action: ActionEdge } as const;
@@ -165,8 +165,8 @@ const ConnectionsPage = () => {
     }
 
     setAllUnitLists({
-      yourUnitLists: dedeplucateUnitLists(newYourLists),
-      enemyUnitLists: dedeplucateUnitLists(newEnemyLists)
+      yourUnitLists: dedeplicateUnitLists(newYourLists),
+      enemyUnitLists: dedeplicateUnitLists(newEnemyLists)
     })
 
     let newNodes: NodeDataConnections[] = []
