@@ -24,12 +24,13 @@ import GuidedTour, { TourLaunchButton } from '@/components/GuidedTour/GuidedTour
 import { useTourState } from '@/components/GuidedTour/useTourState';
 import { connectionsTourSteps } from '@/components/GuidedTour/connectionsTourSteps';
 import Link from 'next/link';
+import { dedeplucateUnitLists } from '@/utils/deduplicateUnitList';
 
 const nodeTypes = { unitList: UnitListNode } as const;
 const edgeTypes = { action: ActionEdge } as const;
 
 const ConnectionsPage = () => {
-  const { yourUnitLists, setYourUnitLists, enemyUnitLists, setEnemyUnitLists } = useContext(UnitListsContext)!;
+  const { yourUnitLists, setYourUnitLists, enemyUnitLists, setEnemyUnitLists, setAllUnitLists } = useContext(UnitListsContext)!;
   const [nodes, setNodes] = useState<NodeDataConnections[]>([]);
   const [edges, setEdges] = useState<Edge<ActionEdgeData>[]>([]);
   const [isArmyInfoOpen, setIsArmyInfoOpen] = useState(false)
@@ -154,17 +155,19 @@ const ConnectionsPage = () => {
   }
 
   const setCurrentCycle = (current: IBattleCycle) => {
-    let newYourList = []
-    let newEnemyList = []
+    let newYourLists = []
+    let newEnemyLists = []
     for (const stack of current.stacks) {
       if (stack.id.startsWith('your'))
-        newYourList.push(stack.units)
+        newYourLists.push(stack.units)
       else
-        newEnemyList.push(stack.units)
+        newEnemyLists.push(stack.units)
     }
 
-    setYourUnitLists(newYourList)
-    setEnemyUnitLists(newEnemyList)
+    setAllUnitLists({
+      yourUnitLists: dedeplucateUnitLists(newYourLists),
+      enemyUnitLists: dedeplucateUnitLists(newEnemyLists)
+    })
 
     let newNodes: NodeDataConnections[] = []
     for (const node of nodes) {

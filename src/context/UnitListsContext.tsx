@@ -9,6 +9,7 @@ interface UnitListsContextType {
   setYourUnitLists: (val: Unit[][]) => void;
   enemyUnitLists: Unit[][];
   setEnemyUnitLists: (val: Unit[][]) => void;
+  setAllUnitLists: (val: UnitListsType) => void;
 }
 
 interface UnitListsType {
@@ -40,15 +41,16 @@ export const UnitListsProvider = ({ children }: { children: ReactNode }) => {
     let newULT: Partial<UnitListsType> = {}
     newULT[list] = val;
     newULT[other] = otherVal;
-    console.log(newULT)
+    console.log("newULT:", newULT, newULT.yourUnitLists, newULT.enemyUnitLists)
     setUnitLists(newULT as UnitListsType)
   }
 
   const setYourUnitLists = (val: Unit[][]) => setUnitList('yourUnitLists', val)
   const setEnemyUnitLists = (val: Unit[][]) => setUnitList('enemyUnitLists', val)
+  const setAllUnitLists = (val: UnitListsType) => setUnitLists(val)
 
   return (
-    <UnitListsContext.Provider value={{ yourUnitLists, setYourUnitLists, enemyUnitLists, setEnemyUnitLists }}>
+    <UnitListsContext.Provider value={{ yourUnitLists, setYourUnitLists, enemyUnitLists, setEnemyUnitLists, setAllUnitLists }}>
       {children}
     </UnitListsContext.Provider>
   );
