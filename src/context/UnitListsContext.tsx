@@ -34,6 +34,10 @@ export const UnitListsProvider = ({ children }: { children: ReactNode }) => {
   const yourUnitLists = unitLists.yourUnitLists;
   const enemyUnitLists = unitLists.enemyUnitLists;
 
+  /** WARNING: do not call this function to update 'yourUnitLists' and
+    * then 'enemyUnitLists' immediately after eachother, it causes problems
+    * with syncing just use setAllUnitLists instead in that situation
+    */
   const setUnitList = (list: keyof UnitListsType, val: Unit[][]) => {
     const other: keyof UnitListsType = list === 'yourUnitLists' ? 'enemyUnitLists' : 'yourUnitLists'
     const otherVal: Unit[][] = other === 'yourUnitLists' ? yourUnitLists : enemyUnitLists
