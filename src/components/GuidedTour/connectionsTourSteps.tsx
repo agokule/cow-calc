@@ -67,7 +67,7 @@ export const connectionsTourSteps: TourStep[] = [
         <ul>
           <li>Use attack and defend if it is standard melee combat</li>
           <li>Use the "Both" option if the game shows an attack icon on both stacks</li>
-          <li>Use attack and nothing if it is an artillery stack attacking another unit with no deamage being delt back</li>
+          <li>Use attack and nothing if it is an artillery stack attacking another unit with no damage being delt back</li>
           <li>Use patrol and defend if it is an air unit patrolling over another stack</li>
           <li>Use attack on both sides if it is 2 artillery stacks attacking eachother</li>
         </ul>
