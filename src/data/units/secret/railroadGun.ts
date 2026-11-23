@@ -510,7 +510,7 @@ export const railroadGunData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "HeavyArmor",
         "averageDamage": 3.1,
-        "hitpoints": 30,
+        "hitpoints": 27,
         "production": {
           "costs": {
             "manpower": 2700,
@@ -565,31 +565,31 @@ export const railroadGunData: IUnitType = {
         },
         "terrainEffects": {
           "plains": {
-            "health": 30,
+            "health": 27,
             "attackModifier": null,
             "speedModifier": 0.25,
             "strengthModifier": null
           },
           "hills": {
-            "health": 30,
+            "health": 27,
             "attackModifier": null,
             "speedModifier": -0.25,
             "strengthModifier": null
           },
           "mountains": {
-            "health": 30,
+            "health": 27,
             "attackModifier": null,
             "speedModifier": -0.5,
             "strengthModifier": null
           },
           "forest": {
-            "health": 30,
+            "health": 27,
             "attackModifier": null,
             "speedModifier": -0.25,
             "strengthModifier": null
           },
           "urban": {
-            "health": 30,
+            "health": 27,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -614,7 +614,7 @@ export const railroadGunData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "HeavyArmor",
         "averageDamage": 5.3,
-        "hitpoints": 50,
+        "hitpoints": 45,
         "production": {
           "costs": {
             "manpower": 2900,
@@ -669,31 +669,31 @@ export const railroadGunData: IUnitType = {
         },
         "terrainEffects": {
           "plains": {
-            "health": 50,
+            "health": 45,
             "attackModifier": null,
             "speedModifier": 0.25,
             "strengthModifier": null
           },
           "hills": {
-            "health": 50,
+            "health": 45,
             "attackModifier": null,
             "speedModifier": -0.25,
             "strengthModifier": null
           },
           "mountains": {
-            "health": 50,
+            "health": 45,
             "attackModifier": null,
             "speedModifier": -0.5,
             "strengthModifier": null
           },
           "forest": {
-            "health": 50,
+            "health": 45,
             "attackModifier": null,
             "speedModifier": -0.25,
             "strengthModifier": null
           },
           "urban": {
-            "health": 50,
+            "health": 45,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null

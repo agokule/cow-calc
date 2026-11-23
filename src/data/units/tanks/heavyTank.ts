@@ -1004,7 +1004,7 @@ export const heavyTankData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "HeavyArmor",
         "averageDamage": 7.8,
-        "hitpoints": 100,
+        "hitpoints": 90,
         "production": {
           "costs": {
             "manpower": 1300,
@@ -1059,31 +1059,31 @@ export const heavyTankData: IUnitType = {
         },
         "terrainEffects": {
           "plains": {
-            "health": 100,
+            "health": 90,
             "attackModifier": null,
             "speedModifier": 0.25,
             "strengthModifier": 0.7
           },
           "hills": {
-            "health": 100,
+            "health": 90,
             "attackModifier": null,
             "speedModifier": -0.25,
             "strengthModifier": null
           },
           "mountains": {
-            "health": 100,
+            "health": 90,
             "attackModifier": null,
             "speedModifier": -0.5,
             "strengthModifier": null
           },
           "forest": {
-            "health": 100,
+            "health": 90,
             "attackModifier": null,
             "speedModifier": -0.25,
             "strengthModifier": null
           },
           "urban": {
-            "health": 100,
+            "health": 90,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -1108,7 +1108,7 @@ export const heavyTankData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "HeavyArmor",
         "averageDamage": 10.7,
-        "hitpoints": 130,
+        "hitpoints": 117,
         "production": {
           "costs": {
             "manpower": 1400,
@@ -1163,31 +1163,31 @@ export const heavyTankData: IUnitType = {
         },
         "terrainEffects": {
           "plains": {
-            "health": 130,
+            "health": 117,
             "attackModifier": null,
             "speedModifier": 0.25,
             "strengthModifier": 0.7
           },
           "hills": {
-            "health": 130,
+            "health": 117,
             "attackModifier": null,
             "speedModifier": -0.25,
             "strengthModifier": null
           },
           "mountains": {
-            "health": 130,
+            "health": 117,
             "attackModifier": null,
             "speedModifier": -0.5,
             "strengthModifier": null
           },
           "forest": {
-            "health": 130,
+            "health": 117,
             "attackModifier": null,
             "speedModifier": -0.25,
             "strengthModifier": null
           },
           "urban": {
-            "health": 130,
+            "health": 117,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -1212,7 +1212,7 @@ export const heavyTankData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "HeavyArmor",
         "averageDamage": 14.7,
-        "hitpoints": 170,
+        "hitpoints": 153,
         "production": {
           "costs": {
             "manpower": 1400,
@@ -1267,31 +1267,31 @@ export const heavyTankData: IUnitType = {
         },
         "terrainEffects": {
           "plains": {
-            "health": 170,
+            "health": 153,
             "attackModifier": null,
             "speedModifier": 0.25,
             "strengthModifier": 0.7
           },
           "hills": {
-            "health": 170,
+            "health": 153,
             "attackModifier": null,
             "speedModifier": -0.25,
             "strengthModifier": null
           },
           "mountains": {
-            "health": 170,
+            "health": 153,
             "attackModifier": null,
             "speedModifier": -0.5,
             "strengthModifier": null
           },
           "forest": {
-            "health": 170,
+            "health": 153,
             "attackModifier": null,
             "speedModifier": -0.25,
             "strengthModifier": null
           },
           "urban": {
-            "health": 170,
+            "health": 153,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -1316,7 +1316,7 @@ export const heavyTankData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "HeavyArmor",
         "averageDamage": 19.7,
-        "hitpoints": 220,
+        "hitpoints": 198,
         "production": {
           "costs": {
             "manpower": 1500,
@@ -1371,31 +1371,31 @@ export const heavyTankData: IUnitType = {
         },
         "terrainEffects": {
           "plains": {
-            "health": 220,
+            "health": 198,
             "attackModifier": null,
             "speedModifier": 0.25,
             "strengthModifier": 0.7
           },
           "hills": {
-            "health": 220,
+            "health": 198,
             "attackModifier": null,
             "speedModifier": -0.25,
             "strengthModifier": null
           },
           "mountains": {
-            "health": 220,
+            "health": 198,
             "attackModifier": null,
             "speedModifier": -0.5,
             "strengthModifier": null
           },
           "forest": {
-            "health": 220,
+            "health": 198,
             "attackModifier": null,
             "speedModifier": -0.25,
             "strengthModifier": null
           },
           "urban": {
-            "health": 220,
+            "health": 198,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null

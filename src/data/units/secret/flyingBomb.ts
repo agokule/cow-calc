@@ -265,7 +265,7 @@ export const flyingBombData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Airplane",
         "averageDamage": 6,
-        "hitpoints": 15,
+        "hitpoints": 14,
         "production": {
           "costs": {
             "manpower": 200,
@@ -321,37 +321,37 @@ export const flyingBombData: IUnitType = {
         },
         "terrainEffects": {
           "plains": {
-            "health": 15,
+            "health": 14,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "hills": {
-            "health": 15,
+            "health": 14,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "mountains": {
-            "health": 15,
+            "health": 14,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "forest": {
-            "health": 15,
+            "health": 14,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "urban": {
-            "health": 15,
+            "health": 14,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "sea": {
-            "health": 15,
+            "health": 14,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null

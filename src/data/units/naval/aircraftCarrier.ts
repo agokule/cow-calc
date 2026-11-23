@@ -1486,7 +1486,7 @@ export const aircraftCarrierData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Ship",
         "averageDamage": 1.8,
-        "hitpoints": 50,
+        "hitpoints": 45,
         "production": {
           "costs": {
             "food": 1200,
@@ -1570,7 +1570,7 @@ export const aircraftCarrierData: IUnitType = {
             "strengthModifier": null
           },
           "sea": {
-            "health": 50,
+            "health": 45,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -1589,7 +1589,7 @@ export const aircraftCarrierData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Ship",
         "averageDamage": 2.5,
-        "hitpoints": 65,
+        "hitpoints": 59,
         "production": {
           "costs": {
             "food": 1300,
@@ -1673,7 +1673,7 @@ export const aircraftCarrierData: IUnitType = {
             "strengthModifier": null
           },
           "sea": {
-            "health": 65,
+            "health": 59,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -1692,7 +1692,7 @@ export const aircraftCarrierData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Ship",
         "averageDamage": 3.8,
-        "hitpoints": 85,
+        "hitpoints": 77,
         "production": {
           "costs": {
             "food": 1500,
@@ -1776,7 +1776,7 @@ export const aircraftCarrierData: IUnitType = {
             "strengthModifier": null
           },
           "sea": {
-            "health": 85,
+            "health": 77,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -1795,7 +1795,7 @@ export const aircraftCarrierData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Ship",
         "averageDamage": 5.5,
-        "hitpoints": 115,
+        "hitpoints": 104,
         "production": {
           "costs": {
             "food": 1700,
@@ -1879,7 +1879,7 @@ export const aircraftCarrierData: IUnitType = {
             "strengthModifier": null
           },
           "sea": {
-            "health": 115,
+            "health": 104,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -1898,7 +1898,7 @@ export const aircraftCarrierData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Ship",
         "averageDamage": 8.3,
-        "hitpoints": 155,
+        "hitpoints": 140,
         "production": {
           "costs": {
             "food": 2000,
@@ -1982,7 +1982,7 @@ export const aircraftCarrierData: IUnitType = {
             "strengthModifier": null
           },
           "sea": {
-            "health": 155,
+            "health": 140,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -2001,7 +2001,7 @@ export const aircraftCarrierData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Ship",
         "averageDamage": 11.5,
-        "hitpoints": 200,
+        "hitpoints": 180,
         "production": {
           "costs": {
             "food": 2200,
@@ -2085,7 +2085,7 @@ export const aircraftCarrierData: IUnitType = {
             "strengthModifier": null
           },
           "sea": {
-            "health": 200,
+            "health": 180,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null

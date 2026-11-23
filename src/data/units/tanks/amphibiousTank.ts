@@ -192,7 +192,7 @@ export const amphibiousTankData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "LightArmor",
         "averageDamage": 3.2,
-        "hitpoints": 30,
+        "hitpoints": 27,
         "production": {
           "costs": {
             "food": 0,
@@ -247,43 +247,43 @@ export const amphibiousTankData: IUnitType = {
         },
         "terrainEffects": {
           "plains": {
-            "health": 30,
+            "health": 27,
             "attackModifier": null,
             "speedModifier": 0.25,
             "strengthModifier": 0.7
           },
           "hills": {
-            "health": 30,
+            "health": 27,
             "attackModifier": null,
             "speedModifier": -0.25,
             "strengthModifier": null
           },
           "mountains": {
-            "health": 30,
+            "health": 27,
             "attackModifier": null,
             "speedModifier": -0.5,
             "strengthModifier": null
           },
           "forest": {
-            "health": 30,
+            "health": 27,
             "attackModifier": null,
             "speedModifier": -0.25,
             "strengthModifier": null
           },
           "urban": {
-            "health": 30,
+            "health": 27,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "sea": {
-            "health": 30,
+            "health": 27,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "enemyTerritory": {
-            "health": 30,
+            "health": 27,
             "attackModifier": null,
             "strengthModifier": null,
             "speedModifier": -0.5

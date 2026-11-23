@@ -1510,7 +1510,7 @@ export const cruiserData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Ship",
         "averageDamage": 3.2,
-        "hitpoints": 35,
+        "hitpoints": 32,
         "production": {
           "costs": {
             "food": 1900,
@@ -1596,7 +1596,7 @@ export const cruiserData: IUnitType = {
             "strengthModifier": null
           },
           "sea": {
-            "health": 35,
+            "health": 32,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -1615,7 +1615,7 @@ export const cruiserData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Ship",
         "averageDamage": 4.3,
-        "hitpoints": 50,
+        "hitpoints": 45,
         "production": {
           "costs": {
             "food": 2100,
@@ -1701,7 +1701,7 @@ export const cruiserData: IUnitType = {
             "strengthModifier": null
           },
           "sea": {
-            "health": 50,
+            "health": 45,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -1720,7 +1720,7 @@ export const cruiserData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Ship",
         "averageDamage": 5.8,
-        "hitpoints": 70,
+        "hitpoints": 63,
         "production": {
           "costs": {
             "food": 2300,
@@ -1806,7 +1806,7 @@ export const cruiserData: IUnitType = {
             "strengthModifier": null
           },
           "sea": {
-            "health": 70,
+            "health": 63,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -1825,7 +1825,7 @@ export const cruiserData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Ship",
         "averageDamage": 7.8,
-        "hitpoints": 90,
+        "hitpoints": 81,
         "production": {
           "costs": {
             "food": 2600,
@@ -1911,7 +1911,7 @@ export const cruiserData: IUnitType = {
             "strengthModifier": null
           },
           "sea": {
-            "health": 90,
+            "health": 81,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -1930,7 +1930,7 @@ export const cruiserData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Ship",
         "averageDamage": 10.3,
-        "hitpoints": 115,
+        "hitpoints": 104,
         "production": {
           "costs": {
             "food": 3100,
@@ -2016,7 +2016,7 @@ export const cruiserData: IUnitType = {
             "strengthModifier": null
           },
           "sea": {
-            "health": 115,
+            "health": 104,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -2035,7 +2035,7 @@ export const cruiserData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Ship",
         "averageDamage": 13.8,
-        "hitpoints": 140,
+        "hitpoints": 126,
         "production": {
           "costs": {
             "food": 3400,
@@ -2121,7 +2121,7 @@ export const cruiserData: IUnitType = {
             "strengthModifier": null
           },
           "sea": {
-            "health": 140,
+            "health": 126,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null

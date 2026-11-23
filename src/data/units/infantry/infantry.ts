@@ -1745,7 +1745,7 @@ export const infantryData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Unarmored",
         "averageDamage": 2.3,
-        "hitpoints": 17,
+        "hitpoints": 15,
         "production": {
           "costs": {
             "food": 1100,
@@ -1812,19 +1812,19 @@ export const infantryData: IUnitType = {
             "strengthModifier": null
           },
           "mountains": {
-            "health": 17,
+            "health": 15,
             "attackModifier": null,
             "speedModifier": -0.5,
             "strengthModifier": 0.4
           },
           "forest": {
-            "health": 17,
+            "health": 15,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": 0.7
           },
           "urban": {
-            "health": 17,
+            "health": 15,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": 0.7
@@ -1849,7 +1849,7 @@ export const infantryData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Unarmored",
         "averageDamage": 3.1,
-        "hitpoints": 22,
+        "hitpoints": 20,
         "production": {
           "costs": {
             "food": 1200,
@@ -1916,19 +1916,19 @@ export const infantryData: IUnitType = {
             "strengthModifier": null
           },
           "mountains": {
-            "health": 22,
+            "health": 20,
             "attackModifier": null,
             "speedModifier": -0.5,
             "strengthModifier": 0.4
           },
           "forest": {
-            "health": 22,
+            "health": 20,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": 0.7
           },
           "urban": {
-            "health": 22,
+            "health": 20,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": 0.7
@@ -1953,7 +1953,7 @@ export const infantryData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Unarmored",
         "averageDamage": 4.3,
-        "hitpoints": 28,
+        "hitpoints": 25,
         "production": {
           "costs": {
             "food": 1200,
@@ -2020,19 +2020,19 @@ export const infantryData: IUnitType = {
             "strengthModifier": null
           },
           "mountains": {
-            "health": 28,
+            "health": 25,
             "attackModifier": null,
             "speedModifier": -0.5,
             "strengthModifier": 0.4
           },
           "forest": {
-            "health": 28,
+            "health": 25,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": 0.7
           },
           "urban": {
-            "health": 28,
+            "health": 25,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": 0.7
@@ -2057,7 +2057,7 @@ export const infantryData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Unarmored",
         "averageDamage": 5.8,
-        "hitpoints": 33,
+        "hitpoints": 30,
         "production": {
           "costs": {
             "food": 1300,
@@ -2124,19 +2124,19 @@ export const infantryData: IUnitType = {
             "strengthModifier": null
           },
           "mountains": {
-            "health": 33,
+            "health": 30,
             "attackModifier": null,
             "speedModifier": -0.5,
             "strengthModifier": 0.4
           },
           "forest": {
-            "health": 33,
+            "health": 30,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": 0.7
           },
           "urban": {
-            "health": 33,
+            "health": 30,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": 0.7
@@ -2161,7 +2161,7 @@ export const infantryData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Unarmored",
         "averageDamage": 7.5,
-        "hitpoints": 44,
+        "hitpoints": 40,
         "production": {
           "costs": {
             "food": 1400,
@@ -2228,19 +2228,19 @@ export const infantryData: IUnitType = {
             "strengthModifier": null
           },
           "mountains": {
-            "health": 44,
+            "health": 40,
             "attackModifier": null,
             "speedModifier": -0.5,
             "strengthModifier": 0.4
           },
           "forest": {
-            "health": 44,
+            "health": 40,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": 0.7
           },
           "urban": {
-            "health": 44,
+            "health": 40,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": 0.7
@@ -2265,7 +2265,7 @@ export const infantryData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Unarmored",
         "averageDamage": 10.1,
-        "hitpoints": 55,
+        "hitpoints": 50,
         "production": {
           "costs": {
             "food": 1600,
@@ -2332,19 +2332,19 @@ export const infantryData: IUnitType = {
             "strengthModifier": null
           },
           "mountains": {
-            "health": 55,
+            "health": 50,
             "attackModifier": null,
             "speedModifier": -0.5,
             "strengthModifier": 0.4
           },
           "forest": {
-            "health": 55,
+            "health": 50,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": 0.7
           },
           "urban": {
-            "health": 55,
+            "health": 50,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": 0.7
@@ -2369,7 +2369,7 @@ export const infantryData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Unarmored",
         "averageDamage": 13.2,
-        "hitpoints": 72,
+        "hitpoints": 65,
         "production": {
           "costs": {
             "food": 1800,
@@ -2436,19 +2436,19 @@ export const infantryData: IUnitType = {
             "strengthModifier": null
           },
           "mountains": {
-            "health": 72,
+            "health": 65,
             "attackModifier": null,
             "speedModifier": -0.5,
             "strengthModifier": 0.4
           },
           "forest": {
-            "health": 72,
+            "health": 65,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": 0.7
           },
           "urban": {
-            "health": 72,
+            "health": 65,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": 0.7

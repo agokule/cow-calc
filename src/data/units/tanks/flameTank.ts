@@ -372,7 +372,7 @@ export const flameTankData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "HeavyArmor",
         "averageDamage": 6.3,
-        "hitpoints": 60,
+        "hitpoints": 54,
         "production": {
           "costs": {
             "food": 0,
@@ -428,31 +428,31 @@ export const flameTankData: IUnitType = {
         },
         "terrainEffects": {
           "plains": {
-            "health": 60,
+            "health": 54,
             "attackModifier": null,
             "strengthModifier": null,
             "speedModifier": 0.25
           },
           "hills": {
-            "health": 60,
+            "health": 54,
             "attackModifier": null,
             "strengthModifier": null,
             "speedModifier": -0.25
           },
           "mountains": {
-            "health": 60,
+            "health": 54,
             "attackModifier": null,
             "strengthModifier": null,
             "speedModifier": -0.5
           },
           "forest": {
-            "health": 60,
+            "health": 54,
             "attackModifier": null,
             "strengthModifier": null,
             "speedModifier": -0.25
           },
           "urban": {
-            "health": 60,
+            "health": 54,
             "attackModifier": null,
             "strengthModifier": 0.7,
             "speedModifier": null
@@ -464,7 +464,7 @@ export const flameTankData: IUnitType = {
             "speedModifier": null
           },
           "enemyTerritory": {
-            "health": 60,
+            "health": 54,
             "attackModifier": null,
             "strengthModifier": null,
             "speedModifier": -0.5
@@ -477,7 +477,7 @@ export const flameTankData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "HeavyArmor",
         "averageDamage": 8.8,
-        "hitpoints": 85,
+        "hitpoints": 77,
         "production": {
           "costs": {
             "food": 0,
@@ -533,31 +533,31 @@ export const flameTankData: IUnitType = {
         },
         "terrainEffects": {
           "plains": {
-            "health": 85,
+            "health": 77,
             "attackModifier": null,
             "strengthModifier": null,
             "speedModifier": 0.25
           },
           "hills": {
-            "health": 85,
+            "health": 77,
             "attackModifier": null,
             "strengthModifier": null,
             "speedModifier": -0.25
           },
           "mountains": {
-            "health": 85,
+            "health": 77,
             "attackModifier": null,
             "strengthModifier": null,
             "speedModifier": -0.5
           },
           "forest": {
-            "health": 85,
+            "health": 77,
             "attackModifier": null,
             "strengthModifier": null,
             "speedModifier": -0.25
           },
           "urban": {
-            "health": 85,
+            "health": 77,
             "attackModifier": null,
             "strengthModifier": 0.7,
             "speedModifier": null
@@ -569,7 +569,7 @@ export const flameTankData: IUnitType = {
             "speedModifier": null
           },
           "enemyTerritory": {
-            "health": 85,
+            "health": 77,
             "attackModifier": null,
             "strengthModifier": null,
             "speedModifier": -0.5

@@ -1006,7 +1006,7 @@ export const paratrooperData: IUnitType[] = [
           "doctrine": "Pan-Asian",
           "type": "Unarmored",
           "averageDamage": 5.5,
-          "hitpoints": 35,
+          "hitpoints": 32,
           "production": {
             "costs": {
               "food": 1412,
@@ -1061,31 +1061,31 @@ export const paratrooperData: IUnitType[] = [
           },
           "terrainEffects": {
             "plains": {
-              "health": 35,
+              "health": 32,
               "attackModifier": null,
               "speedModifier": null,
               "strengthModifier": 0.45
             },
             "hills": {
-              "health": 35,
+              "health": 32,
               "attackModifier": null,
               "speedModifier": null,
               "strengthModifier": 0.45
             },
             "mountains": {
-              "health": 35,
+              "health": 32,
               "attackModifier": null,
               "speedModifier": -0.5,
               "strengthModifier": 0.45
             },
             "forest": {
-              "health": 35,
+              "health": 32,
               "attackModifier": null,
               "speedModifier": null,
               "strengthModifier": 0.7
             },
             "urban": {
-              "health": 39,
+              "health": 32,
               "attackModifier": null,
               "speedModifier": null,
               "strengthModifier": null
@@ -1110,7 +1110,7 @@ export const paratrooperData: IUnitType[] = [
           "doctrine": "Pan-Asian",
           "type": "Unarmored",
           "averageDamage": 6.8,
-          "hitpoints": 45,
+          "hitpoints": 41,
           "production": {
             "costs": {
               "food": 1529,
@@ -1165,31 +1165,31 @@ export const paratrooperData: IUnitType[] = [
           },
           "terrainEffects": {
             "plains": {
-              "health": 45,
+              "health": 41,
               "attackModifier": null,
               "speedModifier": null,
               "strengthModifier": 0.45
             },
             "hills": {
-              "health": 45,
+              "health": 41,
               "attackModifier": null,
               "speedModifier": null,
               "strengthModifier": 0.45
             },
             "mountains": {
-              "health": 45,
+              "health": 41,
               "attackModifier": null,
               "speedModifier": -0.5,
               "strengthModifier": 0.45
             },
             "forest": {
-              "health": 45,
+              "health": 41,
               "attackModifier": null,
               "speedModifier": null,
               "strengthModifier": 0.7
             },
             "urban": {
-              "health": 50,
+              "health": 41,
               "attackModifier": null,
               "speedModifier": null,
               "strengthModifier": null
@@ -1214,7 +1214,7 @@ export const paratrooperData: IUnitType[] = [
           "doctrine": "Pan-Asian",
           "type": "Unarmored",
           "averageDamage": 9.2,
-          "hitpoints": 55,
+          "hitpoints": 50,
           "production": {
             "costs": {
               "food": 1765,
@@ -1269,31 +1269,31 @@ export const paratrooperData: IUnitType[] = [
           },
           "terrainEffects": {
             "plains": {
-              "health": 55,
+              "health": 50,
               "attackModifier": null,
               "speedModifier": null,
               "strengthModifier": 0.45
             },
             "hills": {
-              "health": 55,
+              "health": 50,
               "attackModifier": null,
               "speedModifier": null,
               "strengthModifier": 0.45
             },
             "mountains": {
-              "health": 55,
+              "health": 50,
               "attackModifier": null,
               "speedModifier": -0.5,
               "strengthModifier": 0.45
             },
             "forest": {
-              "health": 55,
+              "health": 50,
               "attackModifier": null,
               "speedModifier": null,
               "strengthModifier": 0.7
             },
             "urban": {
-              "health": 61,
+              "health": 50,
               "attackModifier": null,
               "speedModifier": null,
               "strengthModifier": null
@@ -1318,7 +1318,7 @@ export const paratrooperData: IUnitType[] = [
           "doctrine": "Pan-Asian",
           "type": "Unarmored",
           "averageDamage": 12.3,
-          "hitpoints": 70,
+          "hitpoints": 63,
           "production": {
             "costs": {
               "food": 2000,
@@ -1373,31 +1373,31 @@ export const paratrooperData: IUnitType[] = [
           },
           "terrainEffects": {
             "plains": {
-              "health": 70,
+              "health": 63,
               "attackModifier": null,
               "speedModifier": null,
               "strengthModifier": 0.45
             },
             "hills": {
-              "health": 70,
+              "health": 63,
               "attackModifier": null,
               "speedModifier": null,
               "strengthModifier": 0.45
             },
             "mountains": {
-              "health": 70,
+              "health": 63,
               "attackModifier": null,
               "speedModifier": -0.5,
               "strengthModifier": 0.45
             },
             "forest": {
-              "health": 70,
+              "health": 63,
               "attackModifier": null,
               "speedModifier": null,
               "strengthModifier": 0.7
             },
             "urban": {
-              "health": 77,
+              "health": 63,
               "attackModifier": null,
               "speedModifier": null,
               "strengthModifier": null
@@ -2432,7 +2432,7 @@ export const paratrooperData: IUnitType[] = [
           "doctrine": "Pan-Asian",
           "type": "Airplane",
           "averageDamage": 0.8,
-          "hitpoints": 35,
+          "hitpoints": 32,
           "production": {
             "costs": {
               "food": 1412,
@@ -2488,37 +2488,37 @@ export const paratrooperData: IUnitType[] = [
           },
           "terrainEffects": {
             "plains": {
-              "health": 39,
+              "health": 32,
               "attackModifier": null,
               "speedModifier": null,
               "strengthModifier": null
             },
             "hills": {
-              "health": 39,
+              "health": 32,
               "attackModifier": null,
               "speedModifier": null,
               "strengthModifier": null
             },
             "mountains": {
-              "health": 39,
+              "health": 32,
               "attackModifier": null,
               "speedModifier": null,
               "strengthModifier": null
             },
             "forest": {
-              "health": 39,
+              "health": 32,
               "attackModifier": null,
               "speedModifier": null,
               "strengthModifier": null
             },
             "urban": {
-              "health": 39,
+              "health": 32,
               "attackModifier": null,
               "speedModifier": null,
               "strengthModifier": null
             },
             "sea": {
-              "health": 39,
+              "health": 32,
               "attackModifier": null,
               "speedModifier": null,
               "strengthModifier": null
@@ -2537,7 +2537,7 @@ export const paratrooperData: IUnitType[] = [
           "doctrine": "Pan-Asian",
           "type": "Airplane",
           "averageDamage": 1.1,
-          "hitpoints": 45,
+          "hitpoints": 41,
           "production": {
             "costs": {
               "food": 1529,
@@ -2593,37 +2593,37 @@ export const paratrooperData: IUnitType[] = [
           },
           "terrainEffects": {
             "plains": {
-              "health": 50,
+              "health": 41,
               "attackModifier": null,
               "speedModifier": null,
               "strengthModifier": null
             },
             "hills": {
-              "health": 50,
+              "health": 41,
               "attackModifier": null,
               "speedModifier": null,
               "strengthModifier": null
             },
             "mountains": {
-              "health": 50,
+              "health": 41,
               "attackModifier": null,
               "speedModifier": null,
               "strengthModifier": null
             },
             "forest": {
-              "health": 50,
+              "health": 41,
               "attackModifier": null,
               "speedModifier": null,
               "strengthModifier": null
             },
             "urban": {
-              "health": 50,
+              "health": 41,
               "attackModifier": null,
               "speedModifier": null,
               "strengthModifier": null
             },
             "sea": {
-              "health": 50,
+              "health": 41,
               "attackModifier": null,
               "speedModifier": null,
               "strengthModifier": null
@@ -2642,7 +2642,7 @@ export const paratrooperData: IUnitType[] = [
           "doctrine": "Pan-Asian",
           "type": "Airplane",
           "averageDamage": 1.9,
-          "hitpoints": 55,
+          "hitpoints": 50,
           "production": {
             "costs": {
               "food": 1765,
@@ -2698,37 +2698,37 @@ export const paratrooperData: IUnitType[] = [
           },
           "terrainEffects": {
             "plains": {
-              "health": 61,
+              "health": 50,
               "attackModifier": null,
               "speedModifier": null,
               "strengthModifier": null
             },
             "hills": {
-              "health": 61,
+              "health": 50,
               "attackModifier": null,
               "speedModifier": null,
               "strengthModifier": null
             },
             "mountains": {
-              "health": 61,
+              "health": 50,
               "attackModifier": null,
               "speedModifier": null,
               "strengthModifier": null
             },
             "forest": {
-              "health": 61,
+              "health": 50,
               "attackModifier": null,
               "speedModifier": null,
               "strengthModifier": null
             },
             "urban": {
-              "health": 61,
+              "health": 50,
               "attackModifier": null,
               "speedModifier": null,
               "strengthModifier": null
             },
             "sea": {
-              "health": 61,
+              "health": 50,
               "attackModifier": null,
               "speedModifier": null,
               "strengthModifier": null
@@ -2747,7 +2747,7 @@ export const paratrooperData: IUnitType[] = [
           "doctrine": "Pan-Asian",
           "type": "Airplane",
           "averageDamage": 3,
-          "hitpoints": 70,
+          "hitpoints": 63,
           "production": {
             "costs": {
               "food": 2000,
@@ -2803,37 +2803,37 @@ export const paratrooperData: IUnitType[] = [
           },
           "terrainEffects": {
             "plains": {
-              "health": 77,
+              "health": 63,
               "attackModifier": null,
               "speedModifier": null,
               "strengthModifier": null
             },
             "hills": {
-              "health": 77,
+              "health": 63,
               "attackModifier": null,
               "speedModifier": null,
               "strengthModifier": null
             },
             "mountains": {
-              "health": 77,
+              "health": 63,
               "attackModifier": null,
               "speedModifier": null,
               "strengthModifier": null
             },
             "forest": {
-              "health": 77,
+              "health": 63,
               "attackModifier": null,
               "speedModifier": null,
               "strengthModifier": null
             },
             "urban": {
-              "health": 77,
+              "health": 63,
               "attackModifier": null,
               "speedModifier": null,
               "strengthModifier": null
             },
             "sea": {
-              "health": 77,
+              "health": 63,
               "attackModifier": null,
               "speedModifier": null,
               "strengthModifier": null

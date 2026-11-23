@@ -1012,7 +1012,7 @@ export const commandosData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Unarmored",
         "averageDamage": 5.8,
-        "hitpoints": 30,
+        "hitpoints": 27,
         "production": {
           "costs": {
             "food": 2200,
@@ -1068,31 +1068,31 @@ export const commandosData: IUnitType = {
         },
         "terrainEffects": {
           "plains": {
-            "health": 30,
+            "health": 27,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "hills": {
-            "health": 30,
+            "health": 27,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "mountains": {
-            "health": 30,
+            "health": 27,
             "attackModifier": null,
             "speedModifier": -0.5,
             "strengthModifier": 0.7
           },
           "forest": {
-            "health": 30,
+            "health": 27,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": 0.7
           },
           "urban": {
-            "health": 30,
+            "health": 27,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -1117,7 +1117,7 @@ export const commandosData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Unarmored",
         "averageDamage": 7.8,
-        "hitpoints": 40,
+        "hitpoints": 36,
         "production": {
           "costs": {
             "food": 2500,
@@ -1173,31 +1173,31 @@ export const commandosData: IUnitType = {
         },
         "terrainEffects": {
           "plains": {
-            "health": 40,
+            "health": 36,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "hills": {
-            "health": 40,
+            "health": 36,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "mountains": {
-            "health": 40,
+            "health": 36,
             "attackModifier": null,
             "speedModifier": -0.5,
             "strengthModifier": 0.7
           },
           "forest": {
-            "health": 40,
+            "health": 36,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": 0.7
           },
           "urban": {
-            "health": 40,
+            "health": 36,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -1222,7 +1222,7 @@ export const commandosData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Unarmored",
         "averageDamage": 10.5,
-        "hitpoints": 50,
+        "hitpoints": 45,
         "production": {
           "costs": {
             "food": 2800,
@@ -1278,31 +1278,31 @@ export const commandosData: IUnitType = {
         },
         "terrainEffects": {
           "plains": {
-            "health": 50,
+            "health": 45,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "hills": {
-            "health": 50,
+            "health": 45,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "mountains": {
-            "health": 50,
+            "health": 45,
             "attackModifier": null,
             "speedModifier": -0.5,
             "strengthModifier": 0.7
           },
           "forest": {
-            "health": 50,
+            "health": 45,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": 0.7
           },
           "urban": {
-            "health": 50,
+            "health": 45,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -1327,7 +1327,7 @@ export const commandosData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Unarmored",
         "averageDamage": 14.5,
-        "hitpoints": 65,
+        "hitpoints": 59,
         "production": {
           "costs": {
             "food": 3200,
@@ -1383,31 +1383,31 @@ export const commandosData: IUnitType = {
         },
         "terrainEffects": {
           "plains": {
-            "health": 65,
+            "health": 59,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "hills": {
-            "health": 65,
+            "health": 59,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "mountains": {
-            "health": 65,
+            "health": 59,
             "attackModifier": null,
             "speedModifier": -0.5,
             "strengthModifier": 0.7
           },
           "forest": {
-            "health": 65,
+            "health": 59,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": 0.7
           },
           "urban": {
-            "health": 65,
+            "health": 59,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null

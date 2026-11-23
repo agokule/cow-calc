@@ -1745,7 +1745,7 @@ export const strategicBomberData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Airplane",
         "averageDamage": 1,
-        "hitpoints": 30,
+        "hitpoints": 27,
         "production": {
           "costs": {
             "food": 1600,
@@ -1800,37 +1800,37 @@ export const strategicBomberData: IUnitType = {
         },
         "terrainEffects": {
           "plains": {
-            "health": 35,
+            "health": 27,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "hills": {
-            "health": 35,
+            "health": 27,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "mountains": {
-            "health": 35,
+            "health": 27,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "forest": {
-            "health": 35,
+            "health": 27,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "urban": {
-            "health": 35,
+            "health": 27,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "sea": {
-            "health": 35,
+            "health": 27,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -1849,7 +1849,7 @@ export const strategicBomberData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Airplane",
         "averageDamage": 1.3,
-        "hitpoints": 40,
+        "hitpoints": 36,
         "production": {
           "costs": {
             "food": 1800,
@@ -1904,37 +1904,37 @@ export const strategicBomberData: IUnitType = {
         },
         "terrainEffects": {
           "plains": {
-            "health": 46,
+            "health": 36,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "hills": {
-            "health": 46,
+            "health": 36,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "mountains": {
-            "health": 46,
+            "health": 36,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "forest": {
-            "health": 46,
+            "health": 36,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "urban": {
-            "health": 46,
+            "health": 36,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "sea": {
-            "health": 46,
+            "health": 36,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -1953,7 +1953,7 @@ export const strategicBomberData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Airplane",
         "averageDamage": 1.7,
-        "hitpoints": 50,
+        "hitpoints": 45,
         "production": {
           "costs": {
             "food": 1900,
@@ -2008,37 +2008,37 @@ export const strategicBomberData: IUnitType = {
         },
         "terrainEffects": {
           "plains": {
-            "health": 58,
+            "health": 45,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "hills": {
-            "health": 58,
+            "health": 45,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "mountains": {
-            "health": 58,
+            "health": 45,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "forest": {
-            "health": 58,
+            "health": 45,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "urban": {
-            "health": 58,
+            "health": 45,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "sea": {
-            "health": 58,
+            "health": 45,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -2057,7 +2057,7 @@ export const strategicBomberData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Airplane",
         "averageDamage": 2.4,
-        "hitpoints": 65,
+        "hitpoints": 59,
         "production": {
           "costs": {
             "food": 2200,
@@ -2112,37 +2112,37 @@ export const strategicBomberData: IUnitType = {
         },
         "terrainEffects": {
           "plains": {
-            "health": 75,
+            "health": 59,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "hills": {
-            "health": 75,
+            "health": 59,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "mountains": {
-            "health": 75,
+            "health": 59,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "forest": {
-            "health": 75,
+            "health": 59,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "urban": {
-            "health": 75,
+            "health": 59,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "sea": {
-            "health": 75,
+            "health": 59,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -2161,7 +2161,7 @@ export const strategicBomberData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Airplane",
         "averageDamage": 3.4,
-        "hitpoints": 85,
+        "hitpoints": 77,
         "production": {
           "costs": {
             "food": 2400,
@@ -2216,37 +2216,37 @@ export const strategicBomberData: IUnitType = {
         },
         "terrainEffects": {
           "plains": {
-            "health": 98,
+            "health": 77,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "hills": {
-            "health": 98,
+            "health": 77,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "mountains": {
-            "health": 98,
+            "health": 77,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "forest": {
-            "health": 98,
+            "health": 77,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "urban": {
-            "health": 98,
+            "health": 77,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "sea": {
-            "health": 98,
+            "health": 77,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -2265,7 +2265,7 @@ export const strategicBomberData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Airplane",
         "averageDamage": 4.5,
-        "hitpoints": 105,
+        "hitpoints": 95,
         "production": {
           "costs": {
             "food": 2700,
@@ -2320,37 +2320,37 @@ export const strategicBomberData: IUnitType = {
         },
         "terrainEffects": {
           "plains": {
-            "health": 121,
+            "health": 95,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "hills": {
-            "health": 121,
+            "health": 95,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "mountains": {
-            "health": 121,
+            "health": 95,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "forest": {
-            "health": 121,
+            "health": 95,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "urban": {
-            "health": 121,
+            "health": 95,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "sea": {
-            "health": 121,
+            "health": 95,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -2369,7 +2369,7 @@ export const strategicBomberData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Airplane",
         "averageDamage": 6,
-        "hitpoints": 130,
+        "hitpoints": 117,
         "production": {
           "costs": {
             "food": 2900,
@@ -2424,37 +2424,37 @@ export const strategicBomberData: IUnitType = {
         },
         "terrainEffects": {
           "plains": {
-            "health": 150,
+            "health": 117,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "hills": {
-            "health": 150,
+            "health": 117,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "mountains": {
-            "health": 150,
+            "health": 117,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "forest": {
-            "health": 150,
+            "health": 117,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "urban": {
-            "health": 150,
+            "health": 117,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "sea": {
-            "health": 150,
+            "health": 117,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null

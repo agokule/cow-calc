@@ -763,7 +763,7 @@ export const rocketArtilleryData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Unarmored",
         "averageDamage": 1.5,
-        "hitpoints": 15,
+        "hitpoints": 14,
         "production": {
           "costs": {
             "food": 1300,
@@ -819,31 +819,31 @@ export const rocketArtilleryData: IUnitType = {
         },
         "terrainEffects": {
           "plains": {
-            "health": 15,
+            "health": 14,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "hills": {
-            "health": 15,
+            "health": 14,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": 0.7
           },
           "mountains": {
-            "health": 15,
+            "health": 14,
             "attackModifier": null,
             "speedModifier": -0.5,
             "strengthModifier": 0.7
           },
           "forest": {
-            "health": 15,
+            "health": 14,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "urban": {
-            "health": 15,
+            "health": 14,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -868,7 +868,7 @@ export const rocketArtilleryData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Unarmored",
         "averageDamage": 2.7,
-        "hitpoints": 25,
+        "hitpoints": 23,
         "production": {
           "costs": {
             "food": 1400,
@@ -924,31 +924,31 @@ export const rocketArtilleryData: IUnitType = {
         },
         "terrainEffects": {
           "plains": {
-            "health": 25,
+            "health": 23,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "hills": {
-            "health": 25,
+            "health": 23,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": 0.7
           },
           "mountains": {
-            "health": 25,
+            "health": 23,
             "attackModifier": null,
             "speedModifier": -0.5,
             "strengthModifier": 0.7
           },
           "forest": {
-            "health": 25,
+            "health": 23,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "urban": {
-            "health": 25,
+            "health": 23,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -973,7 +973,7 @@ export const rocketArtilleryData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Unarmored",
         "averageDamage": 4.5,
-        "hitpoints": 35,
+        "hitpoints": 32,
         "production": {
           "costs": {
             "food": 1800,
@@ -1029,31 +1029,31 @@ export const rocketArtilleryData: IUnitType = {
         },
         "terrainEffects": {
           "plains": {
-            "health": 35,
+            "health": 32,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "hills": {
-            "health": 35,
+            "health": 32,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": 0.7
           },
           "mountains": {
-            "health": 35,
+            "health": 32,
             "attackModifier": null,
             "speedModifier": -0.5,
             "strengthModifier": 0.7
           },
           "forest": {
-            "health": 35,
+            "health": 32,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "urban": {
-            "health": 35,
+            "health": 32,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null

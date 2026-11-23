@@ -1498,7 +1498,7 @@ export const destroyerData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Ship",
         "averageDamage": 5.6,
-        "hitpoints": 30,
+        "hitpoints": 27,
         "production": {
           "costs": {
             "food": 1000,
@@ -1583,7 +1583,7 @@ export const destroyerData: IUnitType = {
             "strengthModifier": null
           },
           "sea": {
-            "health": 30,
+            "health": 27,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -1602,7 +1602,7 @@ export const destroyerData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Ship",
         "averageDamage": 7.8,
-        "hitpoints": 40,
+        "hitpoints": 36,
         "production": {
           "costs": {
             "food": 1100,
@@ -1687,7 +1687,7 @@ export const destroyerData: IUnitType = {
             "strengthModifier": null
           },
           "sea": {
-            "health": 40,
+            "health": 36,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -1706,7 +1706,7 @@ export const destroyerData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Ship",
         "averageDamage": 10.9,
-        "hitpoints": 55,
+        "hitpoints": 50,
         "production": {
           "costs": {
             "food": 1200,
@@ -1791,7 +1791,7 @@ export const destroyerData: IUnitType = {
             "strengthModifier": null
           },
           "sea": {
-            "health": 55,
+            "health": 50,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -1810,7 +1810,7 @@ export const destroyerData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Ship",
         "averageDamage": 14.5,
-        "hitpoints": 75,
+        "hitpoints": 68,
         "production": {
           "costs": {
             "food": 1400,
@@ -1895,7 +1895,7 @@ export const destroyerData: IUnitType = {
             "strengthModifier": null
           },
           "sea": {
-            "health": 75,
+            "health": 68,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -1914,7 +1914,7 @@ export const destroyerData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Ship",
         "averageDamage": 19.2,
-        "hitpoints": 95,
+        "hitpoints": 86,
         "production": {
           "costs": {
             "food": 1600,
@@ -1999,7 +1999,7 @@ export const destroyerData: IUnitType = {
             "strengthModifier": null
           },
           "sea": {
-            "health": 95,
+            "health": 86,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -2018,7 +2018,7 @@ export const destroyerData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Ship",
         "averageDamage": 25.1,
-        "hitpoints": 120,
+        "hitpoints": 108,
         "production": {
           "costs": {
             "food": 1800,
@@ -2103,7 +2103,7 @@ export const destroyerData: IUnitType = {
             "strengthModifier": null
           },
           "sea": {
-            "health": 120,
+            "health": 108,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null

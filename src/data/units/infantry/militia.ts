@@ -1020,7 +1020,7 @@ export const militiaData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Unarmored",
         "averageDamage": 1.3,
-        "hitpoints": 15,
+        "hitpoints": 14,
         "production": {
           "costs": {
             "food": 500,
@@ -1077,31 +1077,31 @@ export const militiaData: IUnitType = {
         },
         "terrainEffects": {
           "plains": {
-            "health": 15,
+            "health": 14,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": 0.45
           },
           "hills": {
-            "health": 15,
+            "health": 14,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": 0.45
           },
           "mountains": {
-            "health": 15,
+            "health": 14,
             "attackModifier": null,
             "speedModifier": -0.5,
             "strengthModifier": 0.45
           },
           "forest": {
-            "health": 15,
+            "health": 14,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": 0.7
           },
           "urban": {
-            "health": 15,
+            "health": 14,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -1126,7 +1126,7 @@ export const militiaData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Unarmored",
         "averageDamage": 2.5,
-        "hitpoints": 20,
+        "hitpoints": 18,
         "production": {
           "costs": {
             "food": 550,
@@ -1183,31 +1183,31 @@ export const militiaData: IUnitType = {
         },
         "terrainEffects": {
           "plains": {
-            "health": 20,
+            "health": 18,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": 0.45
           },
           "hills": {
-            "health": 20,
+            "health": 18,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": 0.45
           },
           "mountains": {
-            "health": 20,
+            "health": 18,
             "attackModifier": null,
             "speedModifier": -0.5,
             "strengthModifier": 0.45
           },
           "forest": {
-            "health": 20,
+            "health": 18,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": 0.7
           },
           "urban": {
-            "health": 20,
+            "health": 18,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -1232,7 +1232,7 @@ export const militiaData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Unarmored",
         "averageDamage": 4.5,
-        "hitpoints": 30,
+        "hitpoints": 27,
         "production": {
           "costs": {
             "food": 650,
@@ -1289,31 +1289,31 @@ export const militiaData: IUnitType = {
         },
         "terrainEffects": {
           "plains": {
-            "health": 30,
+            "health": 27,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": 0.45
           },
           "hills": {
-            "health": 30,
+            "health": 27,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": 0.45
           },
           "mountains": {
-            "health": 30,
+            "health": 27,
             "attackModifier": null,
             "speedModifier": -0.5,
             "strengthModifier": 0.45
           },
           "forest": {
-            "health": 30,
+            "health": 27,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": 0.7
           },
           "urban": {
-            "health": 30,
+            "health": 27,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -1338,7 +1338,7 @@ export const militiaData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Unarmored",
         "averageDamage": 8,
-        "hitpoints": 45,
+        "hitpoints": 41,
         "production": {
           "costs": {
             "food": 750,
@@ -1395,31 +1395,31 @@ export const militiaData: IUnitType = {
         },
         "terrainEffects": {
           "plains": {
-            "health": 45,
+            "health": 41,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": 0.45
           },
           "hills": {
-            "health": 45,
+            "health": 41,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": 0.45
           },
           "mountains": {
-            "health": 45,
+            "health": 41,
             "attackModifier": null,
             "speedModifier": -0.5,
             "strengthModifier": 0.45
           },
           "forest": {
-            "health": 45,
+            "health": 41,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": 0.7
           },
           "urban": {
-            "health": 45,
+            "health": 41,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null

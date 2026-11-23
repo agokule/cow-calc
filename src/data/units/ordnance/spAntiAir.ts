@@ -1251,7 +1251,7 @@ export const spAntiAirData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "LightArmor",
         "averageDamage": 2.3,
-        "hitpoints": 22,
+        "hitpoints": 20,
         "production": {
           "costs": {
             "food": 900,
@@ -1306,31 +1306,31 @@ export const spAntiAirData: IUnitType = {
         },
         "terrainEffects": {
           "plains": {
-            "health": 22,
+            "health": 20,
             "attackModifier": null,
             "speedModifier": 0.25,
             "strengthModifier": null
           },
           "hills": {
-            "health": 22,
+            "health": 20,
             "attackModifier": null,
             "speedModifier": -0.25,
             "strengthModifier": 0.7
           },
           "mountains": {
-            "health": 22,
+            "health": 20,
             "attackModifier": null,
             "speedModifier": -0.5,
             "strengthModifier": null
           },
           "forest": {
-            "health": 22,
+            "health": 20,
             "attackModifier": null,
             "speedModifier": -0.25,
             "strengthModifier": null
           },
           "urban": {
-            "health": 22,
+            "health": 20,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": 0.45
@@ -1355,7 +1355,7 @@ export const spAntiAirData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "LightArmor",
         "averageDamage": 3.3,
-        "hitpoints": 27,
+        "hitpoints": 24,
         "production": {
           "costs": {
             "food": 1100,
@@ -1410,31 +1410,31 @@ export const spAntiAirData: IUnitType = {
         },
         "terrainEffects": {
           "plains": {
-            "health": 27,
+            "health": 24,
             "attackModifier": null,
             "speedModifier": 0.25,
             "strengthModifier": null
           },
           "hills": {
-            "health": 27,
+            "health": 24,
             "attackModifier": null,
             "speedModifier": -0.25,
             "strengthModifier": 0.7
           },
           "mountains": {
-            "health": 27,
+            "health": 24,
             "attackModifier": null,
             "speedModifier": -0.5,
             "strengthModifier": null
           },
           "forest": {
-            "health": 27,
+            "health": 24,
             "attackModifier": null,
             "speedModifier": -0.25,
             "strengthModifier": null
           },
           "urban": {
-            "health": 27,
+            "health": 24,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": 0.45
@@ -1459,7 +1459,7 @@ export const spAntiAirData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "LightArmor",
         "averageDamage": 4.4,
-        "hitpoints": 32,
+        "hitpoints": 29,
         "production": {
           "costs": {
             "food": 1200,
@@ -1514,31 +1514,31 @@ export const spAntiAirData: IUnitType = {
         },
         "terrainEffects": {
           "plains": {
-            "health": 32,
+            "health": 29,
             "attackModifier": null,
             "speedModifier": 0.25,
             "strengthModifier": null
           },
           "hills": {
-            "health": 32,
+            "health": 29,
             "attackModifier": null,
             "speedModifier": -0.25,
             "strengthModifier": 0.7
           },
           "mountains": {
-            "health": 32,
+            "health": 29,
             "attackModifier": null,
             "speedModifier": -0.5,
             "strengthModifier": null
           },
           "forest": {
-            "health": 32,
+            "health": 29,
             "attackModifier": null,
             "speedModifier": -0.25,
             "strengthModifier": null
           },
           "urban": {
-            "health": 32,
+            "health": 29,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": 0.45
@@ -1563,7 +1563,7 @@ export const spAntiAirData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "LightArmor",
         "averageDamage": 6.2,
-        "hitpoints": 42,
+        "hitpoints": 38,
         "production": {
           "costs": {
             "food": 1300,
@@ -1618,31 +1618,31 @@ export const spAntiAirData: IUnitType = {
         },
         "terrainEffects": {
           "plains": {
-            "health": 42,
+            "health": 38,
             "attackModifier": null,
             "speedModifier": 0.25,
             "strengthModifier": null
           },
           "hills": {
-            "health": 42,
+            "health": 38,
             "attackModifier": null,
             "speedModifier": -0.25,
             "strengthModifier": 0.7
           },
           "mountains": {
-            "health": 42,
+            "health": 38,
             "attackModifier": null,
             "speedModifier": -0.5,
             "strengthModifier": null
           },
           "forest": {
-            "health": 42,
+            "health": 38,
             "attackModifier": null,
             "speedModifier": -0.25,
             "strengthModifier": null
           },
           "urban": {
-            "health": 42,
+            "health": 38,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": 0.45
@@ -1667,7 +1667,7 @@ export const spAntiAirData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "LightArmor",
         "averageDamage": 8.4,
-        "hitpoints": 65,
+        "hitpoints": 59,
         "production": {
           "costs": {
             "food": 1500,
@@ -1722,31 +1722,31 @@ export const spAntiAirData: IUnitType = {
         },
         "terrainEffects": {
           "plains": {
-            "health": 65,
+            "health": 59,
             "attackModifier": null,
             "speedModifier": 0.25,
             "strengthModifier": null
           },
           "hills": {
-            "health": 65,
+            "health": 59,
             "attackModifier": null,
             "speedModifier": -0.25,
             "strengthModifier": 0.7
           },
           "mountains": {
-            "health": 65,
+            "health": 59,
             "attackModifier": null,
             "speedModifier": -0.5,
             "strengthModifier": null
           },
           "forest": {
-            "health": 65,
+            "health": 59,
             "attackModifier": null,
             "speedModifier": -0.25,
             "strengthModifier": null
           },
           "urban": {
-            "health": 65,
+            "health": 59,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": 0.45

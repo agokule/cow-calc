@@ -563,7 +563,7 @@ export const sniperData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Unarmored",
         "averageDamage": 6.3,
-        "hitpoints": 15,
+        "hitpoints": 14,
         "production": {
           "costs": {
             "food": 1600,
@@ -619,43 +619,43 @@ export const sniperData: IUnitType = {
         },
         "terrainEffects": {
           "plains": {
-            "health": 15,
+            "health": 14,
             "attackModifier": null,
             "strengthModifier": 0,
             "speedModifier": 0.25
           },
           "hills": {
-            "health": 15,
+            "health": 14,
             "attackModifier": null,
             "strengthModifier": null,
             "speedModifier": -0.25
           },
           "mountains": {
-            "health": 15,
+            "health": 14,
             "attackModifier": null,
             "strengthModifier": null,
             "speedModifier": -0.5
           },
           "forest": {
-            "health": 15,
+            "health": 14,
             "attackModifier": null,
             "strengthModifier": 0.4,
             "speedModifier": -0.25
           },
           "urban": {
-            "health": 15,
+            "health": 14,
             "attackModifier": null,
             "strengthModifier": 0.4,
             "speedModifier": null
           },
           "sea": {
-            "health": 15,
+            "health": 14,
             "attackModifier": null,
             "strengthModifier": null,
             "speedModifier": null
           },
           "enemyTerritory": {
-            "health": 15,
+            "health": 14,
             "attackModifier": null,
             "speedModifier": -0.5,
             "strengthModifier": null
@@ -668,7 +668,7 @@ export const sniperData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Unarmored",
         "averageDamage": 8.8,
-        "hitpoints": 30,
+        "hitpoints": 27,
         "production": {
           "costs": {
             "food": 1800,
@@ -724,43 +724,43 @@ export const sniperData: IUnitType = {
         },
         "terrainEffects": {
           "plains": {
-            "health": 30,
+            "health": 27,
             "attackModifier": null,
             "strengthModifier": 0,
             "speedModifier": 0.25
           },
           "hills": {
-            "health": 30,
+            "health": 27,
             "attackModifier": null,
             "strengthModifier": null,
             "speedModifier": -0.25
           },
           "mountains": {
-            "health": 30,
+            "health": 27,
             "attackModifier": null,
             "strengthModifier": null,
             "speedModifier": -0.5
           },
           "forest": {
-            "health": 30,
+            "health": 27,
             "attackModifier": null,
             "strengthModifier": 0.4,
             "speedModifier": -0.25
           },
           "urban": {
-            "health": 30,
+            "health": 27,
             "attackModifier": null,
             "strengthModifier": 0.4,
             "speedModifier": null
           },
           "sea": {
-            "health": 30,
+            "health": 27,
             "attackModifier": null,
             "strengthModifier": null,
             "speedModifier": null
           },
           "enemyTerritory": {
-            "health": 30,
+            "health": 27,
             "attackModifier": null,
             "speedModifier": -0.5,
             "strengthModifier": null
@@ -773,7 +773,7 @@ export const sniperData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Unarmored",
         "averageDamage": 12.5,
-        "hitpoints": 45,
+        "hitpoints": 41,
         "production": {
           "costs": {
             "food": 2000,
@@ -829,43 +829,43 @@ export const sniperData: IUnitType = {
         },
         "terrainEffects": {
           "plains": {
-            "health": 45,
+            "health": 41,
             "attackModifier": null,
             "strengthModifier": 0,
             "speedModifier": 0.25
           },
           "hills": {
-            "health": 45,
+            "health": 41,
             "attackModifier": null,
             "strengthModifier": null,
             "speedModifier": -0.25
           },
           "mountains": {
-            "health": 45,
+            "health": 41,
             "attackModifier": null,
             "strengthModifier": null,
             "speedModifier": -0.5
           },
           "forest": {
-            "health": 45,
+            "health": 41,
             "attackModifier": null,
             "strengthModifier": 0.4,
             "speedModifier": -0.25
           },
           "urban": {
-            "health": 45,
+            "health": 41,
             "attackModifier": null,
             "strengthModifier": 0.4,
             "speedModifier": null
           },
           "sea": {
-            "health": 45,
+            "health": 41,
             "attackModifier": null,
             "strengthModifier": null,
             "speedModifier": null
           },
           "enemyTerritory": {
-            "health": 45,
+            "health": 41,
             "attackModifier": null,
             "speedModifier": -0.5,
             "strengthModifier": null

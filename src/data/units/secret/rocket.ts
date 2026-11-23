@@ -1020,7 +1020,7 @@ export const rocketData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Rocket",
         "averageDamage": 7.5,
-        "hitpoints": 10,
+        "hitpoints": 9,
         "production": {
           "costs": {
             "manpower": 450,
@@ -1077,37 +1077,37 @@ export const rocketData: IUnitType = {
         },
         "terrainEffects": {
           "plains": {
-            "health": 10,
+            "health": 9,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "hills": {
-            "health": 10,
+            "health": 9,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "mountains": {
-            "health": 10,
+            "health": 9,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "forest": {
-            "health": 10,
+            "health": 9,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "urban": {
-            "health": 10,
+            "health": 9,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "sea": {
-            "health": 10,
+            "health": 9,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -1126,7 +1126,7 @@ export const rocketData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Rocket",
         "averageDamage": 11,
-        "hitpoints": 15,
+        "hitpoints": 14,
         "production": {
           "costs": {
             "manpower": 450,
@@ -1183,37 +1183,37 @@ export const rocketData: IUnitType = {
         },
         "terrainEffects": {
           "plains": {
-            "health": 15,
+            "health": 14,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "hills": {
-            "health": 15,
+            "health": 14,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "mountains": {
-            "health": 15,
+            "health": 14,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "forest": {
-            "health": 15,
+            "health": 14,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "urban": {
-            "health": 15,
+            "health": 14,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "sea": {
-            "health": 15,
+            "health": 14,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -1232,7 +1232,7 @@ export const rocketData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Rocket",
         "averageDamage": 15,
-        "hitpoints": 20,
+        "hitpoints": 18,
         "production": {
           "costs": {
             "manpower": 500,
@@ -1289,37 +1289,37 @@ export const rocketData: IUnitType = {
         },
         "terrainEffects": {
           "plains": {
-            "health": 20,
+            "health": 18,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "hills": {
-            "health": 20,
+            "health": 18,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "mountains": {
-            "health": 20,
+            "health": 18,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "forest": {
-            "health": 20,
+            "health": 18,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "urban": {
-            "health": 20,
+            "health": 18,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "sea": {
-            "health": 20,
+            "health": 18,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -1338,7 +1338,7 @@ export const rocketData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Rocket",
         "averageDamage": 20,
-        "hitpoints": 25,
+        "hitpoints": 23,
         "production": {
           "costs": {
             "manpower": 500,
@@ -1395,37 +1395,37 @@ export const rocketData: IUnitType = {
         },
         "terrainEffects": {
           "plains": {
-            "health": 25,
+            "health": 23,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "hills": {
-            "health": 25,
+            "health": 23,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "mountains": {
-            "health": 25,
+            "health": 23,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "forest": {
-            "health": 25,
+            "health": 23,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "urban": {
-            "health": 25,
+            "health": 23,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
           },
           "sea": {
-            "health": 25,
+            "health": 23,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null

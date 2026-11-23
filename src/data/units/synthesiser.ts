@@ -202,6 +202,7 @@ const unitBuffs: x = {
   },
   ["Pan-Asian"]: {
     overall: {
+      hp: -10,
       terrain: {
         all: 20
       }

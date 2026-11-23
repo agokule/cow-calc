@@ -1498,7 +1498,7 @@ export const submarineData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Submarine",
         "averageDamage": 4.8,
-        "hitpoints": 20,
+        "hitpoints": 18,
         "production": {
           "costs": {
             "food": 950,
@@ -1583,7 +1583,7 @@ export const submarineData: IUnitType = {
             "strengthModifier": null
           },
           "sea": {
-            "health": 20,
+            "health": 18,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -1602,7 +1602,7 @@ export const submarineData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Submarine",
         "averageDamage": 6.5,
-        "hitpoints": 30,
+        "hitpoints": 27,
         "production": {
           "costs": {
             "food": 1100,
@@ -1687,7 +1687,7 @@ export const submarineData: IUnitType = {
             "strengthModifier": null
           },
           "sea": {
-            "health": 30,
+            "health": 27,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -1706,7 +1706,7 @@ export const submarineData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Submarine",
         "averageDamage": 8.8,
-        "hitpoints": 40,
+        "hitpoints": 36,
         "production": {
           "costs": {
             "food": 1200,
@@ -1791,7 +1791,7 @@ export const submarineData: IUnitType = {
             "strengthModifier": null
           },
           "sea": {
-            "health": 40,
+            "health": 36,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -1810,7 +1810,7 @@ export const submarineData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Submarine",
         "averageDamage": 11.8,
-        "hitpoints": 55,
+        "hitpoints": 50,
         "production": {
           "costs": {
             "food": 1300,
@@ -1895,7 +1895,7 @@ export const submarineData: IUnitType = {
             "strengthModifier": null
           },
           "sea": {
-            "health": 55,
+            "health": 50,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -1914,7 +1914,7 @@ export const submarineData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Submarine",
         "averageDamage": 15.8,
-        "hitpoints": 70,
+        "hitpoints": 63,
         "production": {
           "costs": {
             "food": 1600,
@@ -1999,7 +1999,7 @@ export const submarineData: IUnitType = {
             "strengthModifier": null
           },
           "sea": {
-            "health": 70,
+            "health": 63,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -2018,7 +2018,7 @@ export const submarineData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Submarine",
         "averageDamage": 20.5,
-        "hitpoints": 90,
+        "hitpoints": 81,
         "production": {
           "costs": {
             "food": 1700,
@@ -2103,7 +2103,7 @@ export const submarineData: IUnitType = {
             "strengthModifier": null
           },
           "sea": {
-            "health": 90,
+            "health": 81,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null

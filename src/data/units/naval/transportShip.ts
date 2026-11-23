@@ -996,7 +996,7 @@ export const transportShipData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Ship",
         "averageDamage": 0.7,
-        "hitpoints": 10,
+        "hitpoints": 9,
         "production": {
           "costs": {
             "food": 0,
@@ -1080,7 +1080,7 @@ export const transportShipData: IUnitType = {
             "strengthModifier": null
           },
           "sea": {
-            "health": 10,
+            "health": 9,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -1099,7 +1099,7 @@ export const transportShipData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Ship",
         "averageDamage": 1.1,
-        "hitpoints": 15,
+        "hitpoints": 14,
         "production": {
           "costs": {
             "food": 0,
@@ -1183,7 +1183,7 @@ export const transportShipData: IUnitType = {
             "strengthModifier": null
           },
           "sea": {
-            "health": 15,
+            "health": 14,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -1202,7 +1202,7 @@ export const transportShipData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Ship",
         "averageDamage": 1.7,
-        "hitpoints": 20,
+        "hitpoints": 18,
         "production": {
           "costs": {
             "food": 0,
@@ -1286,7 +1286,7 @@ export const transportShipData: IUnitType = {
             "strengthModifier": null
           },
           "sea": {
-            "health": 20,
+            "health": 18,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null
@@ -1305,7 +1305,7 @@ export const transportShipData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Ship",
         "averageDamage": 2.5,
-        "hitpoints": 25,
+        "hitpoints": 23,
         "production": {
           "costs": {
             "food": 0,
@@ -1389,7 +1389,7 @@ export const transportShipData: IUnitType = {
             "strengthModifier": null
           },
           "sea": {
-            "health": 25,
+            "health": 23,
             "attackModifier": null,
             "speedModifier": null,
             "strengthModifier": null

@@ -1510,7 +1510,7 @@ export const battleshipData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Ship",
         "averageDamage": 5,
-        "hitpoints": 55,
+        "hitpoints": 50,
         "production": {
           "costs": {
             "food": 900,
@@ -1615,7 +1615,7 @@ export const battleshipData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Ship",
         "averageDamage": 6.9,
-        "hitpoints": 72,
+        "hitpoints": 65,
         "production": {
           "costs": {
             "food": 950,
@@ -1720,7 +1720,7 @@ export const battleshipData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Ship",
         "averageDamage": 9.7,
-        "hitpoints": 94,
+        "hitpoints": 85,
         "production": {
           "costs": {
             "food": 1100,
@@ -1825,7 +1825,7 @@ export const battleshipData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Ship",
         "averageDamage": 13,
-        "hitpoints": 127,
+        "hitpoints": 115,
         "production": {
           "costs": {
             "food": 1300,
@@ -1930,7 +1930,7 @@ export const battleshipData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Ship",
         "averageDamage": 17.4,
-        "hitpoints": 171,
+        "hitpoints": 155,
         "production": {
           "costs": {
             "food": 1500,
@@ -2035,7 +2035,7 @@ export const battleshipData: IUnitType = {
         "doctrine": "Pan-Asian",
         "type": "Ship",
         "averageDamage": 22.6,
-        "hitpoints": 220,
+        "hitpoints": 200,
         "production": {
           "costs": {
             "food": 1600,
